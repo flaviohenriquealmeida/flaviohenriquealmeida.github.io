@@ -5,7 +5,7 @@ date:   2017-08-09 09:18:51 -0300
 categories: jekyll update
 ---
 
-Finalmente! Foram 18 meses de gestação para que o "Cangaceiro JavaScript" chagasse até as mãos de vocês. Neste post, compatilharei as diretrizes que me norteram durante sua concepção. 
+Finalmente! Foram 18 meses de gestação para que o "Cangaceiro JavaScript" chagasse até as mãos de vocês. Neste post, compartilharei as diretrizes que me nortearam durante sua concepção. 
 
 # Um livro que fosse além da sintaxe
 
@@ -19,7 +19,7 @@ Durante a procura do ponto perfeito (bem que eu poderia participar MarterChef Br
 
 # Preparando o leitor para frameworks populares do mercado
 
-A conseguencia das práticas anteriores acabaram favorecendo a curva de aprendizagem daqueles que desejam adotar frameworks <a href="http://hipsters.tech/single-page-applications-hipsters-16/" target="_blank">Single Page Application</a> do mercado como <a href="https://angular.io/" target="_blank">Angular</a> e bibliotecas para criação de componentes como <a href="https://facebook.github.io/react/">React</a>, mas que ainda não possuem os pré-requisitos necessários.
+A consequência das práticas anteriores acabaram favorecendo a curva de aprendizagem daqueles que desejam adotar frameworks <a href="http://hipsters.tech/single-page-applications-hipsters-16/" target="_blank">Single Page Application</a> do mercado como <a href="https://angular.io/" target="_blank">Angular</a> e bibliotecas para criação de componentes como <a href="https://facebook.github.io/react/">React</a>, mas que ainda não possuem os pré-requisitos necessários.
 
 # Antecipando o Futuro
 
