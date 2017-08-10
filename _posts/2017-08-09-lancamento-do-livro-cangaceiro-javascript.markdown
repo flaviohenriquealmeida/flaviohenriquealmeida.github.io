@@ -1,8 +1,9 @@
 ---
 layout: post
-title:  "Bastidores do Lançamento do livro Cangaceiro JavaScript"
+title:  "Bastidores do livro Cangaceiro JavaScript"
 date:   2017-08-09 09:18:51 -0300
 categories:
+permalink: /bastidores-do-livro-cangaceiro-javascript/
 ---
 
 Finalmente! Foram 18 meses de gestação para que o "Cangaceiro JavaScript" chagasse até as mãos de vocês. Neste post, compartilharei as diretrizes que me nortearam durante sua concepção. 
