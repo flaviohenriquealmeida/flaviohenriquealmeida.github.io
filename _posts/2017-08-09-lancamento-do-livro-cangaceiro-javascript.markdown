@@ -16,7 +16,7 @@ Em mais de 500 páginas deste calhamaço fui da versão 5 do JavaScript até sua
 
 Eu queria um projeto do início ao fim que motivasse naturalmente a aplicação de padrões de projeto e o uso dos paradigmas da *Orientação a Objetos* e do *Funcional*, mas que ao mesmo tempo fosse simples. 
 
-Durante a procura do ponto perfeito (bem que eu poderia participar MarterChef Brasil), acabei caricaturando recursos de frameworks populares do mercado. Digo "caricaturando", porque o livro nunca perdeu seu foco que é ensinar JavaScript transitando entre diferentes paradigmas e não a criação de um mini framework. Este acabou aparecendo como consequência da aplicação de boas práticas. Aliás, já existem muitos no mercado, não?
+Durante a procura do ponto perfeito (bem que eu poderia participar do MarterChef Brasil), acabei caricaturando recursos de frameworks populares do mercado. Digo "caricaturando", porque o livro nunca perdeu seu foco que é ensinar JavaScript transitando entre diferentes paradigmas e não a criação de um mini framework. Este acabou aparecendo como consequência da aplicação de boas práticas. Aliás, já existem muitos no mercado, não?
 
 ## Preparando o leitor para frameworks populares do mercado
 
@@ -30,7 +30,7 @@ Ensinar a sintaxe da linguagem, diferentes paradigmas e padrões de projeto era 
 
 A decisão de adicionar um capítulo dedicado exclusivamente ao Webpack foi de caso pensado. Por mais *vanilla* que o programador JavaScript seja, cedo ou tarde ele se deparará com ele através de ferramentas como Angular CLI, React Create App, Vue CLI entre outros clientes de linha de comando. Configurar do zero Webpack em um projeto que não pertença a nenhum framework do mercado dará a confiança que muitos ainda querem atingir ao utilizá-lo.
 
-Confesso que minha ideia inicial era lançar o capítulo de Webpack como um livro em separado. As mais de 50 páginas eram suficientes para um mini livro completo que não deixaria nada a desejar. Todavia, desisti da ideia e a razão era simples; o projeto do *Cangaceiro JavaScript* caia igual a uma luva para explicar conceitos desde os mais básicos até os mais complexos desta tecnologia. A ideia de lançar um livro dentro de outro Foi irresistível.
+Confesso que minha ideia inicial era lançar o capítulo de Webpack como um livro em separado. As mais de 50 páginas eram suficientes para um mini livro completo que não deixaria nada a desejar. Todavia, desisti da ideia e a razão era simples; o projeto do *Cangaceiro JavaScript* caia igual a uma luva para explicar conceitos desde os mais básicos até os mais complexos desta tecnologia. A ideia de lançar um livro dentro de outro foi irresistível.
 
 ## Minha filha
 
