@@ -16,11 +16,11 @@ Em mais de 500 páginas deste calhamaço fui da versão 5 do JavaScript até sua
 
 Eu queria um projeto do início ao fim que motivasse naturalmente a aplicação de padrões de projeto e o uso dos paradigmas da *Orientação a Objetos* e do *Funcional*, mas que ao mesmo tempo fosse simples. 
 
-Durante a procura do ponto perfeito (bem que eu poderia participar do MarterChef Brasil), acabei caricaturando recursos de frameworks populares do mercado. Digo "caricaturando", porque o livro nunca perdeu seu foco que é ensinar JavaScript transitando entre diferentes paradigmas e não a criação de um mini framework. Este acabou aparecendo como consequência da aplicação de boas práticas. Aliás, já existem muitos no mercado, não?
+Durante a procura do ponto perfeito (bem que eu poderia participar do MarterChef Brasil), acabei caricaturando recursos de frameworks populares do mercado. Digo "caricaturando", porque o livro nunca perdeu seu foco que é ensinar JavaScript transitando entre diferentes paradigmas e não a criação de um mini framework. Este acabou aparecendo como consequência da aplicação de boas práticas. Aliás, já existem muitos frameworks no mercado, não?
 
 ## Preparando o leitor para frameworks populares do mercado
 
-Pensei também nos leitores que desejam trabalhar com frameworks <a href="http://hipsters.tech/single-page-applications-hipsters-16/" target="_blank">Single Page Application</a> do mercado como <a href="https://angular.io/" target="_blank">Angular</a> e bibliotecas para criação de componentes como <a href="https://facebook.github.io/react/">React</a>, mas que ainda não possuem os pré-requisitos necessários. O livro ajudará com boa parte dos pré-requisitos necessários para que o leitor compreenda esses frameworks.
+Pensei também nos leitores que desejam trabalhar com frameworks <a href="http://hipsters.tech/single-page-applications-hipsters-16/" target="_blank">Single Page Application</a> do mercado como <a href="https://angular.io/" target="_blank">Angular</a> e bibliotecas para criação de componentes como <a href="https://facebook.github.io/react/">React</a>, mas que ainda não possuem os pré-requisitos necessários. O livro ajudará com boa parte dos pré-requisitos para que o leitor compreenda esses frameworks.
 
 ## Vários livros em um só
 
