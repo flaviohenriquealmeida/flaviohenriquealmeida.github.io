@@ -10,7 +10,7 @@ Finalmente! Foram 18 meses de gestação para que o *Cangaceiro JavaScript* chag
 
 ## Um livro que fosse além da sintaxe
 
-Em mais de 500 páginas deste calhamaço fui da versão 5 do JavaScript até sua versão ES2017 (ES8). Fui além utilizando novos recursos que estão sendo especificados como <a href="https://github.com/tc39/proposal-decorators">Decorators</a> com auxílio de <a href="https://babeljs.io/">Babel</a>. Porém, desde a sua concepção, eu tinha em mente que ele não seria um livro focado única e exclusivamente na sintaxe da linguagem.
+Em mais de 500 páginas deste calhamaço fui da versão 5 do JavaScript até sua versão ES2017 (ES8). Fui além utilizando novos recursos que estão sendo especificados como <a href="https://github.com/tc39/proposal-decorators">Decorators</a> com auxílio de <a href="https://babeljs.io/" target="_blank">Babel</a>. Porém, desde a sua concepção, eu tinha em mente que ele não seria um livro focado única e exclusivamente na sintaxe da linguagem.
 
 ## Padrões de projeto e os paradigmas da Orientação a objetos e o Funcional
 
@@ -20,11 +20,11 @@ Durante a procura do ponto perfeito (bem que eu poderia participar do MarterChef
 
 ## Preparando o leitor para frameworks populares do mercado
 
-Pensei também nos leitores que desejam trabalhar com frameworks <a href="http://hipsters.tech/single-page-applications-hipsters-16/" target="_blank">Single Page Application</a> do mercado como <a href="https://angular.io/" target="_blank">Angular</a> e bibliotecas para criação de componentes como <a href="https://facebook.github.io/react/">React</a>, mas que ainda não possuem os pré-requisitos necessários. O livro ajudará com boa parte dos pré-requisitos para que o leitor compreenda esses frameworks.
+Pensei também nos leitores que desejam trabalhar com frameworks <a href="http://hipsters.tech/single-page-applications-hipsters-16/" target="_blank">Single Page Application</a> do mercado como <a href="https://angular.io/" target="_blank">Angular</a> e bibliotecas para criação de componentes como <a href="https://facebook.github.io/react/" target="_blank">React</a>, mas que ainda não possuem os pré-requisitos necessários. O livro ajudará com boa parte dos pré-requisitos para que o leitor compreenda esses frameworks.
 
 ## Vários livros em um só
 
-Ensinar a sintaxe da linguagem, diferentes paradigmas e padrões de projeto era minha meta desde o início, mas isso ainda não era suficiente. Para que o leitor pudesse praticar ainda mais e tornar seu código ainda melhor, incluí no livro <a href="https://developer.mozilla.org/pt-BR/docs/IndexedDB" target="_blank">IndexedDB</a>, <a href="https://babeljs.io/">Babel</a> e <a href="https://webpack.github.io/">Webpack</a>. O primeiro é um banco de dados orientado a documentos especificado e presente nos navegadores do mercado. O segundo, um transcompilador que permite garantir a compatibilidade do código com navegadores mais antigos e ainda antecipar a utilização de recursos que estão para entrar na linguagem. Por fim, temos o Webpack. Falarei dedicadamente sobre ele a seguir.
+Ensinar a sintaxe da linguagem, diferentes paradigmas e padrões de projeto era minha meta desde o início, mas isso ainda não era suficiente. Para que o leitor pudesse praticar ainda mais e tornar seu código ainda melhor, incluí no livro <a href="https://developer.mozilla.org/pt-BR/docs/IndexedDB" target="_blank">IndexedDB</a>, <a href="https://babeljs.io/" target="_blank">Babel</a> e <a href="https://webpack.github.io/">Webpack</a>. O primeiro é um banco de dados orientado a documentos especificado e presente nos navegadores do mercado. O segundo, um transcompilador que permite garantir a compatibilidade do código com navegadores mais antigos e ainda antecipar a utilização de recursos que estão para entrar na linguagem. Por fim, temos o Webpack. Falarei dedicadamente sobre ele a seguir.
 
 ## Por que Webpack?
 
