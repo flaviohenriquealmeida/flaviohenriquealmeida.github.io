@@ -6,7 +6,7 @@ categories:
 permalink: /bastidores-do-livro-cangaceiro-javascript/
 ---
 
-Finalmente! Foram 18 meses de gestação para que o *Cangaceiro JavaScript* chagasse até as mãos de vocês. Em breve a <a href="https://www.casadocodigo.com.br/" target="_blank">A Casa do Código</a> estará anunciando o lançamento! Neste post, compartilharei as diretrizes que me nortearam durante sua concepção. 
+Finalmente! Foram 18 meses de gestação para que o *Cangaceiro JavaScript* chagasse até vocês. Em breve a <a href="https://www.casadocodigo.com.br/" target="_blank">A Casa do Código</a> estará anunciando o lançamento! Neste post, compartilharei as diretrizes que me nortearam durante sua concepção. 
 
 ## Um livro que fosse além da sintaxe
 
