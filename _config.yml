@@ -17,7 +17,7 @@ title: Cangaceiro JavaScript
 google_analytics: UA-104300016-1
 email: 
 description: > # this means to ignore newlines until "baseurl:"
-  Blog do livro "Cangaceiro JavaScript"
+  JavaScript, Node.js e muito mais
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://cangaceirojavascript.com.br" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: flaviohalmeida
