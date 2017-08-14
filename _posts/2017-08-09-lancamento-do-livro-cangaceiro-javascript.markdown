@@ -4,6 +4,7 @@ title:  "Bastidores do livro Cangaceiro JavaScript"
 date:   2017-08-09 09:18:51 -0300
 categories:
 permalink: /bastidores-do-livro-cangaceiro-javascript/
+comments: false
 ---
 
 Finalmente! Foram 18 meses de gestação para que o *<a href="https://www.casadocodigo.com.br/products/livro-cangaceiro-javascript" target="_blank">Cangaceiro JavaScript: uma aventura no sertão da programação</a>* chegasse até vocês. Neste post, compartilharei as diretrizes que me nortearam durante sua concepção. 
