@@ -6,7 +6,7 @@ categories:
 permalink: /por-que-voce-deveria-estar-usando-util-promisify/
 ---
 
-Este post parte do princípio de que o cangaceiro ou cangaceira já tenha um conhecimento, ainda que básico, do uso de Promises.
+Desta vez a estrela da vez é o Node.js! Este post parte do princípio de que o cangaceiro ou cangaceira já tenha um conhecimento, ainda que básico, do uso de Promises.
 
 ## Error first-callback
 
