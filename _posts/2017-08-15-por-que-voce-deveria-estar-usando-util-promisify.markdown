@@ -77,6 +77,8 @@ Ou, para tornar o código ainda mais enxuto:
 
 ```javascript
 const { promisify } = require('util');
+
+// realizou o require já promisificando
 const writeFile = promisify(require('fs').writeFile);
 
 writeFile('arquivo.txt', 'conteúdo arquivo')
@@ -88,7 +90,7 @@ Com `util.promisify` podemos transformar qualquer API *error first callback* em 
 
 ## Bônus
 
-Com a transformação de API's assíncronas do Node.js em Promises através de `util.promisify` podemos utilizar sem grandes burocracias a sintaxe `async/await`:
+Com a transformação de API's assíncronas do Node.js em Promises através de `util.promisify` podemos utilizar sem grande burocracia a sintaxe `async/await`:
 
 ```javascript
 const { promisify } = require('util');
