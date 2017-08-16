@@ -110,7 +110,7 @@ Vejamos outro recurso do TypeScript a seguir.
 
 ## Parâmetros obrigatórios
 
-Ainda no contexto da classe `Pessoa` na versão em TypeScript, somos obrigados a passar todos os parâmetros do `constructor` ou teremos um erro de compilação:
+Ainda no contexto da classe `Conta` na versão em TypeScript, somos obrigados a passar todos os parâmetros do `constructor` ou teremos um erro de compilação:
 
 ```javascript
 class Conta {
