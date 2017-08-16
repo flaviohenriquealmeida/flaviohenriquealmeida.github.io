@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Emulando recursos do TypeScript em JavaScript"
-date:   2017-08-15 21:30:00 -0300
+date:   2017-08-15 08:30:00 -0300
 categories:
 permalink: /emulando-recursos-do-typescript-em-javascript/
 author: flavio_almeida
