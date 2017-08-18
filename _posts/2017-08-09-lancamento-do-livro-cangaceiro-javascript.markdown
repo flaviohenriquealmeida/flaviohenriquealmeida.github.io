@@ -1,10 +1,11 @@
 ---
 layout: post
 title:  "Bastidores do livro Cangaceiro JavaScript"
+description: Finalmente! Foram 18 meses de gestação para que o Cangaceiro JavaScript chegasse até vocês. Neste post, compartilharei as diretrizes que me nortearam durante sua concepção. 
 date:   2017-08-09 09:18:51 -0300
-categories:
 permalink: /bastidores-do-livro-cangaceiro-javascript/
 author: flavio_almeida
+categories:
 tags: [javascript, cangaceiro, webpack, livro, padroes-de-projeto, orientacao-a-objetos, programacao-funcional, babel, indexedDB]
 image: chamada.png
 ---

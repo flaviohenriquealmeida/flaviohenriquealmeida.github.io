@@ -1,10 +1,11 @@
 ---
 layout: post
 title:  "Por que você deveria estar usando util.promisify"
-date:   2017-08-14 08:00:00 -0300
-categories:
+description: A estrela da vez é o Node.js! Este post parte do princípio de que o cangaceiro ou cangaceira já tenha um conhecimento, ainda que básico, do uso de Promises.
 permalink: /por-que-voce-deveria-estar-usando-util-promisify/
+date:   2017-08-14 08:00:00 -0300
 author: flavio_almeida
+categories:
 tags: [node, javacript, promise, boas-praticas]
 image: chamada.png
 ---

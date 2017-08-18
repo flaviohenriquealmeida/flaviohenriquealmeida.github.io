@@ -10,7 +10,6 @@
   {%endif %}
 
   <!-- social -->
-  
   <meta content="{{ site.title }}" property="og:site_name">
   {% if page.title %}
     <meta content="{{ page.title }}" property="og:title">
@@ -27,17 +26,24 @@
   {% else %}
     <meta content="{{ site.description }}" property="og:description">
   {% endif %}
+  
   {% if page.url %}
     <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+  {% else %}
+    <meta content="{{ site.url }}{{ page.permlink }}" property="og:url">
   {% endif %}
+
   {% if page.date %}
     <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
     <meta content="{{ site.url }}/sobre/" property="article:author">
   {% endif %}
-
+  
   {% if page.image %}
     <meta content="{{ site.url }}/assets/img/{{ page.image }}" property="og:image">
     <meta name="twitter:image" content="{{ site.url }}/assets/img/{{ page.image }}" />
+  {% else %}
+    <meta content="{{ site.url }}/assets/img/chamada.png" property="og:image">
+    <meta name="twitter:image" content="{{ site.url }}/assets/img/chamada.png" />
   {% endif %}
     
   {% if page.categories %}

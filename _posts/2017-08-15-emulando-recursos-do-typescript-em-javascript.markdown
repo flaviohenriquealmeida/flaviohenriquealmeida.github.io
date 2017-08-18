@@ -1,10 +1,11 @@
 ---
 layout: post
 title:  "Emulando recursos do TypeScript em JavaScript"
-date:   2017-08-15 08:30:00 -0300
-categories:
+description: O objetivo desse post é demonstrar como o TypeScript pode servir como fonte de inspiração para escrevermos um código menos verboso e fácil de manter em JavaScript.
 permalink: /emulando-recursos-do-typescript-em-javascript/
+date:   2017-08-15 08:30:00 -0300
 author: flavio_almeida
+categories:
 tags: [javascript, typescript, class-design]
 image: chamada.png
 ---
