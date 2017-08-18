@@ -6,6 +6,7 @@ categories:
 permalink: /bastidores-do-livro-cangaceiro-javascript/
 author: flavio_almeida
 tags: [javascript, cangaceiro, webpack, livro, padroes-de-projeto, orientacao-a-objetos, programacao-funcional, babel, indexedDB]
+image: chamada.png
 ---
 
 Finalmente! Foram 18 meses de gestação para que o *<a href="https://www.casadocodigo.com.br/products/livro-cangaceiro-javascript" target="_blank">Cangaceiro JavaScript: uma aventura no sertão da programação</a>* chegasse até vocês. Neste post, compartilharei as diretrizes que me nortearam durante sua concepção. 

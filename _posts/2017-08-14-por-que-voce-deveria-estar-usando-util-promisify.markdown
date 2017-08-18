@@ -6,6 +6,7 @@ categories:
 permalink: /por-que-voce-deveria-estar-usando-util-promisify/
 author: flavio_almeida
 tags: [node, javacript, promise, boas-praticas]
+image: chamada.png
 ---
 
 A estrela da vez é o Node.js! Este post parte do princípio de que o cangaceiro ou cangaceira já tenha um conhecimento, ainda que básico, do uso de Promises.

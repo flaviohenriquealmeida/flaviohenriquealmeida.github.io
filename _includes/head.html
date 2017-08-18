@@ -35,14 +35,10 @@
     <meta content="{{ site.url }}/sobre/" property="article:author">
   {% endif %}
 
-  <!-- 
   {% if page.image %}
-    <meta content="/img/srcset/{{ page.image }}" property="og:image">
-  {% else %}
-    <meta content="/img/logo-high-resolution.png" property="og:image">
+    <meta content="{{ site.url }}/assets/img/{{ page.image }}" property="og:image">
   {% endif %}
-  -->
-  
+    
   {% if page.categories %}
     {% for category in page.categories limit:1 %}
     <meta content="{{ category }}" property="article:section">
