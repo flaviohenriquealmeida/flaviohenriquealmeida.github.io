@@ -7,7 +7,7 @@ date:   2017-08-15 08:30:00 -0300
 author: flavio_almeida
 categories:
 tags: [javascript, typescript, class-design]
-image: chamada.png
+image: logo.png
 ---
 
 O objetivo desse post é demonstrar como o TypeScript pode servir como fonte de inspiração para escrevermos um código menos verboso e fácil de manter em JavaScript. Começaremos primeiro com uma visão geral sobre a linguagem TypeScript.
