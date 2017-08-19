@@ -101,4 +101,4 @@ exibeNome(nome);
 
 ## Conclusão 
 
-A atribuição via desestruturação vai além do que vimos e você pode consultar a <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Atribuicao_via_desestruturacao" target="_blank">documentação completa</a> para saber ainda mais. No entanto, a parte que vimos é suficiente para nos ajudar na importação de módulos na plataforma Node.js.
+A atribuição via desestruturação vai além do que vimos e você pode consultar a <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Atribuicao_via_desestruturacao" target="_blank">documentação completa</a> para saber ainda mais. A parte que aprendemos é suficiente para nos ajudar na importação de módulos na plataforma Node.js.
