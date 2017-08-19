@@ -129,7 +129,7 @@ class Conta {
 
 // não compila
 // Não passou o restante dos parâmetros do constructor
-const conta = new Conta('Flávio'');  
+const conta = new Conta('Flávio');  
 ```
 
 Em JavaScript, podemos conseguir comportamento semelhante fazendo um uso não usual de `default parameter`, parâmetro padrão. O valor padrão no `constructor` da classe será uma função que lançará sempre uma exceção. Nesse contexto, se qualquer parâmetro for omitido, um erro em tempo de execução (runtime) será exibido:
@@ -149,7 +149,7 @@ class Conta {
       _numero= obrigatorio('número')
       ) {
 
-      Object.assign(this, { _nome, _sobrenome, _idade});
+      Object.assign(this, { _titular, _banco, _agencia, _numero });
   }
   // métodos acessadores e alteradores omitidos
 }
