@@ -2,7 +2,7 @@
 layout: post
 title:  "Importando módulos do Node.js com destructuring"
 description: Quando desenvolvemos na plataforma Node.js é extremamente comum precisarmos importar outros módulos para realizarmos nossas tarefas.
-date:   2017-08-15 08:30:00 -0300
+date:   2017-08-19 08:14:00 -0300
 categories:
 permalink: /importando-modulos-do-nodejs-com-destructuring/
 author: flavio_almeida
