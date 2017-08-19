@@ -149,7 +149,7 @@ class Conta {
       _numero= obrigatorio('número')
       ) {
 
-      Object.assign(this, { _nome, _sobrenome, _idade});
+      Object.assign(this, { _titular, _banco, _agencia, _numero });
   }
   // métodos acessadores e alteradores omitidos
 }
