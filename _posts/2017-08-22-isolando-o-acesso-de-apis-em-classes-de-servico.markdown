@@ -112,8 +112,7 @@ new CangaceiroService()
     .then(() => alert('Operação realizada com sucesso')
     .catch(err => alert(err));
 ```
-
-Muito mais fácil de ler e de manter do que a versão anterior. 
+Em `alert(err)`, teremos a mensagem de alto nível para o usuário. Muito mais fácil de ler e de manter do que a versão anterior. 
 
 ## Conclusão 
 
