@@ -2,7 +2,7 @@
 layout: post
 title:  "Isolando o acesso de API's em classes de serviço"
 description: Não é incomum aplicações web buscarem e enviarem dados através de uma API. Mas nem tudo é perfeito; durante esse processo a rede pode cair ou o servidor pode estar fora do ar. Dentro de tanta incerteza, nada mais justo do que informar o usuário que houve algum problema.
-date:   2017-08-22 08:30:00 -0300
+date:   2017-08-22 09:00:00 -0300
 categories:
 permalink: /isolando-acesso-api-classes-servico/
 author: flavio_almeida
