@@ -116,6 +116,6 @@ Em `alert(err)`, teremos a mensagem de alto nível para o usuário e não precis
 
 ## Conclusão 
 
-Isolar o acesso de API's em classes de serviço facilita a manutenção e legibilidade do nosso código. É uma prática que aplicada por diversos frameworks do mercado e que podemos aplicar com vanilla JavaScript, inclusive na plataforma Node.js.
+Isolar o acesso de API's em classes de serviço facilita a manutenção e legibilidade do nosso código. É uma prática aplicada por diversos frameworks do mercado e que podemos utilizar com vanilla JavaScript, inclusive na plataforma Node.js.
 
 Essa e outras práticas você encontra no livro <a href="goo.gl/5sPR8X">Cangaceiro JavaScript: uma aventura no sertão da programação</a>, 502 páginas.
