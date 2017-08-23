@@ -73,7 +73,7 @@ class CangaceiroService {
         this.headers.append('Content-Type', 'application/json');
     }
 
-    salva(cangaceiro) {
+    cadastra(cangaceiro) {
     
         const config = { 
             headers: this.headers, 
