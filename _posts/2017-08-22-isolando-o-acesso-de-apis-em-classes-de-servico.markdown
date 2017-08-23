@@ -82,7 +82,7 @@ class CangaceiroService {
         };
 
         // retorna a Promise
-        return fetch(`${this.domain}/${cangaceiro}`, config)
+        return fetch(`${this.domain}/cangaceiro`, config)
             .then(this._handleErrors)
             .catch(err => {
                 // logou erro original
