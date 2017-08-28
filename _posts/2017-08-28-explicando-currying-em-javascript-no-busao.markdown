@@ -13,7 +13,7 @@ Final de semana passado peguei o mesmo busão que um aluno que começou na minha
 
 >*"Ë uma técnica, uma maneira de transformar uma função que recebe múltiplos parâmetros de forma que ela pode ser chamada com um parâmetro apenas."*
 
-Antes que eu pudesse dizer algo, ele pediu que o exemplo fosse bem simples, pois ele já estava quase chegando em seu destino. Eu tinha uma caneta (a que eu costumo assinar os certificados) e ele tinha um bloco de anotações. Isso já era o suficiente. Perguntei se no meu exemplo eu poderia usar *arrow function* e ele disso que não haveria problema algum. Então, eu tasquei o seguinte código no papel: 
+Antes que eu pudesse dizer algo, ele pediu que o exemplo fosse bem simples, pois ele já estava quase chegando em seu destino. Eu tinha uma caneta (a que eu costumo assinar os certificados) e ele tinha um bloco de anotações. Isso já era o suficiente. Perguntei se no meu exemplo eu poderia usar *arrow function* e ele disse que não haveria problema algum. Então, eu tasquei o seguinte código no papel: 
 
 ```javascript
 const ehDivisivel = (numero, divisor) => !(numero % divisor);
