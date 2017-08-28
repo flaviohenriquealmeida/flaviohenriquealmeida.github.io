@@ -33,7 +33,7 @@ No final perguntei se ele conseguia enxergar alguma outra melhoria no código, m
 
 >*Se a minha intenção nas três chamadas de `ehDivisivel` é utilizar o mesmo divisor, não é um tanto tedioso ter que ficar passando o divisor como parâmetro toda vez que eu quiser saber se um número é divisível por dois?*
 
-Ele pensou e concordou. Perguntei como ele resolveria. Ele disse que bastaria alterar a função `ehDivisivel` e tornar o divisor um valor fixo. Disse para ele que isso não é solução, porque ainda queremos que `ehDivisivel` seja reflexível para poder trabalhar com qualquer divisor. Enquanto ele pensava, rabisquei o seguinte código:
+Ele pensou e concordou. Perguntei como ele resolveria. Ele disse que bastaria alterar a função `ehDivisivel` e tornar o divisor um valor fixo. Disse para ele que isso não é solução, porque ainda queremos que `ehDivisivel` seja flexível para poder trabalhar com qualquer divisor. Enquanto ele pensava, rabisquei o seguinte código:
 
 ```javascript
 const divisivelPor = divisor => numero => !(numero % divisor);
