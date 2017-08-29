@@ -16,11 +16,11 @@ Final de semana passado peguei o mesmo busão que um aluno que começou na minha
 Antes que eu pudesse dizer algo, ele pediu que o exemplo fosse bem simples, pois ele já estava quase chegando em seu destino. Eu tinha uma caneta (a que eu costumo assinar os certificados) e ele tinha um bloco de anotações. Isso já era o suficiente. Perguntei se no meu exemplo eu poderia usar *arrow function* e ele disse que não haveria problema algum. Então, eu tasquei o seguinte código no papel: 
 
 ```javascript
-const ehDivisivel = (numero, divisor) => !(numero % divisor);
+const ehDivisivel = (divisor, numero) => !(numero % divisor);
 const divisor = 2;
-console.log(ehDivisivel(20, divisor)); // true
-console.log(ehDivisivel(11, divisor)); // false
-console.log(ehDivisivel(12, divisor)); // true
+console.log(ehDivisivel(divisor, 20)); // true
+console.log(ehDivisivel(divisor, 11)); // false
+console.log(ehDivisivel(divisor, 12)); // true
 ```
 
 No código anterior, `ehDivisivel` é uma *function expression* que verifica se um número é divisível por outro, retornando `true` ou `false`, simples assim.
@@ -67,3 +67,7 @@ Antes que eu pudesse perguntar se ele entendeu, rapidamente ele disse:
 >*A função retornada por divisivelPor que antes recebia dois parâmetros recebe um parâmetro apenas, simplificando a sua chamada em termos de parâmetros passados. Podemos usar divisivelPor para retornar uma nova função com outro divisor se assim desejarmos. Cara, muito obrigado*.
 
 E então ele saiu correndo sem se despedir de mim, parece que perdeu a parada do ônibus mais próximo da sua casa. Ou será que se assustou com a explicação? Só saberei na próxima aula.
+
+## É currying mesmo?
+
+Meu exemplo esta mais próximo de uma função parcial do que currying. Aliás, um bom assunto para o próximo post. 

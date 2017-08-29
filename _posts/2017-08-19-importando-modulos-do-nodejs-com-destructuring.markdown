@@ -99,6 +99,23 @@ const { nome } = cangaceiro;
 exibeNome(nome);	
 ```
 
+Ou ainda podemos fazer assim:
+
+```javascript
+
+// destructuring no parâmetro da função
+function exibeNome({ nome }) {
+  console.log(nome);
+}
+const cangaceiro = {
+  nome: 'Flávio Almeida',
+  bando: 'javascript sangui no oios',
+}
+
+// podemos agora passar o objeto inteiro
+exibeNome(cangaceiro);	
+```
+
 ## Conclusão 
 
 A atribuição via desestruturação vai além do que vimos e você pode consultar a <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Operators/Atribuicao_via_desestruturacao" target="_blank">documentação completa</a> para saber ainda mais. A parte que aprendemos é suficiente para nos ajudar na importação de módulos na plataforma Node.js.
