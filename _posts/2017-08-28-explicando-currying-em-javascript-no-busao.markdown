@@ -68,6 +68,30 @@ Antes que eu pudesse perguntar se ele entendeu, rapidamente ele disse:
 
 E então ele saiu correndo sem se despedir de mim, parece que perdeu a parada do ônibus mais próximo da sua casa. Ou será que se assustou com a explicação? Só saberei na próxima aula.
 
+## Bônus, Funções parciais com bind
+
+Sem modificar a função original, vamos fazer o seguinte:
+
+```javascript
+// função original, não mudou!
+const ehDivisivel = (divisor, numero) => !(numero % divisor);
+
+// cria uma nova função através de bind
+const ehDivisivelPor2 = ehDivisivel.bind(null, 2);
+
+console.log(ehDivisivelPor2(20)); // true
+console.log(ehDivisivelPor2(11)); // false
+console.log(ehDivisivelPor2(12)); // true
+```
+
+Toda função em JavaScript possui a função <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" target="_blank">bind</a>. Ela cria uma nova função podendo modificar o seu contexto de execução, o famoso `this`. No caso, não queremos mudar o contexto de execução, por isso passamos `null`. 
+
+Além se ser capaz alterar o contexto de execução de uma função, `bind` nos permite criar uma função com argumentos pré-definidos, as chamadas *funções parciais*. 
+
+Em poucas palavras, o argumento passado para `bind` será sempre passado como primeiro parâmetro de `ehDivisivel` e os demais parâmetros que forem passados para a função retornada `ehDivisivelPor2` serão os próximos parâmetros.
+
+Mas o que acabamos de fazer é currying?
+
 ## Currying Vs Função Parcial
 
 Currying é uma função que recebe múltiplos parâmetros como entrada e retorna uma função com exatamente um parâmetro. Já funções parciais retornam uma função com menos parâmetros, ou seja, podemos reduzir uma função que recebe quatro parâmetros para uma função que receba duas.
