@@ -67,3 +67,7 @@ Antes que eu pudesse perguntar se ele entendeu, rapidamente ele disse:
 >*A função retornada por divisivelPor que antes recebia dois parâmetros recebe um parâmetro apenas, simplificando a sua chamada em termos de parâmetros passados. Podemos usar divisivelPor para retornar uma nova função com outro divisor se assim desejarmos. Cara, muito obrigado*.
 
 E então ele saiu correndo sem se despedir de mim, parece que perdeu a parada do ônibus mais próximo da sua casa. Ou será que se assustou com a explicação? Só saberei na próxima aula.
+
+## Currying ou Função Parcial?
+
+Depois de receber o feedback dos programadores de plantão percebi que o meu exemplo esta mais para o exemplo de uma função parcial do que de currying, apesar do resultado final ser o mesmo. Aliás, um bom tema para um próximo post no futuro.
