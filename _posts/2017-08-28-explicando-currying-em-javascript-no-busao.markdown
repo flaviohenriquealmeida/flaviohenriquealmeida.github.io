@@ -68,6 +68,8 @@ Antes que eu pudesse perguntar se ele entendeu, rapidamente ele disse:
 
 E então ele saiu correndo sem se despedir de mim, parece que perdeu a parada do ônibus mais próximo da sua casa. Ou será que se assustou com a explicação? Só saberei na próxima aula.
 
-## Currying ou Função Parcial?
+## Currying Vs Função Parcial?
 
-Depois de receber o feedback dos programadores de plantão percebi que o meu exemplo esta mais para o exemplo de uma função parcial do que de currying, apesar do resultado final ser o mesmo. Aliás, um bom tema para um próximo post no futuro.
+Currying é uma função que recebe múltiplos parâmetros como entrada e retorna uma função com exatamente um parâmetro. Já funções parciais retornam uma função com menos parâmetros, ou seja, podemos reduzir uma função que recebe quatro parâmetros para uma função que receba duas.
+
+ 
