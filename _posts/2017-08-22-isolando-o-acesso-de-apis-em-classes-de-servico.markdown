@@ -28,7 +28,7 @@ headers.append('Content-Type', 'application/json');
 const config  = {
     method: 'post',
     headers,
-    data: JSON.stringify(cangaceiro),
+    body: JSON.stringify(cangaceiro),
 };
 
 // utiliza API Fetch passando o endereço da API e a configuração
@@ -40,7 +40,7 @@ fetch('http://seu-dominio/cangaceiro', config)
       // se nenhum exceção foi lançada, retorna a própria resposta
       return res;      
     })
-    .then(() => alert('Operação realizada com sucesso')
+    .then(() => alert('Operação realizada com sucesso'))
     .catch(err => {
         console.log(err);
         alert('Não foi possível realizar a operação. Tente mais tarde.');
@@ -78,7 +78,7 @@ class CangaceiroService {
         const config = { 
             headers: this.headers, 
             method: 'post', 
-            data: JSON.stringify(cangaceiro) 
+            body: JSON.stringify(cangaceiro) 
         };
 
         // retorna a Promise
