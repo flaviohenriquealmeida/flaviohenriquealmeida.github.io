@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Debugando sua app Node com Chrome DevTools"
-description: 
-date:   2017-08-28 13:00:00 -0300
+description: Não é raro temos que debugar nossa aplicação à procura de problemas, muitas vezes aqueles que ocorrem insidiosamente. Como em outras plataformas, Node.js possui um debugger padrão que pode estar integrado a editores e IDE's do mercado. Contudo, podemos acessá-lo diretamente pelo Chrome DevTools utilizando-o como ferramenta de depuração agnóstica de editor ou IDE. Para que possamos ver essa integração em ação, primeiro veremos o uso do debugger através do terminal.
+date:   2017-09-11 18:00:00 -0300
 categories:
 permalink: /debugando-app-node-pelo-chrome/
 author: flavio_almeida
