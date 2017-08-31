@@ -9,17 +9,23 @@ author: flavio_almeida
 tags: [javascript, streams, node]
 image: logo.png
 ---
-<a href="https://nodejs.org/api/stream.html" target="_blank">Stream</a> talvez seja um dos recursos de maior destaque na plataforma Node.js, porém ele ainda é ignorado por boa parte dos iniciantes nesta plataforma. Neste post mostrarei um exemplo bem simples e prático do seu uso fazendo uma caricatura do que acontece com aplicativos como Spotify e plataformas de audio como SoundCloud. 
+<a href="https://nodejs.org/api/stream.html" target="_blank">Streams</a> talvez seja um dos recursos de maior destaque na plataforma Node.js, porém ele ainda é ignorado por boa parte dos iniciantes nesta plataforma. Neste post mostrarei um exemplo bem simples e prático do seu uso fazendo uma caricatura do que acontece com aplicativos como Spotify e plataformas de audio como SoundCloud. 
 
 Caso o leitor já tenha uma noção do conceito de `stream`, <a href="#begin">pode ir direto para a implementação do código</a> sem precisar passar pela explanação do conceito.
 
-## Streams
+## Um problema, uma solução
+
+Quando assistimos um vídeo no Youtube ou escutamos uma música no Spotify uma coisa é certa; não recebemos o vídeo nem o audio por completo quando interagimos com eles, recebemos pedaçinho por pedaçinho. Se recebêssemos os arquivos de uma só vez um vídeo de 2GB ou um arquivo de audio de 30MB teriam que ser carregados totalmente no servidor para então serem enviados para nós. Esse processo consumiria uma quantidade de memória RAM consideravelmente alta no servidor, sem falar que temos milhões de usuários acessando esses serviços todos os dias.
+
+Já no lado de quem consome os dados, receber pedaço por pedaço tem uma vantagem também. Como recebemos uma quantidade de dados pequena e a processamos assim que é recebida, também não gastamos muita memória, além disso, depois do pedaçinho ser processado, ele é descartado logo em seguida. Um exemplo é o Netflix. Quando queremos assistir a uma parte do filme que já passou, aquela parte precisa ser carregada novamente. Aliás, quando dizemos que recebemos "pedaçinho por pedaçinho", estamos nos referindo a um processo chamado **streaming**. 
+
+No mundo Node.js, **streams** é a tecnologia que encapsula a complexidade de termos de realizarmos streaming de dados. 
+
+## Streams em Node.js
 
 Streams podem ser de leitura e de escrita. Streams de leitura podem ser associados a streams de escrita através da função `pipe` (tubo). Podemos definir o tamanho máximo em bytes a cada leitura, evitando que a memória do servidor seja sobrecarregada por carregar de uma única vez os dados da origem. 
 
 À medida que esses dados são enviados para o destino, eles são descartados no lado do servidor e novos *chuncks* com dados são enviados até que a fonte de leitura seja exaurida. Dessa forma, temos uma previsibilidade de quanta memória o servidor utilizará, pois apenas a porção que definirmos no buffer será carregada por vez em memória. 
-
-Veja que essa estratégia é intessante para sites como Spotify, SoundCloud, YouTube. Imaginem se todos eles já enviassem por completos os audios e os vídeos diretamente para os usuários em seus navegadores? 
 
 Agora que já temos uma ideia básica de streams, vamos para nossa implementação.
 
@@ -63,7 +69,8 @@ O conteúdo de `stream-de-audio/public/index.html` será uma simples página que
     <title>Exemplo</title>
 </head>
 <body>
-    <h1>Exemplo de Stream de Audio</h1>
+    <h1>Cangaceiro JavaScript</h1>
+    <h2>Stream de audio</h2>
     <audio controls>
         <source src="/audio" type="audio/ogg">
     </audio>
@@ -150,14 +157,43 @@ app.get('/audio', async (req, res) => {
 
     const filePath = './audio.ogg';
     
-    // usou a instrução await, extraiu informações do arquivo
+    // usou a instrução await
     const stat = await getStat(filePath);
+
+    // exibe uma série de informações sobre o arquivo
+    console.log(stat);
 });
 
 app.listen(3000, () => console.log('app is running'));
 ```
 
-Excelente. O object `stat` possui uma série de informações sobre nosso arquivo de audio, entre elas o tamanho do arquivo.
+Excelente. O object `stat` possui uma série de informações sobre nosso arquivo de audio, entre elas o tamanho do arquivo. Vejamos a saída dele no terminal:
+
+```
+// saída no terminal
+
+Stats {
+  dev: 16777220,
+  mode: 33188,
+  nlink: 1,
+  uid: 501,
+  gid: 20,
+  rdev: 0,
+  blksize: 4096,
+  ino: 34930808,
+  size: 199087,
+  blocks: 392,
+  atimeMs: 1504113218000,
+  mtimeMs: 1503949034000,
+  ctimeMs: 1503949054000,
+  birthtimeMs: 1503949032000,
+  atime: 2017-08-30T17:13:38.000Z,
+  mtime: 2017-08-28T19:37:14.000Z,
+  ctime: 2017-08-28T19:37:34.000Z,
+  birthtime: 2017-08-28T19:37:12.000Z }
+```
+
+Temos interesse na propriedade `size`. 
 
 ## Adicionando informações no cabeçalho
 
@@ -177,6 +213,7 @@ app.get('/audio', async (req, res) => {
     const filePath = './audio.ogg';
     
     const stat = await getStat(filePath);
+    console.log(stat);
 
     // informações sobre o tipo do conteúdo e o tamanho do arquivo
     res.writeHead(200, {
@@ -208,6 +245,7 @@ app.get('/audio', async (req, res) => {
     const filePath = './audio.ogg';
     
     const stat = await getStat(filePath);
+    console.log(stat);    
 
     // informações sobre o tipo do conteúdo e o tamanho do arquivo
     res.writeHead(200, {
@@ -253,6 +291,7 @@ app.get('/audio', async (req, res) => {
     const filePath = './audio.ogg';
     
     const stat = await getStat(filePath);
+    console.log(stat);    
     
     // informações sobre o tipo do conteúdo e o tamanho do arquivo
     res.writeHead(200, {
