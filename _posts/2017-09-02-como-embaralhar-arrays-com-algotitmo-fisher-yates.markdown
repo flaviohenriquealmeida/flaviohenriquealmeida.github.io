@@ -14,7 +14,7 @@ Apesar do array ser uma estrutura de dados super versátil em JavaScript, não h
 
 ## Implementando o algoritimo 
 
-Nosso objetivo será embaralhar uma lista de vogais. Vamos criar a função `embaralha` que recebe uma lista como parâmetro. Iremos iterar em cada elemento da nossa lista começando pelo último elemento até chegar no primeiro:
+Nosso objetivo será embaralhar uma lista de vogais. Vamos criar a função `embaralha` que recebe uma lista como parâmetro. Iremos iterar em cada elemento da nossa lista começando pelo último elemento até chegar ao primeiro:
 
 ```javascript
 const vogais = ['a', 'e', 'i', 'o', 'u'];
@@ -42,7 +42,7 @@ function embaralha(lista) {
 }
 ```
 
-O resultado de `Math.floor(Math.random() * indice))` sempre resultará em un número entre `0` e `indice - 1`. Faça o teste no console executando várias vezes a instrução `Math.floor(Math.random() * 5))`.
+O resultado de `Math.floor(Math.random() * indice)` sempre resultará em un número entre `0` e `indice - 1`. Faça o teste no console executando várias vezes a instrução `Math.floor(Math.random() * 5))`.
 
 Agora que já temos `indiceAleatorio`, em uma variável auxiliar `elemento` vamos guardar o elemento da lista no índice atual, mas precisaremos utilizar `indice -1`, caso contrário acessaremos uma posição que não existe no array:
 
