@@ -42,7 +42,7 @@ function embaralha(lista) {
 }
 ```
 
-O resultado de `Math.floor(Math.random() * indice)` sempre resultará em un número entre `0` e `indice - 1`. Faça o teste no console executando várias vezes a instrução `Math.floor(Math.random() * 5))`.
+O resultado de `Math.floor(Math.random() * indice)` sempre resultará em un número entre `0` e `indice - 1`. Faça o teste no console executando várias vezes a instrução `Math.floor(Math.random() * 5)`.
 
 Agora que já temos `indiceAleatorio`, em uma variável auxiliar `elemento` vamos guardar o elemento da lista no índice atual, mas precisaremos utilizar `indice -1`, caso contrário acessaremos uma posição que não existe no array:
 
