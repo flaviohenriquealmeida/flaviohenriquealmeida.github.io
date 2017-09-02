@@ -194,4 +194,4 @@ console.log(vogais);
 
 ## Conclusão
 
-Nem sempre a especificação de uma linguagem nos fornecerá todo arsenal que precisamos para resolver problemas do dia a dia. Tem horas que precisamos levantar as mangas e cair dentro de uma implementação. 
+Nem sempre a especificação de uma linguagem nos fornecerá todo arsenal que precisamos para resolver problemas do dia a dia. Tem horas que precisamos arregaçar as mangas e cair dentro de uma implementação. 
