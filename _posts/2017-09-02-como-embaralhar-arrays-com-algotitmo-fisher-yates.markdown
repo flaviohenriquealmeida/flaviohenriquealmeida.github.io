@@ -90,7 +90,7 @@ embaralha(vogais);
 console.log(vogais);
 ```
  
-Por fim, vale um esclarecimento sobre a condição de repetição do laço, no caso `indice`. Qualquer número em JavaScript, seja positivo ou negativo é considerado `true`, exceto o número `0`. Então, a medida que `indice` for decrementado a cada iteração, quando ele chegar a `0`, fará com que o laço termine. Faz todo sentido, porque o quando chegarmos ao primeiro elemento do array não temos mais nenhum outro anterior para trocar de lugar com ele.
+Por fim, vale um esclarecimento sobre a condição de repetição do laço, no caso `indice`. Qualquer número em JavaScript, seja positivo ou negativo é considerado `true`, exceto o número `0`. Então, a medida que `indice` for decrementado a cada iteração, quando ele chegar a `0`, fará com que o laço termine. Faz todo sentido, porque quando chegarmos ao primeiro elemento do array não temos mais nenhum outro anterior para trocar de lugar com ele.
 
 
 Excelente, contudo, podemos simplificar nosso código evitando a declaração da variável `elemento`. Como? É o que veremos a seguir.
