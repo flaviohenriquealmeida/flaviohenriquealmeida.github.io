@@ -68,6 +68,16 @@ Antes que eu pudesse perguntar se ele entendeu, rapidamente ele disse:
 
 E então ele saiu correndo sem se despedir de mim, parece que perdeu a parada do ônibus mais próximo da sua casa. Ou será que se assustou com a explicação? Só saberei na próxima aula.
 
+## Se se não quisermos reutilizar o divisor em alguns casos?
+
+Caso queriaremos chamar a função uma única vez, podemos chamá-la desta forma:
+
+```javascript
+console.log(divisivelPor(2)(10));
+```
+
+Assim evitamos a declaração de uma variável.
+
 ## Bônus, Funções parciais com bind
 
 Sem modificar a função original, vamos fazer o seguinte:
