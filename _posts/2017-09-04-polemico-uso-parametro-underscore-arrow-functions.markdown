@@ -2,7 +2,7 @@
 layout: post
 title:  "O polêmico uso do parâmetro underscore em arrow functions"
 description: Abordarei uma prática que permite deixar ainda mais simples a declaração de arrow functions introduzidas no ECMAScript 2015 (ES6). No entanto, essa prática é um tanto polêmica.
-date:   2017-09-05 08:00:00 -0300
+date:   2017-09-04 08:30:00 -0300
 categories:
 permalink: /polemico-uso-parametro-underscore-arrow-functions/
 author: flavio_almeida
