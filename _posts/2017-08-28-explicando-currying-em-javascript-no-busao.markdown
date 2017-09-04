@@ -73,7 +73,7 @@ E então ele saiu correndo sem se despedir de mim, parece que perdeu a parada do
 Caso queriaremos chamar a função uma única vez, podemos chamá-la desta forma:
 
 ```javascript
-console.log(divisivelPor(2)(10));
+console.log(divisivelPor(2)(10)); // true
 ```
 
 Assim evitamos a declaração de uma variável.
