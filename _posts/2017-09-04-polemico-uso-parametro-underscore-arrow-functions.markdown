@@ -20,7 +20,7 @@ const funcaoSemParametro = () => alert('oi');
 funcaoSemParametro();
 ```
 
-Somos obrigados a utilizar `()` mesmo para aquelas funções que não recebem parâmetros. Porém, podemos evitar o uso de `()` **convencionando** que arrow functions que não recebem parâmetro devem declarar o parâmetro **underscore**:
+Somos obrigados a utilizar `()` mesmo para aquelas funções que não recebem parâmetro. Porém, podemos evitar o uso de `()` **convencionando** que arrow functions que não recebem parâmetro devem declarar o parâmetro **underscore**:
 
 ```javascript
 const funcaoSemParametro = _ => alert('oi');
@@ -60,5 +60,5 @@ Outro ponto é que o uso de *underscore* pode se chocar com a famosa biblioteca 
 
 ## Conclusão
 
-E você? Usaria ou não essa abordagem? Deixe seus comentários para podermos engrandecer ainda mais essa discussão.
+E você? Usaria ou não essa abordagem? Deixe seu comentário para podermos engrandecer ainda mais essa discussão.
 
