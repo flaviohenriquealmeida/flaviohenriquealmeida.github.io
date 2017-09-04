@@ -74,6 +74,7 @@ Caso queriaremos chamar a função uma única vez, podemos chamá-la desta forma
 
 ```javascript
 console.log(divisivelPor(2)(10)); // true
+console.log(divisivelPor(3)(9)); // true
 ```
 
 Assim evitamos a declaração de uma variável.
