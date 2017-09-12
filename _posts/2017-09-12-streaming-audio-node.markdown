@@ -2,7 +2,7 @@
 layout: post
 title:  "Streaming de audio com Node.js"
 description: Streams talvez seja um dos recursos de maior destaque na plataforma Node.js, porém ele ainda é ignorado por boa parte dos iniciantes nesta plataforma. Neste post mostrarei um exemplo bem simples e prático do seu uso fazendo uma caricatura do que acontece com aplicativos como Spotify e plataformas de audio como SoundCloud.
-date:   2017-09-12 18:00:00 -0300
+date:   2017-09-12 08:00:00 -0300
 categories:
 permalink: /streaming-audio-node/
 author: flavio_almeida
