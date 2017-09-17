@@ -37,8 +37,8 @@ app.use(passport.session());
 Para cada middleware registrado precisaremos chamar a função `app.use()`. Podemos simplificar um pouco esse processo através de uma função que se encarregará de registrar cada middleware para nós. Primeiro, vejamos a função isoladamente:
 
 ```javascript
-const register = (...middlewares) => 
-    app => middlewares.forEach(middleware =>
+const register = (...middlewares) => app => 
+    middlewares.forEach(middleware =>
         app.use(middleware));
 ```
 A função recebe um número indeterminado de parâmetros através do <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank">Rest parameter</a>. Seu retorno é outra função que ao ser chamada espera receber uma instância do Express. A função percorrerá a lista de middlewares recebida por `register` e adicionará cada um deles na instância do express recebida. 
@@ -52,9 +52,9 @@ const express = require('express')
     , session = require('express-session')
     , passport = require('passport');
 
-const register = (...middlewares) => 
-    app => middlewares.forEach(middleware =>
-         app.use(middleware));
+const register = (...middlewares) => app => 
+    middlewares.forEach(middleware =>
+        app.use(middleware));
 
 register(
     cookieParser(),
