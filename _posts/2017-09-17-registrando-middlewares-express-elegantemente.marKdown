@@ -73,4 +73,4 @@ A função `register` conseguiu enxugar boa parte do código, evitando as múlti
 
 ## Conclusão
 
-Muitas vezes nos acomodados ao que esse ou aquele framework nos oferece e esquecemos de aplicar um dos grandes poderes da programação é que a criatividade.
+Muitas vezes nos acomodamos ao que esse ou aquele framework nos oferece e esquecemos de aplicar um dos grandes poderes da programação que é a criatividade.
