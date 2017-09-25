@@ -2,7 +2,7 @@
 layout: post
 title:  "Class Factory ou Factory Function?"
 description: .
-date:   2017-09-17 14:00:00 -0300
+date:   2017-09-25 14:00:00 -0300
 categories:
 permalink: /padrao-de-projeto-factory-ou-factory-function/
 author: flavio_almeida
