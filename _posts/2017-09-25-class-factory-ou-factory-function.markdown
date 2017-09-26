@@ -22,7 +22,7 @@ Dentro do *paradigma orientado a objetos*, há o padrão de projeto **Factory** 
 
 ## Class Factory
 
-Vejamos um exemplo utilizado o paradigma da orientação a objetos com a classe `ProxyFactory`. Seu método estático `createProxy` recebe como parâmetro um objeto e retorna um proxy deste mesmo objeto que ao ter suas propriedade lidas exibe no console o nome da propriedade acessada:
+Vejamos um exemplo utilizado o paradigma da orientação a objetos com a classe `ProxyFactory`. Seu método `createProxy` recebe como parâmetro um objeto e retorna um proxy deste mesmo objeto que ao ter suas propriedade lidas exibe no console o nome da propriedade acessada:
 
 ```javascript
 // paradigma orientado à objetos
