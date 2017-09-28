@@ -33,7 +33,7 @@ const config  = {
 
 // utiliza API Fetch passando o endereço da API e a configuração
 fetch('http://seu-dominio/cangaceiro', config)
-    .then(() => {
+    .then(res => {
       // tratamento necessário quando usamos Fetch API
       // se não estiver ok, rejeita a Promise lançando uma exceção
       if(!res.ok) throw new Error(res.statusText);
@@ -92,7 +92,7 @@ class CangaceiroService {
             });
     }
     // pode ser usados por outros métodos
-    _handleErrors() {
+    _handleErrors(res) {
 
       if(!res.ok) throw new Error(res.statusText);
       return res;      
