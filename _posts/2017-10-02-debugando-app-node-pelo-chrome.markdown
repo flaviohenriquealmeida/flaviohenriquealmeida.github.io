@@ -195,7 +195,7 @@ Através de `Ctrl + C / Cmd + C`, saimos do repl e voltamos para o debugger. Ao 
 
 Há outros comando como `o` (out) e `p` (pause) que permitem pular uma instrução e pausar a depuração.
 
-Excelente, agora que já temos um *overview* de como é feita a depuração de uma aplicação Node.js pelo terminal, vamos realizar os mesmos passos através do Chrome DeTools. Mas antes de cairmos dentro do assunto, remova o *breakpoint* `debugger;` de `index.js`. Vamos adicioná-lo de outra maneira.
+Excelente, agora que já temos um *overview* de como é feita a depuração de uma aplicação Node.js pelo terminal, vamos realizar os mesmos passos através do Chrome DevTools. Mas antes de cairmos dentro do assunto, remova o *breakpoint* `debugger;` de `index.js`. Vamos adicioná-lo de outra maneira.
 
 <span id="devtools"></span>
 ## Preparando a depuração para o Chrome DevTools
