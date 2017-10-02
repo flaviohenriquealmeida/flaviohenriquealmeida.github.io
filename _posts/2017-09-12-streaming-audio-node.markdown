@@ -17,7 +17,7 @@ Caso o leitor já tenha uma noção do conceito de `stream`, <a href="#begin">po
 
 Quando assistimos um vídeo no Youtube ou escutamos uma música no Spotify uma coisa é certa; não recebemos o vídeo nem o audio por completo quando interagimos com eles, recebemos pedaçinho por pedaçinho. Se recebêssemos os arquivos de uma só vez um vídeo de 2GB ou um arquivo de audio de 30MB teriam que ser carregados totalmente no servidor para então serem enviados para nós. Esse processo consumiria uma quantidade de memória RAM consideravelmente alta no servidor, sem falar que temos milhões de usuários acessando esses serviços todos os dias.
 
-Já no lado de quem consome os dados, receber pedaço por pedaço tem vantagens também. Cada pedaço é processado e imediatamente descartado evitando também um alto consumo de memória. Dessa forma, podemos ter um cliente modesto em termos de memória que ele ainda conseguirá assistir aquele filme ou série favorito sem qualquer problema. O Netflix é um exemplo clássico dessa abordagem. qQuando dizemos que recebemos "pedaçinho por pedaçinho", estamos nos referindo a um processo chamado **streaming**. 
+Já no lado de quem consome os dados, receber pedaço por pedaço tem vantagens também. Cada pedaço é processado e imediatamente descartado evitando também um alto consumo de memória. Dessa forma, podemos ter um cliente modesto em termos de memória que ele ainda conseguirá assistir aquele filme ou série favorito sem qualquer problema. O Netflix é um exemplo clássico dessa abordagem. Quando dizemos que recebemos "pedaçinho por pedaçinho", estamos nos referindo a um processo chamado **streaming**. 
 
 No mundo Node.js, **streams** é a tecnologia que encapsula a complexidade de se lidar com streaming. 
 
