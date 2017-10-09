@@ -2,7 +2,7 @@
 layout: post
 title:  "JavaScript e o ponto e vírgula, uma polêmica que atravessa o tempo"
 description: Utilizar ponto e vírgula ou não, eis a questão! A polêmica sobre o assunto é antiga. Seu ápice foi em 2002 com o artigo The Infernal Semicolon ("Ponto e Vírgula dos Infernos") publicado por Bredan Eich, pai do JavaScript, e com a reposta de Douglas Crockford (JavaScript, the Good Parts) no Github do Bootstrap, chegando a alegar que a omissão do ponto e vírgula tornaria nosso código um "insanely stupid code".  
-date:   2017-10-01 08:00:00 -0300
+date:   2017-10-16 08:00:00 -0300
 categories:
 permalink: /javascript-ponto-virgula-polemica-atravessa-tempo/
 author: flavio_almeida
