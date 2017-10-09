@@ -70,8 +70,8 @@ const split = separator => text => text.split(separator);
 
 // já já disseco essa função!
 const compose = (...fns) => value => 
-  fns.reduceRight((previousValue, f) => 
-      f(previousValue), value);
+  fns.reduceRight((previousValue, fn) => 
+      fn(previousValue), value);
 
 // a função convert é composição de outras três funções
 const convert = compose(split(' '), toUpperCase, trim);
@@ -87,8 +87,8 @@ Nossa função `compose` possui a seguinte estrutura:
 
 ```javascript
 const compose = (...fns) => value => 
-  fns.reduceRight((previousValue, f) => 
-      f(previousValue), value);
+  fns.reduceRight((previousValue, fn) => 
+      fn(previousValue), value);
 ```
 Através do <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank">REST Operator</a>, a função `compose` recebe quantas funções quisermos utilizar na composição. Seu retorno será uma função que recebe um único valor, aquele que será utilizado pela função composta resultante, no caso, que guardamos na variável `convert`. Mas como aplicaremos cada função ao valor recebido?
 
@@ -112,8 +112,8 @@ const toUpperCase = text => text.toUpperCase();
 const split = separator => text => text.split(separator);
 
 const pipe = (...fns) => value => 
-  fns.reduce((previousValue, f) => 
-      f(previousValue), value);
+  fns.reduce((previousValue, fn) => 
+      fn(previousValue), value);
 
 // trim será aplicado, depois toUpperCase e por fim split
 const convert = pipe(trim, toUpperCase, split(' '));
