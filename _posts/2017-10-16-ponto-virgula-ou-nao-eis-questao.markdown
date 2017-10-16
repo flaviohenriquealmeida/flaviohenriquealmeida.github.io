@@ -108,7 +108,7 @@ Muitos homens e mulheres começaram a programar em Javascript bem depois da pol�
 
 ## A segurança de pertencer a uma comunidade
 
-No mais profundo sentido <a href="https://pt.wikipedia.org/wiki/Zygmunt_Bauman">Baumaniano</a>, nas comunidades que aboliram o semicolon ou que adotaram um style guide que se coadunasse com essa ideia, a omissão por parte de seus membros era protegida e justificada pelo próprio grupo, o que reduzia a ansiedade e a insegurança de seus integrantes. Não havia a necessidade de se discutir tal prática, uma vez que o programador já tinha o beneplácito da própria comunidade. Nesse sentido, a a escolha de omitir ou não o semicolon tornou-se mais uma questão de comunidade do que uma decisão pessoal, tirando o peso decisório das costas do programador. Porém, ainda era necessário se munir de aspectos técnicos para que o expurgo do semicolon pudesse ser realizado sem medo. 
+No mais profundo sentido <a href="https://pt.wikipedia.org/wiki/Zygmunt_Bauman">Baumaniano</a>, nas comunidades que aboliram o semicolon ou que adotaram um style guide que se coadunasse com essa ideia, a omissão por parte de seus membros era protegida e justificada pelo próprio grupo, o que reduzia a ansiedade e a insegurança de seus integrantes. Não havia a necessidade de se discutir tal prática, uma vez que o programador já tinha o beneplácito da própria comunidade. Nesse sentido, a escolha de omitir ou não o semicolon tornou-se mais uma questão de comunidade do que uma decisão pessoal, tirando o peso decisório das costas do programador. Porém, ainda era necessário se munir de aspectos técnicos para que o expurgo do semicolon pudesse ser realizado sem medo. 
 
 ## CLI e processos de builds automatizados
 
