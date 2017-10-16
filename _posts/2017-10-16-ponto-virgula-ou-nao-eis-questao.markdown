@@ -100,11 +100,11 @@ O guia de estilo que vimos é interno, não é uma recomendação universal para
 
 Existem vários guias de estilos disponibilizados na web, mas dois merecem destaque devido à popularidade que possuem. De um lado temos o <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb JavaScript Style Guide</a> preconizando o uso do semicolon como estilo a ser seguido. Do outro temos o <a href="https://standardjs.com/" target="blank">JavaScript Standard Style</a> com o objetivo de ser o guia de estilo definitivo da linguagem JavaScript. Nele, o uso do semicolon é desencorajado. Ambos ainda mantêm suas posições na data de publicação deste artigo.
 
-Por mais que tenhamos diferentes guias de estilos com posições distintas a respeito do uso do semicolon, o <a href="https://pt.wikipedia.org/wiki/Zeitgeist" target="_blank">zeigest</a> vigente começou a colocar em xeque o *status quo* do semicolon.
+Por mais que tenhamos diferentes guias de estilos com posições distintas a respeito do uso do semicolon, o <a href="https://pt.wikipedia.org/wiki/Zeitgeist" target="_blank">zeitgeist</a> vigente começou a colocar em xeque o *status quo* do semicolon.
 
 ## Um novo zeitgeist 
 
-Muitas homens e mulheres começaram a programar em Javascript bem depois da polêmica de 2002. Dessa forma, não internalizaram as amarras do uso onipresente do semicolon, tornando-os mais abertos para experimentarem sua omissão sem remorso. Todavia, esta análise é incompleta se não levarmos em consideração o **fortalecimento das comunidades de frameworks** e a **prática consolidada de builds automatizados** como catalisadores do *semicolonless movement*. 
+Muitos homens e mulheres começaram a programar em Javascript bem depois da polêmica de 2002. Dessa forma, não internalizaram as amarras do uso onipresente do semicolon, tornando-os mais abertos para experimentarem sua omissão sem remorso. Todavia, esta análise é incompleta se não levarmos em consideração o **fortalecimento das comunidades de frameworks** e a **prática consolidada de builds automatizados** como catalisadores do *semicolonless movement*. 
 
 ## A segurança de pertencer a uma comunidade
 
