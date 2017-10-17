@@ -112,7 +112,7 @@ No mais profundo sentido <a href="https://pt.wikipedia.org/wiki/Zygmunt_Bauman">
 
 ## CLI e processos de builds automatizados
 
-Cada comunidade possui um ferramental para lidar com os problemas que se propõe a resolver e com o problema do semicolon não é diferente. Algumas frameworks do mercado utilizam <a href="https://babeljs.io/" target="_blank">Babel</a>, um compilador JavaScript multipropósito, que realiza o ASI durante seu processo de compilação e linters que analisam a integridade do código final. Diferente de 2002, o uso de CLI's (command line interfaces) é condição padrão, não exceção. Hoje temos institucionalizado um processo de build mais rebuscado e menos *error prone* do que no passado.
+Cada comunidade possui um ferramental para lidar com os problemas que se propõe a resolver e com o problema do semicolon não é diferente. Alguns frameworks do mercado utilizam <a href="https://babeljs.io/" target="_blank">Babel</a>, um compilador JavaScript multipropósito, que realiza o ASI durante seu processo de compilação e linters que analisam a integridade do código final. Diferente de 2002, o uso de CLI's (command line interfaces) é condição padrão, não exceção. Hoje temos institucionalizado um processo de build mais rebuscado e menos *error prone* do que no passado.
 
 ## Conclusão
 
