@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Pipeline operator, uma proposta interessante ao tc39"
-description: Há algum tempo foi proposta ao tc39, o comitê que participa da evolução do JavaScript, o pipeline operator. Essa feature, fortemente inspirada em linguagens como Elixir e F#, introduz o novo operador |>.
+description: Há algum tempo foi proposto ao tc39, o comitê que participa da evolução do JavaScript, o pipeline operator. Essa feature, fortemente inspirada em linguagens como Elixir e F#, introduz o novo operador |>.
 date:   2017-10-23 08:00:00 -0300
 categories:
 permalink: /pipeline-operator-proposta-interessante-tc39/
