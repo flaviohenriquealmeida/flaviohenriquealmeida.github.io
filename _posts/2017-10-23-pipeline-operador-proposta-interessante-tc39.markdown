@@ -2,7 +2,7 @@
 layout: post
 title:  "Pipeline operator, uma proposta interessante ao tc39"
 description: Há algum tempo foi proposta ao tc39, o comitê que participa da evolução do JavaScript, o pipeline operator. Essa feature, fortemente inspirada em linguagens como Elixir e F#, introduz o novo operador |>.
-date:   2017-10-23 10:00:00 -0300
+date:   2017-10-23 08:00:00 -0300
 categories:
 permalink: /pipeline-operator-proposta-interessante-tc39/
 author: flavio_almeida
@@ -56,8 +56,8 @@ Agora, fica bem claro para quem esta lendo que a primeira transformação a ser 
 
 ## Como utilizar o pipeline operator hoje
 
-Para quem não deseja esperar o trâmite padrão da proposta no tc39 pode lançar mão do <a href="https://www.npmjs.com/package/babel-plugin-transform-pipeline" target="_blank">babel-plugin-transform-pipeline</a>, um plugin do <a href="https://babeljs.io/"  target="_blank">Babel</a>.
+Para quem não deseja esperar o trâmite padrão da proposta no tc39 e já deseja ter um gostinho do pipeline operador pode lançar mão do <a href="https://www.npmjs.com/package/babel-plugin-transform-pipeline" target="_blank">babel-plugin-transform-pipeline</a>, um plugin do <a href="https://babeljs.io/"  target="_blank">Babel</a>. Todavia esse autor teve dificuldades em fazê-lo funcionar, pois uma atualização do <a href="https://github.com/babel/babylon" target="_blank">babylon</a>, o parser JavaScript do Babel, <a href="https://github.com/SuperPaintman/babel-plugin-transform-pipeline/issues/1" target="_blank">quebrou recentemente o plugin</a>.
 
 ## Conclusão
 
-O pipeline melhorará a manutenção e a legibilidade de um código escrito principalmente no paradigma funcional. E você? Utilizaria esse operador? Deixe sua opinião.
+O pipeline operator, ainda em estágio embrionário, promete melhorar a manutenção e a legibilidade de um código escrito principalmente no paradigma funcional. E você? Utilizaria esse operador? Deixe sua opinião.
