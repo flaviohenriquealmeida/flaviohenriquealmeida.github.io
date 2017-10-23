@@ -6,7 +6,7 @@ date:   2017-10-23 08:00:00 -0300
 categories:
 permalink: /pipeline-operator-proposta-interessante-tc39/
 author: flavio_almeida
-tags: [pipeline operator, piping, function composition]
+tags: [pipeline operator, piping, function composition, javascript]
 image: logo.png
 ---
 
