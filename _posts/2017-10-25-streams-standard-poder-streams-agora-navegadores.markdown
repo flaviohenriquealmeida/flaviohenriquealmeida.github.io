@@ -2,7 +2,7 @@
 layout: post
 title:  "Streams standard, o poder de streams agora nos navegadores"
 description: Até bem pouco tempo não havia uma especificação de streams para os navegadores (...) a WHATWG criou uma especificação de streams como Web API nos browser.
-date:   2017-10-24 17:30:00 -0300
+date:   2017-10-25 08:00:00 -0300
 categories:
 permalink: /streams-standard-poder-streams-agora-navegadores/
 author: flavio_almeida
