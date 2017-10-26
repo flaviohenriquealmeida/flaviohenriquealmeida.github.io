@@ -58,7 +58,7 @@ Vejamos o mesmo código anterior, só que dessa vez utilizando streams. Em segui
 
         while(!(chunk= await reader.read()).done) {
             const negociacao = JSON.parse(decoder.decode(chunk.value));
-            console.log(negociacoes);
+            console.log(negociacao);
         }
     }
 })()    
