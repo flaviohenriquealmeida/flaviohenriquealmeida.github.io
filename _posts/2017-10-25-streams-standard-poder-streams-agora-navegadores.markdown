@@ -41,7 +41,7 @@ Agora que já temos o *big picture* do problema, veremos como a API de streams p
 
 ## Uma solução com streams
 
->*Você pode testar o código a seguir em seu navegador se assim desejar (precisará de uma API). O autor utilizou a versão 61 do Google Chrome.*
+>*O autor utilizou a versão 61 do Google Chrome durante seus testes. Além disso, é necessário que sua API suporte o formato <a href="http://ndjson.org/" target="_blank">ndjson</a>.*
 
 Vejamos o mesmo código anterior, só que dessa vez utilizando streams. Em seguida, escrutinaremos cada parte do código:
 
