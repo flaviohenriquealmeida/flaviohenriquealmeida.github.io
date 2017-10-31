@@ -90,7 +90,7 @@ Para que a função `filter()` funcione como esperado, o array deveria ter uma e
 ]
 ```
 
-Uma solução é abdicarmos do `map` e utilizarmos `reduce` para **achatarmos** o array de array em um array de uma dimensão apenas. Vejamos:
+Uma solução é abdicarmos do `map` e utilizarmos `reduce` para **achatarmos** o array multidimensional em um array de uma dimensão apenas. Vejamos:
 
 ```javascript
 // Agora sim!
