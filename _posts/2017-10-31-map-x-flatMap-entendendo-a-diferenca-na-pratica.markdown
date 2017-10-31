@@ -56,7 +56,7 @@ const totalDeUmaConta =
 console.log(totalDeUmaConta);      
 ```
 
-Infelizmente o código acima não funciona, porque o resultado de `map()` será um array de arrays:
+Infelizmente o código acima não funciona, porque o resultado de `map()` será um multidimensional, ou seja, um array de arrays:
 
 ```javascript
 // resultado do map
