@@ -40,7 +40,7 @@ const notas = [
     },     
 ];
 ```
-Precisamos totalizar o valor de todos os lançamentos da conta `2143`. E agora?
+Precisamos totalizar o valor de todos os lançamentos com a conta `2143`. E agora?
 
 ## Tentando solucionar com map()
 
