@@ -13,7 +13,7 @@ Neste artigo veremos a diferença entre as funções `map()` e `flatMap()`, incl
 
 ## Um problema
 
-Temos uma lista de notas ficais e cada nota possui uma lista de lançamentos:
+Temos uma lista de notas fiscais e cada nota possui uma lista de lançamentos:
 
 ```javascript
 const notas = [
