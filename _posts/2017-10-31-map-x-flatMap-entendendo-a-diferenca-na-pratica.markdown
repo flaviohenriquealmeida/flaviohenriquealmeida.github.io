@@ -107,7 +107,7 @@ Se o leitor compreendeu o motivo pelo qual o primeiro `reduce` foi necessário, 
 
 ## Uma solução com flatMap()
 
-A função `flatMap` realiza um `map` de uma função sobre uma coleção de dados, porém achatando o resultado final em um nível,  isto é, retornando um array de uma dimensão apenas. Você pode até conferir a definição dada por. Infelizmente não há implementação desta função no JavaScript, mas nada nos impede de criá-la. 
+A função `flatMap` realiza um `map` de uma função sobre uma coleção de dados, porém achatando o resultado final em um nível,  isto é, retornando um array de uma dimensão apenas. Infelizmente não há implementação desta função no JavaScript, mas nada nos impede de criá-la. 
 
 Podemos adicionar a função `flatMap` no `prototype` de `Array`. Aliás, este autor já fez algo semelhante no artigo <a href="http://cangaceirojavascript.com.br/como-embaralhar-arrays-algoritmo-fisher-yates/" target="_blank">"Como embaralhar arrays com o algoritmo Fisher–Yates"</a>:
 
