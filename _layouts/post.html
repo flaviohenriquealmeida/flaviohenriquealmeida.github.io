@@ -12,7 +12,16 @@ layout: default
       </time>
       {% if page.author %}
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
+        {% assign words = content | number_of_words %}
+        {% if words < 360 %}
+        • <span>leitura em 1 minuto</span>
+        {% else %}
+        • <span>leitura em {{ words | divided_by:275 }} minutos</span>
+        {% endif %}
       {% endif %}</p>
+
+
+
   </header>
 
   <div class="post-content" itemprop="articleBody">
