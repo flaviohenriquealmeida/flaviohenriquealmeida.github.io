@@ -128,4 +128,4 @@ console.log(totalDeUmaConta);
 
 ## Conclusão
 
-A função `flatMap()` esta incluida nas práticas da programação funcional. Apesar de o JavaScript não implementá-la podemos materializá-la com pouco esforço tornando nosso código mais elegante do que já é. 
+A função `flatMap()` esta incluída nas práticas da programação funcional. Apesar de o JavaScript não implementá-la podemos materializá-la com pouco esforço tornando nosso código mais elegante do que já é. 
