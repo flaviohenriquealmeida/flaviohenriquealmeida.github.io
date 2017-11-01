@@ -13,45 +13,45 @@ Neste artigo veremos a diferença entre as funções `map()` e `flatMap()`, incl
 
 ## Um problema
 
-Temos uma lista de notas fiscais e cada nota possui uma lista de lançamentos:
+Temos uma lista de notas fiscais e cada nota possui uma lista de itens:
 
 ```javascript
 const notas = [
     {
         data: '2017-10-31',
-        lancamentos: [
+        itens: [
             { conta: '2143', valor: 200 },
             { conta: '2111', valor: 500 }
         ]
     },
     {
         data: '2017-07-12',
-        lancamentos: [
+        itens: [
             { conta: '2222', valor: 120 },
             { conta: '2143', valor: 280 }
         ]
     }, 
     {
         data: '2017-02-02',
-        lancamentos: [
+        itens: [
             { conta: '2143', valor: 110 },
             { conta: '7777', valor: 390 }
         ]
     },     
 ];
 ```
-Precisamos totalizar o valor de todos os lançamentos com a conta `2143`. E agora?
+Precisamos totalizar o valor de todos os itens com a conta `2143`. E agora?
 
 ## Tentando solucionar com map()
 
-Podemos apelar para a função `map()`, aquela que permite aplicar uma transformação em cada elemento do array resultando em um novo array. Nesse sentido, queremos transformar cada nota iterada em um array de lançamentos para que possamos realizar `filter` e `reduce` para filtrar e totalizar respectivamente:
+Podemos apelar para a função `map()`, aquela que permite aplicar uma transformação em cada elemento do array resultando em um novo array. Nesse sentido, queremos transformar cada nota iterada em um array de itens para que possamos realizar `filter` e `reduce` para filtrar e totalizar respectivamente:
 
 ```javascript
 // não funciona como esperado! O resultado será 0!
 const totalDeUmaConta = 
-    notas.map(nota => nota.lancamentos)
-        .filter(lancamento => lancamento.conta == '2143')
-        .reduce((total, lancamento) => total + lancamento.valor, 0);
+    notas.map(nota => nota.itens)
+        .filter(item => item.conta == '2143')
+        .reduce((total, item) => total + item.valor, 0);
 
 console.log(totalDeUmaConta);      
 ```
@@ -96,9 +96,9 @@ Uma solução é abdicarmos do `map` e utilizarmos `reduce` para **achatarmos** 
 // Agora sim!
 
 totalDeUmaConta = notas
-    .reduce((array, nota) => array.concat(nota.lancamentos), [])
-    .filter(lancamento => lancamento.conta == '2143')
-    .reduce((total, lancamento) => total + lancamento.valor, 0);
+    .reduce((array, nota) => array.concat(nota.itens), [])
+    .filter(item => item.conta == '2143')
+    .reduce((total, item) => total + item.valor, 0);
 
 console.log(totalDeUmaConta);
 ```
@@ -119,9 +119,9 @@ Array.prototype.flatMap = function(cb) {
 }
 
 totalDeUmaConta = notas
-    .flatMap(nota => nota.lancamentos)
-    .filter(lancamento => lancamento.conta == '2143')
-    .reduce((total, lancamento) => total + lancamento.valor, 0);
+    .flatMap(nota => nota.itens)
+    .filter(item => item.conta == '2143')
+    .reduce((total, item) => total + item.valor, 0);
 
 console.log(totalDeUmaConta);
 ```
