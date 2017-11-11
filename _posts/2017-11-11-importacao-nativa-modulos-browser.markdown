@@ -9,7 +9,7 @@ author: flavio_almeida
 tags: [ESM, loader, ES6, ES2015, script, module, javascript, browser]
 image: logo.png
 ---
-A especificação ES2015 (ES6) introduziu um sistema de módulos baseado na sintaxe `import` e `export`, porém não definiu como o carregamento e a resolução de módulos deveriam ser implementados por falta de consenso entre os fabricantes de browsers. Essa situação abriu espaço para que a comunidade criasse carregadores de módulos, os famosos `loaders`. 
+A especificação ES2015 (ES6) introduziu um sistema de módulos baseado na sintaxe `import` e `export`, porém ela não define como o carregamento e a resolução de módulos devem ser implementados por falta de consenso entre os fabricantes de browsers. Essa situação abriu espaço para que a comunidade criasse carregadores de módulos, os famosos `loaders`. 
 
 A boa notícia é que os browsers já começaram a implementar o suporte ao carregamento nativo de ESM (ECMASCRIPT modules). Neste post veremos como utilizar este recurso que esta sendo consolidado.  
 
@@ -94,7 +94,7 @@ const total = sumThreeNumbers(10, 20, 30);
 alert(total);
 ```
 
-Excelente, conseguimos resolver o problema do escopo global fazendo cada módulo importar explicitamente o que precisa de outro. Todavia, como faremos o carregamento desses módulos no navegador? Não podemoss implesmente importada cada módulo em separado como no exemplo anterior, vejamos:
+Excelente, conseguimos resolver o problema do escopo global fazendo cada módulo importar explicitamente o que precisa de outro. Todavia, como faremos o carregamento desses módulos no navegador? Não podemos implesmente importar cada módulo em separado como no exemplo anterior, vejamos:
 
 ```html
 <!-- não rola fazer isso! -->
