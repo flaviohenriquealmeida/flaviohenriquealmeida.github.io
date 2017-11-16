@@ -1,0 +1,186 @@
+---
+layout: post
+title:  "Symbol, um exemplo de uso em JavaScript"
+description:
+date:   2017-11-12 07:00:00 -0300
+categories:
+permalink: /symbol-exemplo-uso-javascript/
+author: flavio_almeida
+tags: [symbol, símbolo, ES2015, javascript, ES6]
+image: logo.png
+---
+A partir da versão ES2015 (ES6) foi introduzida na linguagem a capacidade de trabalhar com símbolos, tipo presente em linguagens como Ruby, Elixir (<a href="https://www.quora.com/Is-there-a-difference-between-Ruby-symbols-and-Elixir-atoms" target="_blank">chamado de atom</a>) entre outras. Neste post aprenderemos através de um exemplo o que é um símbolo e como utilizá-lo.
+
+## O problema
+
+>*Você pode testar todo o código deste artigo em seu navegador.* 
+
+Temos a seguinte pagina que exibe um `<button>` e `<span>`: 
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Aplicação do Symbol</title>
+</head>
+<body>
+    <button class="botao">Incrementar</button>
+    <span class="painel"><span>  
+    <script src="counter.js"></script>  
+</body>
+</html>
+```
+
+Toda vez que clicarmos no botão, precisamos exibir no elemento `<span class="painel">` a quantidade de cliques realizados. Existem várias soluções para esse problema, mas a que seguiremos é de guardar o estado do contador no próprio painel, isto é, no próprio elemento do DOM que o exibirá:
+
+```javascript
+// counter.js
+
+// busca os elementos 
+const $ = document.querySelector.bind(document);
+const botao = $('.botao');
+const painel = $('.painel');
+
+// cria a propriedade contador dinamicamente
+painel.contador = 0;
+
+botao.addEventListener('click', () => {
+    // a cada clique, incrementa painel.contador exibindo seu estado mais atual 
+    painel.contador++;
+    painel.textContent = painel.contador;
+});
+```
+
+Excelente. Toda vez que clicarmos em nosso botão o `painel.contador` será incrementado e seu valor será exibido no próprio elemento `painel` através de `painel.textContent`. Todavia, como não estamos usando módulos do ES2015, todas as variáveis declaradas vazarão para o escopo Global. Aliás, no post <a href="http://cangaceirojavascript.com.br/importacao-nativa-modulos-browser/" target="_blank">"Importação nativa de módulos no browser"</a> já falei um pouco sobre o sistema de módulos do ES2015. 
+
+Não queremos nossas variáveis no escopo global e, apesar de não estarmos utilizando módulos do ES2015, podemos utilizar uma closure para evitar que isso aconteça. Nada que uma função imediata (IIFE) não resolva:
+
+```javascript 
+// counter.js 
+(() => {
+    // busca os elementos 
+    const $ = document.querySelector.bind(document);
+    const botao = $('.botao');
+    const painel = $('.painel');
+
+    // cria a propriedade contador dinamicamente
+    painel.contador = 0;
+
+    botao.addEventListener('click', () => {
+        // a cada clique, incrementa painel.contador exibindo seu estado mais atual 
+        painel.contador++;
+        painel.textContent = painel.contador;
+    });
+})();
+```
+
+Tudo muito lindo, mas nada impede que outro programador, dentro de outro script da aplicação, também tenha a ideia de criar a propriedade `contador` em `painel` atribuindo um valor completamente diferente do que estamos esperando, quem sabe, o nome de um contador, profissional da contabilidade:
+
+```html
+<!-- importou mais um script -->
+<script src="counter.js"></script>  
+<script src="outro-script.js"></script>  
+```
+
+```javascript
+// outro-script.js
+(() => {
+    const painel = document.querySelector('.painel');
+    painel.contador = 'Flávio Almeida';
+})();
+```
+
+Fica evidente que isso nos causará problemas. A cada clique agora tentaremos incrementar uma script, o que não faz muito sentido. É aí que o Symbol entra para nos salvar!
+
+## Symbols são únicos
+
+O symbol é um tipo de dado único e imutável e pode ser usado como um identificador para propriedades de objeto. Vejamos:
+
+```javascript
+const symboloUnico1 = Symbol();
+const symboloUnico2 = Symbol();
+```
+
+Através da chamada `Symbol()` criamos um novo símbolo. O mais importante é entendermos que a cada chamada de `Symbol()` será criado um identificador único que podemos acessar através das variáveis `simboloUnico1` e `simboloUnico2`. Isso significa que podemos adicionar propriedades dinamicamente em objetos com auxílio do symbol sem corremos o risco de haver colisão entre elas. Vejamos:
+
+```javascript
+const simboloUnico1 = Symbol();
+const simboloUnico2 = Symbol();
+
+const objeto = {};
+objeto[simboloUnico1] = 'Flávio';
+objeto[simboloUnico2] = 'Cangaceiro javaScript';
+
+console.log(objeto[simboloUnico1]); // Flávio
+console.log(objeto[simboloUnico2]); // Cangaceiro JavaScript
+```
+
+É importante entendermos que para acessarmos as propriedades do objetos precisamos ter acesso às variáveis `simboloUnico1` e `simbolUnico2`, pois sem elas não saberemos qual foi o identificador usado para definir as propriedades e por conseguinte, não poderemos acessá-las.
+
+Alterando nosso programa para fazer uso de symbol:
+
+```javascript
+// counter.js
+(() => {
+    const $ = document.querySelector.bind(document);
+    const botao = $('.botao');
+    const painel = $('.painel');
+
+    const identificadorUnico = Symbol();
+    painel[identificadorUnico] = 0;
+
+    botao.addEventListener('click', () => {
+        painel[identificadorUnico]++
+        painel.textContent = painel[identificadorUnico];
+    });
+})();
+```
+
+```javascript
+// outro-script.js
+(() => {
+    const identificadorUnico = Symbol();
+    const painel = document.querySelector('.painel');
+    painel[identificadorUnico] = 'Flávio Almeida';
+})();
+```
+
+## Descobrindo símbolos pertencentes a um objeto
+
+Podemos listar todos os símbolos que um objeto através da função `Object.getOwnPropertySymbols()`. Vejamos um exemplo criando um novo script:
+
+```javascript
+// exibe-symbols.js
+Object.getOwnPropertySymbols(painel)
+    .forEach(symbol => console.log(painel[symbol]));     
+```
+
+E claro, importando-o na página:
+
+```html
+<!-- importou mais um script -->
+<script src="counter.js"></script>  
+<script src="outro-script.js"></script>  
+<script src="exibe-symbols.js"></script>  
+```
+
+O código do noss último script exibirá:
+
+```
+0
+"Flávio Almeida"
+```
+
+Nesse contexto, não esta correta a noção de que symbols podem ser usados para simular privacidade em JavaScript, justamente pelo fato de poderem ser recuperados a qualquer momento.
+
+## Conclusão
+
+Vimos que um symbol nos permite criar um identificador único durante todo o tempo de vida da nossa aplicação através da chamada de `Symbol()`. Essa característica combinada à adição dinâmica de propriedades em objetos JavaScript permite evitar colisões de nomes entre scripts e módulos dentro de um sistema. 
+
+Há mais operações que podemos realizar com symbols que não foram documentadas neste artigo e que podem ser consultadas na propria <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Symbol" target="_blank">documentação</a>.
+
+E você? Tem outro exemplo interessante do uso de symbols?
+
+
