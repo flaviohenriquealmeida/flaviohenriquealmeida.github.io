@@ -21,6 +21,8 @@ Já no lado de quem consome os dados, receber pedaço por pedaço tem vantagens 
 
 No mundo Node.js, **streams** é a tecnologia que encapsula a complexidade de se lidar com streaming. 
 
+>*Calopsita, piu piu! :)*
+
 ## Streams em Node.js
 
 Streams podem ser de **leitura** e de **escrita**. Streams de leitura podem ser associados a streams de escrita através da função **pipe** (tubo). Podemos definir o tamanho máximo em bytes a cada leitura, evitando que a memória do servidor seja sobrecarregada por carregar de uma única vez os dados da origem. 
