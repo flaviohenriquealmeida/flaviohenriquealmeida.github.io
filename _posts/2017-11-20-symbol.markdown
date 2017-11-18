@@ -1,21 +1,21 @@
 ---
 layout: post
 title:  "Symbol, um exemplo de uso em JavaScript"
-description:
-date:   2017-11-12 07:00:00 -0300
+description: O EcmaScript 2015 (ES6) introduziu o tipo symbol (símbolo), presente em linguagens como Ruby, Elixir (chamado de atom) entre outras. Neste post aprenderemos através de um exemplo o que é um símbolo e como utilizá-lo em JavaScript.
+date:   2017-11-18 07:00:00 -0300
 categories:
 permalink: /symbol-exemplo-uso-javascript/
 author: flavio_almeida
 tags: [symbol, símbolo, ES2015, javascript, ES6]
 image: logo.png
 ---
-O EcmaScript 2015 (ES6) introduziu a capacidade de trabalharmos com símbolos, tipo presente em linguagens como Ruby, Elixir (<a href="https://www.quora.com/Is-there-a-difference-between-Ruby-symbols-and-Elixir-atoms" target="_blank">chamado de atom</a>) entre outras. Neste post aprenderemos através de um exemplo o que é um símbolo e como utilizá-lo em JavaScript.
+O EcmaScript 2015 (ES6) introduziu o tipo **symbol** (símbolo), presente em linguagens como Ruby, Elixir (<a href="https://www.quora.com/Is-there-a-difference-between-Ruby-symbols-and-Elixir-atoms" target="_blank">chamado de atom</a>) entre outras. Neste post aprenderemos através de um exemplo o que é um símbolo e como utilizá-lo em JavaScript.
 
 ## O problema
 
 >*Você pode testar todo o código deste artigo em seu navegador.* 
 
-Temos a seguinte página que exibe um `<button>` e `<span>`: 
+Temos a seguinte página que exibe um `<button>` e um `<span>`: 
 
 ```html
 <!DOCTYPE html>
@@ -88,7 +88,7 @@ Tudo muito lindo, mas nada impede que outro programador, dentro de outro script 
 // outro-script.js
 (() => {
     const painel = document.querySelector('.painel');
-    painel.contador = 'Flávio Almeida';
+    painel.contador = 'Sr.Contador';
 })();
 ```
 
@@ -103,7 +103,7 @@ const symboloUnico1 = Symbol();
 const symboloUnico2 = Symbol();
 ```
 
-Através da chamada `Symbol()` criamos um novo símbolo. O mais importante é entendermos que a cada chamada de `Symbol()` será criado um identificador único que podemos acessar através das variáveis `simboloUnico1` e `simboloUnico2`. Isso significa que podemos adicionar propriedades dinamicamente em objetos com auxílio do symbol sem corremos o risco de haver colisão entre elas. Vejamos:
+Através da chamada `Symbol()` criamos um novo símbolo. O mais importante é entendermos que a cada chamada de `Symbol()` será criado um identificador único que podemos acessar através das variáveis `simboloUnico1` e `simboloUnico2`. Isso significa que podemos adicionar propriedades dinamicamente em objetos com auxílio do symbol sem corrermos o risco de haver colisão entre elas. Vejamos:
 
 ```javascript
 const simboloUnico1 = Symbol();
@@ -143,7 +143,7 @@ Alterando nosso programa para fazer uso de symbol:
 (() => {
     const identificadorUnico = Symbol();
     const painel = document.querySelector('.painel');
-    painel[identificadorUnico] = 'Flávio Almeida';
+    painel[identificadorUnico] = 'Sr.Contador';
 })();
 ```
 
@@ -170,7 +170,7 @@ O código do nosso último script exibirá:
 
 ```
 0
-"Flávio Almeida"
+"Sr.Contador"
 ```
 
 Nesse contexto, não esta correta a noção de que symbols podem ser usados para simular privacidade em JavaScript, justamente pelo fato de poderem ser recuperados a qualquer momento.
