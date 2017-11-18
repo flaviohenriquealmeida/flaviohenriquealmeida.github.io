@@ -21,7 +21,7 @@ Já no lado de quem consome os dados, receber pedaço por pedaço tem vantagens 
 
 No mundo Node.js, **streams** é a tecnologia que encapsula a complexidade de se lidar com streaming. 
 
->*Calopsita, piu piu! :)*
+>*C|a|l|o|p|s|i|t|a, piu piu! :)*
 
 ## Streams em Node.js
 
