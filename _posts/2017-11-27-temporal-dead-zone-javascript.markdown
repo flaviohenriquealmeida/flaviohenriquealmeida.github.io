@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Temporal Dead Zone no JavaScript"
-description: Neste artigo veremos como o Temporal Dead Zone (TDZ) pode afetar nosso código quando declaramos variáveis com let e os cuidados que o desenvolvedor deve ter.
+description: Neste artigo veremos como o Temporal Dead Zone (TDZ) pode afetar nosso código quando declaramos variáveis com let e os cuidados que o desenvolvedor precisa ter.
 
 date:   2017-11-27 08:00:00 -0300
 categories:
@@ -11,7 +11,7 @@ tags: [javascript, tdz, temporal dead zone, let, hoisting]
 image: logo.png
 ---
 
-Neste artigo veremos como o *Temporal Dead Zone (TDZ)* pode afetar nosso código quando declaramos variáveis com `let` e os cuidados que o desenvolvedor deve ter.
+Neste artigo veremos como o *Temporal Dead Zone (TDZ)* pode afetar nosso código quando declaramos variáveis com `let` e os cuidados que o desenvolvedor precisa ter.
 
 ## Declaração com var 
 
