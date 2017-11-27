@@ -80,7 +80,7 @@ function minhaFuncao() {
 minhaFuncao();
 ```
 
-Esse fenômeno é chamado de **Temporal Dead Zone (TDZ)**. 
+Mas o que explica esse comportamento diferente com variáveis declaradas com `let`? É o que veremos a seguir.
 
 ## Temporal Dead Zone
 
