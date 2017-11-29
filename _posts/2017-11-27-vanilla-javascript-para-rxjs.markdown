@@ -10,7 +10,7 @@ tags: [javascript, rxjs, functional, reactive]
 image: logo.png
 ---
 
-Essa semana um dos estagiários aqui da <a href="https://www.caelum.com.br/" target="_blank">Caelum</a> me perguntou se valia a pena investir no estudo do <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">Rxjs</a>. Minha resposta poderia ser simplesmente um "sim" ou um "não". Todavia, não poderia dar uma resposta tão direta assim, pois ela não teria efeito transformador em seu conhecimento. Foi então que decidi expor uma problema para solucionarmos com vanilla JavaScript para no final, demonstrar o mesmo código utilizando Rxjs. Ele curtiu a ideia. 
+Essa semana um dos estagiários aqui da <a href="https://www.caelum.com.br/" target="_blank">Caelum</a> me perguntou se valia a pena investir no estudo do <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">Rxjs</a>. Minha resposta poderia ser simplesmente um "sim" ou um "não". Todavia, não poderia dar uma resposta tão direta assim, pois ela não teria efeito transformador em seu conhecimento. Foi então que decidi expor uma problema para solucionarmos com vanilla JavaScript para no final, demonstrar o mesmo código utilizando Rxjs. Nosso estagiário curtiu a ideia. 
 
 ## Um problema
 
@@ -33,7 +33,7 @@ Temos uma simples página que exibe um botão apenas:
 
 >*O código anterior utiliza importação nativa de módulos do ES2015. Você pode consultar o artigo  <a href="http://cangaceirojavascript.com.br/importacao-nativa-modulos-browser/" target="_blank">"Importação nativa de módulos no browser"</a> deste mesmo autor para saber mais sobre este assunto.*
 
-Quando o usuário clicar no botão, precisamos buscar de uma API as negociações da semana atual e da semana anterior exibindo o resultado no console. Porém, se o usuário clicar mais de uma vez no botão dentro de uma janela de tempo de meio segundo, independente da quantidade de cliques realizados, apenas um deverá ser processado. Por fim, ele só poderá realizar a busca três vezes e qualquer tentativa de realizar uma nova busca deve ser ignorada. 
+Quando o usuário clicar no botão, precisamos buscar de uma API as negociações da semana atual e da semana anterior exibindo o resultado no console. Porém, se o usuário clicar mais de uma vez no botão dentro de uma janela de tempo de meio segundo, independente da quantidade de cliques realizados, apenas um deverá ser processado. Por fim, ele só poderá realizar a busca três vezes e qualquer tentativa de realizar uma nova busca acima desse limite deve ser ignorada. 
 
 ## Solucionando com vanilla JavaScript
 
@@ -42,32 +42,31 @@ Primeiro, vamos criar o arquivo `js/api.js`:
 ```javascript
 // js/api.js
 
+const API = 'http://localhost:3000';
+
 // função utilitária para lidar com o status da requisição
 const handleError = res => {
   if(!res.ok) throw Error(res.statusText);
   return res;
 };
-
 // busca as negociações da semana 
 const getNegotiationsFromWeek  = () =>
-    fetch('http://localhost:3000/negociacoes/semana')
+    fetch(`${API}/negociacoes/semana`)
     .then(res => handleError(res))
     .then(res => res.json())
     .catch(err => {
         console.log(err);   
         return Promise.reject('getNegotiationsFromWeek: failure!');
     });
-
 // busca as negociações da semana anterior
 const getNegotiationsFromPreviousWeek = () =>
-    fetch('http://localhost:3000/negociacoes/anterior')
+    fetch(`${API}/negociacoes/anterior`)
     .then(res => handleError(res))
     .then(res => res.json())
     .catch(err => {
         console.log(err);
         return Promise.reject('getNegotiationsFromPreviousWeek: failure!');
     });
-
 /* 
     Combina em um array de única dimensão as 
     negociações da semana atual a anterior
@@ -116,8 +115,9 @@ export const take = times => {
     };
 }
 ```
+>*Sobre minha implementação do debounce pattern aqui apresentado, o leitor pode consultar meu post <a href="http://blog.alura.com.br/javascript-debounce-pattern-closure-e-duas-amigas/" target="_blank">"JavaScript, debounce pattern, closure e duas amigas"</a> publicado no blog da AluraOnline. Inclusive, a função `take` segue estrutura similar* 
 
-A primeira função, `debounceTime()` que resolve o problema de executarmos apenas uma operação dentro de um janela de tempo. Já a segunda, `time()`, garantirá o número máximo de vezes que uma operação deve ser executada. Todavia, precisamos combinar as duas funções. 
+A primeira função, `debounceTime()`, é aquela que resolve o problema de executarmos apenas uma operação dentro de um janela de tempo. Já a segunda, `time()`, garantirá o número máximo de vezes que uma operação deve ser executada. Todavia, precisamos combinar as duas funções. 
 
 Uma maneira elegante de combinar as operações que acabamos de criar é através de uma função especializada em composição. Inclusive, já abordei este assunto no artigo <a href="http://cangaceirojavascript.com.br/compondo-funcoes-javascript/" target="blank">"Compondo funções em JavaScript"</a>:
 
@@ -137,7 +137,6 @@ export const take = times => {
         if(requestCounter <= times) fn();
     };
 }
-
 // nova função!
 export const compose = (...fns) => value => 
   fns.reduceRight((previousValue, fn) => 
@@ -164,6 +163,23 @@ document
     .catch(err => console.log(err));
 ```
 
+Outra opção é lançarmos mão do *async/await*. Nosso código ficaria assim:
+
+```javascript
+document
+.querySelector('#btn')
+.onclick = operations(async () => {
+    try {
+    	const negotiations = await getNegotiations();
+    	console.log(negotiations);
+    } catch(err) {
+    	err => console.log(err);
+    }
+}); 
+```
+
+Mas como seria nosso código utilizando Rxjs? É o que veremos a seguir.
+
 ## Utilizando Rxjs
 
 Com o problema solucionado usando vanilla JavaScript, fica mais impactante demonstrar a solução através do Rxjs. Nosso código ficaria assim:
@@ -181,6 +197,8 @@ Rx.Observable
         err => console.log(err)
     );
 ```
+
+Não houve a necessidade de todo o código escrito no módulo `js/operators.js`!
 
 ## Conclusão
 
