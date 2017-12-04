@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "De vanilla JavaScript para RxJS"
-description: 
-date:   2017-11-27 17:00:00 -0300
+description: Essa semana um dos estagiários aqui da Caelum me perguntou se valia a pena investir no estudo do Rxjs. Rxjs é uma biblioteca JavaScript que traz o conceito de programação reactiva para a Web. Todavia, nada nos impede de utilizá-la na plataforma Node.js através do rx-node.
+date:   2017-12-04 07:00:00 -0300
 categories:
 permalink: /de-vanilla-javascript-para-rxjs/
 author: flavio_almeida
@@ -10,7 +10,11 @@ tags: [javascript, rxjs, functional, reactive]
 image: logo.png
 ---
 
-Essa semana um dos estagiários aqui da <a href="https://www.caelum.com.br/" target="_blank">Caelum</a> me perguntou se valia a pena investir no estudo do <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">Rxjs</a>. Minha resposta poderia ser simplesmente um "sim" ou um "não". Todavia, não poderia dar uma resposta tão direta assim, pois ela não teria efeito transformador em seu conhecimento. Foi então que decidi expor uma problema para solucionarmos com vanilla JavaScript para no final, demonstrar o mesmo código utilizando Rxjs. Nosso estagiário curtiu a ideia. 
+Essa semana um dos estagiários aqui da <a href="https://www.caelum.com.br/" target="_blank">Caelum</a> me perguntou se valia a pena investir no estudo do **Rxjs**. <a href="https://github.com/Reactive-Extensions/RxJS" target="_blank">Rxjs</a> é uma biblioteca JavaScript que traz o conceito de programação reactiva para a Web. Todavia, nada nos impede de utilizá-la na plataforma Node.js através do <a href="https://github.com/Reactive-Extensions/rx-node" target="_blank">rx-node</a>.
+
+ Minha resposta poderia ser simplesmente um "sim" ou um "não". Todavia, não poderia dar uma resposta tão direta, pois ela não teria efeito transformador em seu conhecimento. 
+ 
+ Eu também não queria entrar em detalhes técnicos e filosóficos da programação reativa, eu precisava de algo mais concreto. Foi então que decidi expor uma problema para solucionarmos com vanilla JavaScript para no final, demonstrar o mesmo código utilizando Rxjs. Nosso estagiário curtiu a ideia, até porque, o código não mente, ou ele funciona ou não funciona.
 
 ## Um problema
 
@@ -204,4 +208,4 @@ Não houve a necessidade de todo o código escrito no módulo `js/operators.js`!
 
 O Rxjs vai muito além do que vimos neste artigo, porém a drástica redução da complexidade do código que escrevemos já é chamariz para aqueles interessados em investir nessa biblioteca.
 
-E você? Utilizaria Rxjs em seus projetos? Deixe sua opnião.
+E você? Utilizaria Rxjs em seus projetos? Deixe sua opinião.
