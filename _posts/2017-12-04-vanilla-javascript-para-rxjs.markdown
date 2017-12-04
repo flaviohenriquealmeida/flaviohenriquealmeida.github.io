@@ -46,7 +46,7 @@ Primeiro, vamos criar o arquivo `js/api.js`:
 ```javascript
 // js/api.js
 
-const API = 'http://localhost:3000';
+const api = 'http://localhost:3000';
 
 // função utilitária para lidar com o status da requisição
 const handleError = res => {
@@ -55,7 +55,7 @@ const handleError = res => {
 };
 // busca as negociações da semana 
 const getNegotiationsFromWeek  = () =>
-    fetch(`${API}/negociacoes/semana`)
+    fetch(`${api}/negociacoes/semana`)
     .then(res => handleError(res))
     .then(res => res.json())
     .catch(err => {
@@ -64,7 +64,7 @@ const getNegotiationsFromWeek  = () =>
     });
 // busca as negociações da semana anterior
 const getNegotiationsFromPreviousWeek = () =>
-    fetch(`${API}/negociacoes/anterior`)
+    fetch(`${api}/negociacoes/anterior`)
     .then(res => handleError(res))
     .then(res => res.json())
     .catch(err => {
