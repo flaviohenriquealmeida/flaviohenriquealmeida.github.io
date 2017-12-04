@@ -156,7 +156,7 @@ import { getNegotiations } from './api.js';
 import { compose, debounceTime, take } from './operators.js';
 
 // aplicará primeiro debounceTime e depois take
-const operations = compose(take(2), debounceTime(500));
+const operations = compose(take(3), debounceTime(500));
 
 document
 .querySelector('#btn')
