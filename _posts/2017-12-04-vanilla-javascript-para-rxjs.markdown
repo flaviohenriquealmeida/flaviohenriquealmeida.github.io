@@ -35,9 +35,9 @@ Temos uma simples página que exibe um botão apenas:
 </html>
 ```
 
->*O código anterior utiliza importação nativa de módulos do ES2015. Você pode consultar o artigo  <a href="http://cangaceirojavascript.com.br/importacao-nativa-modulos-browser/" target="_blank">"Importação nativa de módulos no browser"</a> deste mesmo autor para saber mais sobre este assunto.*
+>*O código anterior utiliza importação nativa de módulos do ES2015. Você pode consultar o artigo  <a href="http://cangaceirojavascript.com.br/importacao-nativa-modulos-browser/" target="_blank">"Importação nativa de módulos no browser"</a> deste mesmo autor para saber.*
 
-Quando o usuário clicar no botão, precisamos buscar de uma API as negociações da semana atual e da semana anterior exibindo o resultado no console. Porém, se o usuário clicar mais de uma vez no botão dentro de uma janela de tempo de meio segundo, independente da quantidade de cliques realizados, apenas um deverá ser processado. Por fim, ele só poderá realizar a busca três vezes e qualquer tentativa de realizar uma nova busca acima desse limite deve ser ignorada. 
+Quando o usuário clicar no botão, precisaremos buscar de uma API as negociações da semana atual e da semana anterior exibindo o resultado no console. Porém, se o usuário clicar mais de uma vez no botão dentro de uma janela de tempo de meio segundo, independente da quantidade de cliques realizados, apenas um deverá ser processado. Por fim, ele só poderá realizar a busca três vezes e qualquer tentativa de realizar uma nova busca acima desse limite deve ser ignorada. 
 
 ## Solucionando com vanilla JavaScript
 
