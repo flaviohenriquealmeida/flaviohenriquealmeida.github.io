@@ -162,10 +162,9 @@ document
 .querySelector('#btn')
 .onclick = operations(() => 
     getNegotiations()
-    .then(negotiations => {
-        console.log(negotiations);
-    })
-    .catch(err => console.log(err));
+    .then(negotiations => console.log(negotiations))
+    .catch(err => console.log(err))
+);
 ```
 
 Outra opção é lançarmos mão do *async/await*. Nosso código ficaria assim:
