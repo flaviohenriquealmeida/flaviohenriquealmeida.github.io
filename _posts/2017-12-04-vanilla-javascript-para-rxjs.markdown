@@ -202,7 +202,7 @@ Rx.Observable
     );
 ```
 
-Não houve a necessidade de todo o código escrito no módulo `js/operators.js`!
+Não houve a necessidade de todo o código escrito no módulo `js/operators.js`! O mais importante foi o estagiário sentir na pele o antes e o depois. Agora que ele visualmente já viu uma melhoria no código, eu posso dar início a uma explicação detalhada do que foi feito. Aliás, assunto interessante para um próximo artigo aqui no blog.
 
 ## Conclusão
 
