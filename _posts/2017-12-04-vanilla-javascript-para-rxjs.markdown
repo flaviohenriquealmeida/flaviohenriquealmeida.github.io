@@ -153,8 +153,7 @@ Agora podemos juntar tudo e materializar nossa solução:
 import { getNegotiations } from './api.js';
 import { compose, debounceTime, take } from './operators.js';
 
-// aplicará primeiro debounceTime e depois take
-const operations = compose(take(3), debounceTime(500));
+const operations = compose(debounceTime(500), take(3));
 
 document
 .querySelector('#btn')
