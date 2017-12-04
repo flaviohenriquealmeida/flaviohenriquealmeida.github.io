@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "De vanilla JavaScript para RxJS"
-description: Essa semana um dos estagiários aqui da Caelum me perguntou se valia a pena investir no estudo do Rxjs. Rxjs é uma biblioteca JavaScript que traz o conceito de programação reactiva para a Web. Todavia, nada nos impede de utilizá-la na plataforma Node.js através do rx-node.
+description: Essa semana um dos estagiários aqui da Caelum me perguntou se valia a pena investir no estudo do Rxjs. Rxjs é uma biblioteca JavaScript que traz o conceito de programação reativa para a Web. Todavia, nada nos impede de utilizá-la na plataforma Node.js através do rx-node.
 date:   2017-12-04 07:00:00 -0300
 categories:
 permalink: /de-vanilla-javascript-para-rxjs/
@@ -119,7 +119,7 @@ export const take = times => {
 ```
 >*Sobre minha implementação do debounce pattern aqui apresentado, o leitor pode consultar meu post <a href="http://blog.alura.com.br/javascript-debounce-pattern-closure-e-duas-amigas/" target="_blank">"JavaScript, debounce pattern, closure e duas amigas"</a> publicado no blog da AluraOnline. Inclusive, a função `take` segue estrutura similar* 
 
-A primeira função, `debounceTime()`, é aquela que resolve o problema de executarmos apenas uma operação dentro de um janela de tempo. Já a segunda, `time()`, garantirá o número máximo de vezes que uma operação deve ser executada. Todavia, precisamos combinar as duas funções. 
+A primeira função, `debounceTime()`, é aquela que resolve o problema de executarmos apenas uma operação dentro de um janela de tempo. Já a segunda, `take()`, garantirá o número máximo de vezes que uma operação deve ser executada. Todavia, precisamos combinar as duas funções. 
 
 Uma maneira elegante de combinar as operações que acabamos de criar é através de uma função especializada em composição. Inclusive, já abordei este assunto no artigo <a href="http://cangaceirojavascript.com.br/compondo-funcoes-javascript/" target="blank">"Compondo funções em JavaScript"</a>:
 
