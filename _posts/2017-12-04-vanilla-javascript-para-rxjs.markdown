@@ -131,15 +131,12 @@ Vamos escolher a função `take()` para demonstrar seu uso isoladamente primeiro
     executar outra no máximo 3 vezes. Através de closure, ela 
     lembrará do parâmetro passado para take, no caso, 2
 */
-
 const configuredTake = take(2);
-
 /* 
     A configuredTake recebe como parâmetro a lógica que desejamos 
     executar, ou seja, uma função. Por fim, ela retorna outra função 
     que ao ser chamada, executará o callback passado para configuredTake
 */
-
 const fn = configuredTake(() => alert('hi'));
 
 fn(); // exibe o alerta
