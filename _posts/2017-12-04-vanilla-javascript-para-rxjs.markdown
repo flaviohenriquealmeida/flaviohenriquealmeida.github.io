@@ -115,11 +115,42 @@ export const take = times => {
         requestCounter++;
         if(requestCounter <= times) fn();
     };
-}
+};
 ```
 >*Sobre minha implementação do debounce pattern aqui apresentado, o leitor pode consultar meu post <a href="http://blog.alura.com.br/javascript-debounce-pattern-closure-e-duas-amigas/" target="_blank">"JavaScript, debounce pattern, closure e duas amigas"</a> publicado no blog da AluraOnline. Inclusive, a função `take` segue estrutura similar* 
 
-A primeira função, `debounceTime()`, é aquela que resolve o problema de executarmos apenas uma operação dentro de um janela de tempo. Já a segunda, `take()`, garantirá o número máximo de vezes que uma operação deve ser executada. Todavia, precisamos combinar as duas funções. 
+A primeira função, `debounceTime`, é aquela que resolve o problema de executarmos apenas uma operação dentro de um janela de tempo. Já a segunda, `take`, garantirá o número máximo de vezes que uma operação deve ser executada.
+
+## Entendendo a estrutura das operações.
+
+Vamos escolher a função `take()` para demonstrar seu uso isoladamente primeiro:
+
+```javascript
+/* 
+    A função take() retorna uma função configurada para 
+    executar outra no máximo 3 vezes. Através de closure, ela 
+    lembrará do parâmetro passado para take, no caso, 2
+*/
+
+const configuredTake = take(2);
+
+/* 
+    A configuredTake recebe como parâmetro a lógica que desejamos 
+    executar, ou seja, uma função. Por fim, ela retorna outra função 
+    que ao ser chamada, executará o callback passado para configuredTake
+*/
+
+const fn = configuredTake(() => alert('hi'));
+
+fn(); // exibe o alerta
+fn(); // exibe o alerta
+fn(); // exibe o alerta
+fn(); // não exibe o alerta
+```
+
+Excelente, mas precisamos combinar as funções `debounceTime` e `take`.
+
+## Compondo funções
 
 Uma maneira elegante de combinar as operações que acabamos de criar é através de uma função especializada em composição. Inclusive, já abordei este assunto no artigo <a href="http://cangaceirojavascript.com.br/compondo-funcoes-javascript/" target="blank">"Compondo funções em JavaScript"</a>:
 
@@ -138,7 +169,7 @@ export const take = times => {
         requestCounter++;
         if(requestCounter <= times) fn();
     };
-}
+};
 // nova função!
 export const compose = (...fns) => value => 
   fns.reduceRight((previousValue, fn) => 
