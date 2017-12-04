@@ -93,9 +93,7 @@ import { getNegotiations } from './api.js';
 document
     .querySelector('#btn')
     .onclick = () => getNegotiations()
-    .then(negotiations => {
-        console.log(negotiations);
-    })
+    .then(negotiations => console.log(negotiations)
     .catch(err => console.log(err.message));
 ```
 
