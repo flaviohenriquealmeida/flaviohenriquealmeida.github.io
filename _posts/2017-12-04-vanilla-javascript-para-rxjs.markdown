@@ -48,16 +48,15 @@ Primeiro, vamos criar o arquivo `js/api.js`:
 
 const api = 'http://localhost:3000';
 
-// função utilitária para lidar com o status da requisição
-const handleError = res => {
+// função utilitária para lidar com o status da requisição e conversão
+const fetchHandler = res => {
   if(!res.ok) throw Error(res.statusText);
-  return res;
+  return res.json();
 };
 // busca as negociações da semana 
 const getNegotiationsFromWeek  = () =>
     fetch(`${api}/negociacoes/semana`)
-    .then(res => handleError(res))
-    .then(res => res.json())
+    .then(fetchHandler)
     .catch(err => {
         console.log(err);   
         return Promise.reject('getNegotiationsFromWeek: failure!');
@@ -65,8 +64,7 @@ const getNegotiationsFromWeek  = () =>
 // busca as negociações da semana anterior
 const getNegotiationsFromPreviousWeek = () =>
     fetch(`${api}/negociacoes/anterior`)
-    .then(res => handleError(res))
-    .then(res => res.json())
+    .then(fetchHandler)
     .catch(err => {
         console.log(err);
         return Promise.reject('getNegotiationsFromPreviousWeek: failure!');
