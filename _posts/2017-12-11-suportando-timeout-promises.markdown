@@ -1,12 +1,12 @@
 ---
 layout: post
-title:  "Adicionando timeout em Promises"
+title:  "Suportando timeout em Promises"
 description: 
 date:   2017-12-04 07:00:00 -0300
 categories:
-permalink: /adicionando-timeout-promises/
+permalink: /suportando-timeout-promises/
 author: flavio_almeida
-tags: [javascript, promise, race, timeout]
+tags: [javascript, promise, Promise.race, timeout]
 image: logo.png
 ---
 
