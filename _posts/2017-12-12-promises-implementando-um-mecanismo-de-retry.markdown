@@ -13,9 +13,9 @@ A repercussão extremamente positiva na comunidade do meu <a href="http://cangac
 
 ## O problema
 
-Não é raro locais nos quais a internet é intermitente, inclusive em áreas com rede de alta velocidade. Acessar a internet dentro de um elevador, dentro barca ou até mesmo no estacionamento de um shopping pode contribuir para a instabilidade da rede.
+Não é raro locais nos quais a internet é intermitente, inclusive em áreas com rede de alta velocidade. Acessar a internet dentro de um elevador, dentro barca ou até mesmo no estacionamento de um shopping pode contribuir para a instabilidade da rede. Existem diferentes estratégias para se lidar com a intermitência daqui descrita.
 
-Existem diferentes estratégias para se lidar com a intermitência daqui descrita, por exemplo, uma aplicação pode funcionar temporariamente offline para mais tarde sincronizar as operações do usuário ou até mesmo realizar novamente a operação um certo número de vezes dentro de um espaço de tempo para só considerar a operação fracassada depois que todas as tentativas tiverem sido esgotadas. É esta última abordagem que abordarei nesse artigo.
+Uma aplicação pode funcionar temporariamente offline para mais tarde sincronizar as operações do usuário. A aplicação pode até mesmo realizar novamente a operação um certo número de vezes dentro de um espaço de tempo para só considerar a operação fracassada depois que todas as tentativas tiverem sido esgotadas. É esta solução que abordarei nesse artigo.
 
 Temos um arquivo HTML que exibe apenas um botão e que importa o módulo `app`:
 
@@ -34,8 +34,7 @@ Temos um arquivo HTML que exibe apenas um botão e que importa o módulo `app`:
 </html>
 ```
 
-A ideia é a seguinte. No clique do botão, utilizando a Fetch API que adere à especificação Promise, precisamos buscar as negociações da semana, porém, se a rede ou a API consumida estiverem foras, precisaremos repetir a mesma operação no máximo três vezes, aguardando dois segundos entre as tentativas. 
-
+A ideia é a seguinte. No clique do botão, utilizando a Fetch API que adere à especificação Promise, buscaremos as negociações da semana, porém, se a rede ou a API consumida estiverem foras, repetiremos a mesma operação no máximo três vezes, aguardando dois segundos entre cada tentativas. 
 
 Vejamos o código do módulo `app`:
 
@@ -69,23 +68,26 @@ document
     });
 ```
 
-Do jeito que esta, se algum erro acontecer, a operação não será realizada novamente. A má notícia é que, na data de publicação deste artigo, Promises não suportam nativamente a capacidade de realizar novamente uma operação fracassada. Nesse sentido, teremos que implementar essa funcionalidade.
+Do jeito que esta, se algum erro acontecer, a operação não será realizada novamente. A má notícia é que, na data de publicação deste artigo, Promises não suportam nativamente a capacidade de realizar novamente uma operação fracassada. Nesse sentido, teremos que implementar esta funcionalidade.
 
-Mas antes de cairmos dentro da implementação, vamos alterar o módulo `app` para que faça uso da funcionalidade que ainda vamos criar, para termos um *big picture* de como ela funcionará:
+Mas antes de cairmos dentro da implementação, vamos alterar o módulo `app` para que faça uso da funcionalidade que ainda criaremos, para termos um *big picture* de como ela funcionará:
 
 ```javascript
 // js/app.js
 
+// retry ainda não existe!
 import { fetchHandler, retry  } from './promise-util.js';
 
 const getNegotiations = () => 
     fetch('http://localhost:3000/negociacoes/semana')
         .then(fetchHandler);
-    
+
+
 document
 .querySelector('#btn')
 .onclick = () => 
-    retry(getNegotiationsTimeout, 3, 2000)
+    // usando a função
+    retry(getNegotiations, 3, 2000) 
     .then(negotiations => {
         console.log(negotiations);
         alert('Operation complete!');
@@ -99,11 +101,11 @@ document
 Vamos lançar nosso olhar na seguinte modificação:
 
 ```javascript
-retry(getNegotiationsTimeout, 3, 2000)
+retry(getNegotiations, 3, 2000)
 ```
-A função `retry` recebe como primeiro parâmetro uma função que ao ser invocada retornará uma Promise. Isso é importante, porque a cada tentativa precisaremos de uma nova Promise, pois segundo a específicação, uma Promise que já foi resolvida ou rejeitada não pode ir para qualquer outro estado, ou seja, ela é imutável. Em outras palavras, **na rejeição da operação precisaremos retornar uma nova Promise**.
+A função `retry` recebe como primeiro parâmetro uma função que ao ser invocada retornará uma Promise. Isso é importante, porque a cada tentativa precisaremos de uma nova Promise, pois segundo a especificação, uma Promise que já foi resolvida ou rejeitada não pode ir para qualquer outro estado, ou seja, ela é imutável. Em outras palavras, **na rejeição da operação precisaremos retornar uma nova Promise**.
 
-Os demais parâmetros da função `retry` são o número de tentativas e o intervalo em milissegundos entre as tentativas. Não podemos simplesmente sair repetindo a operação, precisamos de uma folga entre as repetições.
+Os demais parâmetros da função `retry` são o número de tentativas e o intervalo em milissegundos entre elas. Não podemos simplesmente sair repetindo a operação, precisamos de uma folga entre as repetições.
 
 Agora que já temos uma visão geral da chamada da função `retry`, vamos iniciar nossa implementação. Todavia, não partiremos diretamente para ela, primeiro implementaremos uma função que permita executar uma pausa (delay) entre as chamadas da Promise para só depois combiná-la com `retry`. 
 
@@ -125,7 +127,7 @@ document
 .querySelector('#btn')
 .onclick = () => 
     getNegotiations()
-    .then(delay(3000))
+    .then(delay(3000)) // usando a função
     .then(negotiations => {
         console.log(negotiations);
         alert('Operation complete!');
@@ -254,7 +256,7 @@ const getNegotiations = () =>
 document
 .querySelector('#btn')
 .onclick = () => 
-    retry(getNegotiationsTimeout, 3, 2000)
+    retry(getNegotiations, 3, 2000)
     .then(negotiations => {
         console.log(negotiations);
         alert('Operation complete!');
@@ -293,7 +295,11 @@ Agora, é possível chamar `retry` dessa maneira:
 
 ```javascript
 // adota os valores padrões de retries e delay
-retry(getNegotiationsTimeout)
+document
+.querySelector('#btn')
+.onclick = () => 
+    retry(getNegotiations, 3, 2000)
+...    
 ```
 Mais enxuto, não?
 
