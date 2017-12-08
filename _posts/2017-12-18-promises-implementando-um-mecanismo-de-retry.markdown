@@ -2,7 +2,7 @@
 layout: post
 title:  "Promises: implementando um mecanismo de retry"
 description: 
-date:   2017-12-04 07:00:00 -0300
+date:   2017-12-18 07:00:00 -0300
 categories:
 permalink: /promises-implementando-mecanismo-de-retry/
 author: flavio_almeida
