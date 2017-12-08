@@ -61,7 +61,6 @@ O módulo `app.js` importa a função `fetchHandler` do módulo `promise-util.js
 // js/promise-util.js
 
 export const fetchHandler = res => {  
-
     if(!res.ok) throw Error(res.statusText);
     return res.json();
 };

@@ -220,7 +220,6 @@ Todavia, é precisa haver um intervalo entre as tentativas. Já temos a função
 // js/promise-util.js
 
 export const fetchHandler = res => {
-
     if (!res.ok) throw Error('Api error!');
     return res.json();
 };
@@ -273,7 +272,6 @@ Podemos tornar ainda menos verbosa nossa função `retry` adotando um valor padr
 ```javascript
 
 export const fetchHandler = res => {
-
     if (!res.ok) throw Error('Api error!');
     return res.json();
 };
