@@ -13,7 +13,7 @@ A repercussão extremamente positiva na comunidade do meu <a href="http://cangac
 
 ## O problema
 
-Não é raro locais nos quais a internet é intermitente, inclusive em áreas com rede de alta velocidade. Acessar a internet dentro de um elevador, dentro barca ou até mesmo no estacionamento de um shopping pode contribuir para a instabilidade da rede. Existem diferentes estratégias para se lidar com a intermitência daqui descrita.
+Não é raro locais nos quais a internet é intermitente, inclusive em áreas com rede de alta velocidade. Acessar a internet dentro de um elevador, dentro barca ou até mesmo no estacionamento de um shopping pode contribuir para a instabilidade da rede. Existem diferentes estratégias para se lidar com a intermitência aqui descrita.
 
 Uma aplicação pode funcionar temporariamente offline para mais tarde sincronizar as operações do usuário. A aplicação pode até mesmo realizar novamente a operação um certo número de vezes dentro de um espaço de tempo para só considerar a operação fracassada depois que todas as tentativas tiverem sido esgotadas. É esta solução que abordarei nesse artigo.
 
@@ -45,7 +45,7 @@ Vejamos o código do módulo `app`:
     Importa a função que lida com o status da requisição 
     e converte a resposta para JSON
 */
-import { fetchHandler  } from './promise-util.js';
+import { fetchHandler } from './promise-util.js';
 /*
     Função que ao ser chamada retorna a Promise criada pela
     API Fetch
@@ -76,13 +76,12 @@ Mas antes de cairmos dentro da implementação, vamos alterar o módulo `app` pa
 // js/app.js
 
 // retry ainda não existe!
-import { fetchHandler, retry  } from './promise-util.js';
+import { fetchHandler, retry } from './promise-util.js';
 
 const getNegotiations = () => 
     fetch('http://localhost:3000/negociacoes/semana')
         .then(fetchHandler);
-
-
+        
 document
 .querySelector('#btn')
 .onclick = () => 
@@ -122,7 +121,7 @@ import { fetchHandler, delay } from './promise-util.js';
 const getNegotiations = () => 
     fetch('http://localhost:3000/negociacoes/semana')
         .then(fetchHandler);
-    
+
 document
 .querySelector('#btn')
 .onclick = () => 
@@ -138,7 +137,7 @@ document
     });
 ```
 
-Na prova de conceito acima, basta encadearmos uma chamada da função `delay` para que a próxima chamada à `then` seja postergada. A função recebe como parâmetro o tempo da espera em milissegundos. Todavia, ela deve ser capaz de receber o resultado da chamada anterior e passá-la o próximo `then()` encadeado. Sem isso, não seremos capazes de obter a lista de negociações na chamada `then(negotiations => ...)`. 
+Na prova de conceito acima, basta encadearmos uma chamada da função `delay` para que a próxima chamada à `then` seja postergada. A função recebe como parâmetro o tempo da espera em milissegundos. Todavia, ela deve ser capaz de receber o resultado da chamada anterior e passá-la para o próximo `then()` encadeado. Sem isso, não seremos capazes de obter a lista de negociações na chamada `then(negotiations => ...)`. 
 
 Vamos criar a função no módulo `promise-util`:
 
@@ -150,9 +149,9 @@ export const fetchHandler = res => {
 };
 
 // nova função 
-export const delay = delay => data =>
+export const delay = time => data =>
     new Promise((resolve, reject) => 
-        setTimeout(() => resolve(data), delay)
+        setTimeout(() => resolve(data), time)
     );
 ```
 Vamos escrutinar a função para compreendê-la melhor. Ao ser chamada, ela retorna uma nova função que recebe como parâmetro qualquer dado da chamada que antecede a chamada de `delay`. Para podermos enxergar ainda melhor, vejamos passo a passo:
@@ -161,14 +160,16 @@ Vamos escrutinar a função para compreendê-la melhor. Ao ser chamada, ela reto
 // exemplo apenas
 
 // o dado recebido será da promise retornada por `getNegotiation()`
-getNegotiations().then(delay(3000))
+getNegotiations()
+.then(delay(3000))
 ```
 Nada nos impede de fazer isso também:
 
 ```javascript
 // exemplo apenas
 const meuDelay = delay(3000);
-getNegotiations().then(meuDelay);
+getNegotiations()
+.then(meuDelay)
 ```
 
 Nesse contexto, o resultado da promise retornada por `getNegotiations()` será passado para `meuDelay`. Fica claro agora que nossa função receberá o resultado.
@@ -179,8 +180,8 @@ Por fim, a mesma função que recebe os dados da Promise anterior, ao ser resolv
 ```javascript
 // exemplo apenas
 getNegotiations()
-    .then(delay(3000))
-    .then(negociacoes => console.log(negociacoes));
+.then(delay(3000))
+.then(negociacoes => console.log(negociacoes));
 ```
 
 Ótimo! Agora que já aprendemos a realizar o delay entre Promises, chegou a hora de implementarmos nossa função `retry`.
@@ -190,29 +191,29 @@ getNegotiations()
 Sabemos que nossa função `retry` deve receber uma função que ao ser chamada, retornará sempre uma nova Promise com a operação que desejamos realizar, o número de tentativas e o intervalo de tempo entre essas tentativas:
 
 ```javascript
-export const retry = (fn, retries, delay) => 
+export const retry = (fn, retries, time) => 
 ```   
 A primeira que que faremos é chamada a função `fn` e programar uma resposta no caso de sua rejeição, isto é, caso algum erro aconteça durante sua execução. Sabemos que lidamos com erros de Promises na função `catch`. 
 
-A solução que utilizarei utiliza recursão. Qual um erro acontecer, chamarei novamente a função `retry` passando `fn`, o número de tentativas decrementado de um e o valor do delay. Essa chamada recursiva garantirá uma nova execução de `fn`, inclusive o decremento do número de tentativas.
+A solução que utilizarei usa recursão. Quando um erro acontecer, chamarei novamente a função `retry` passando `fn`, o número de tentativas decrementado de um e o valor do delay. Essa chamada recursiva garantirá uma nova execução de `fn`, inclusive o decremento do número de tentativas.
 
 O código ficará assim:
 
 
 ```javascript
-export const retry = (fn, retries, delay) =>
+export const retry = (fn, retries, time) =>
     fn().catch(err => {
         console.log(retries);
         return retries > 1 
-            ? retry(fn, retries - 1, delay)
+            ? retry(fn, retries - 1, time)
             : Promise.reject(err));
     });
 ```    
-Na cláusula `catch`, através de um `if` ternário, testamos se o número de tentativas ainda é maior do que um (esta certo, porque já gastamos uma tentativa na chamada da promise), se for, temos direito a mais uma tentativa e chamamos recursivamente `retry(fn, retries - 1, delay)`. Se o número máximo de tentativas for excedido, retornamos uma rejeição com `Promise.reject(err)` que receba a causa do último erro.
+Na cláusula `catch`, através de um `if` ternário, testamos se o número de tentativas ainda é maior do que um (esta certo, porque já gastamos uma tentativa na chamada da promise), se for, temos direito a mais uma tentativa e chamamos recursivamente `retry(fn, retries - 1, time)`. Se o número máximo de tentativas for excedido, retornamos uma rejeição com `Promise.reject(err)` que recebe a causa do último erro.
 
 O que as chamadas recursivas farão é encadear uma sucessão de chamadas artificiais à `then`, repetindo a operação. 
 
-Todavia, é precisa haver um intervalo entre as tentativas. Já criamos a função `delay`
+Todavia, é precisa haver um intervalo entre as tentativas. Já temos a função `delay` e só nos resta combiná-la com `retry`:
 
 
 ```javascript
@@ -224,23 +225,23 @@ export const fetchHandler = res => {
     return res.json();
 };
  
-export const delay = delay => data =>
+export const delay = time => data =>
     new Promise((resolve, reject) => 
-        setTimeout(() => resolve(data), delay)
+        setTimeout(() => resolve(data), time)
     );
 
 // função final
-export const retry = (fn, retries, delay) =>
+export const retry = (fn, retries, time) =>
     fn().catch(err => {
         console.log(retries);
-        return delayPromise(delay)().then(() => 
+        return delay(time)().then(() => 
             retries > 1 
-                ? retry(fn, retries - 1, delay) 
-                : Promise.reject(err));
+                ? retry(fn, retries - 1, time) 
+                : Promise.reject(err))
     });
 ```    
 
-Foi necessário fazermos `delayPromise(delay)()`, porque `delayPromise` retorna uma função que ao ser chamada devolve uma Promise. 
+Foi necessário fazermos `delay(time)()`, porque `delay` retorna uma função que ao ser chamada devolve uma Promise. 
 
 O módulo `app` ficará assim:
 
@@ -277,17 +278,17 @@ export const fetchHandler = res => {
     return res.json();
 };
  
-export const delay = delay => data =>
+export const delay = time => data =>
     new Promise((resolve, reject) => 
-        setTimeout(() => resolve(data), delay)
+        setTimeout(() => resolve(data), time)
     );
 
-export const retry = (fn, retries = 3, delay = 1000) =>
+export const retry = (fn, retries = 3, time = 1000) =>
     fn().catch(err => 
-        delayPromise(delay)().then(() => 
+        delay(time)().then(() => 
             retries > 1 
-                ? retry(fn, retries - 1, delay) 
-                : Promise.reject(err));
+                ? retry(fn, retries - 1, time) 
+                : Promise.reject(err))
     );
 ```    
 
