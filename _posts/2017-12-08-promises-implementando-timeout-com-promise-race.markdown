@@ -2,7 +2,7 @@
 layout: post
 title:  "Promises: implementando timeout com Promise.race"
 description: 
-date:   2017-12-11 08:00:00 -0300
+date:   2017-12-08 08:00:00 -0300
 categories:
 permalink: /promises-implementando-timeout-com-promise-race/
 author: flavio_almeida
