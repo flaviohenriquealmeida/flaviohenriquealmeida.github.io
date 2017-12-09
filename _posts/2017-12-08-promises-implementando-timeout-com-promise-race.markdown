@@ -123,7 +123,7 @@ Chegou a hora de implementarmos nossa `promiseWithTimeout`.
 
 ## Criando uma Promise com timeout
 
-Vamos alterar o arquivo `js/promise-util.js` e adicionar a função `promiseWithTimeout`. Ela recebe como primeiri parâmetro a Promise que desejamos executar e como segundo o timeout em milissegundos que desejamos definir como tempo limite da Promise:
+Vamos alterar o arquivo `js/promise-util.js` e adicionar a função `promiseWithTimeout`. Ela recebe como primeiro parâmetro a Promise que desejamos executar e como segundo o timeout em milissegundos que desejamos definir como tempo limite da Promise:
 
 ```javascript
 // js/promise-util.js
@@ -165,7 +165,7 @@ const getNegociacoes = () =>
     .then(fetchHandler);
 /* 
     promiseWithTimeout recebe a promise da Fetch API e
-    define em 1 segundo o limite máximo
+    define em 100ms (bem baixo) o limite máximo
 */
 promiseWithTimeout(getNegociacoes(),100)
 .then(negotiations => {
