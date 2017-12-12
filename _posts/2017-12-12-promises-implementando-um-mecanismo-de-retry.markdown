@@ -34,7 +34,7 @@ Temos um arquivo HTML que exibe apenas um botão e que importa o módulo `app`:
 </html>
 ```
 
-A ideia é a seguinte. No clique do botão, utilizando a Fetch API que adere à especificação Promise, buscaremos as negociações da semana, porém, se a rede ou a API consumida estiverem foras, repetiremos a mesma operação no máximo três vezes, aguardando dois segundos entre cada tentativas. 
+A ideia é a seguinte. No clique do botão, utilizando a Fetch API que adere à especificação Promise, buscaremos as negociações da semana, porém, se a rede ou a API consumida estiverem foras, repetiremos a mesma operação no máximo três vezes, aguardando dois segundos entre cada tentativa. 
 
 Vejamos o código do módulo `app`:
 
@@ -193,9 +193,9 @@ Sabemos que nossa função `retry` deve receber uma função que ao ser chamada,
 ```javascript
 export const retry = (fn, retries, time) => 
 ```   
-A primeira que que faremos é chamada a função `fn` e programar uma resposta no caso de sua rejeição, isto é, caso algum erro aconteça durante sua execução. Sabemos que lidamos com erros de Promises na função `catch`. 
+A primeira que que faremos é chamada a função `fn` e programar uma resposta no caso de sua rejeição, isto é, caso algum erro aconteça durante sua execução. Sabemos que é na função `catch` que lidamos com erros de Promises.
 
-A solução que utilizarei usa recursão. Quando um erro acontecer, chamarei novamente a função `retry` passando `fn`, o número de tentativas decrementado de um e o valor do delay. Essa chamada recursiva garantirá uma nova execução de `fn`, inclusive o decremento do número de tentativas.
+A solução que utilizarei usa recursão. Quando um erro acontecer, chamarei novamente a função `retry` passando `fn`, o número de tentativas decrementado de um e o tempo do delay. Essa chamada recursiva garantirá uma nova execução de `fn`, inclusive o decremento do número de tentativas.
 
 O código ficará assim:
 
@@ -211,7 +211,7 @@ export const retry = (fn, retries, time) =>
 ```    
 Na cláusula `catch`, através de um `if` ternário, testamos se o número de tentativas ainda é maior do que um (esta certo, porque já gastamos uma tentativa na chamada da promise), se for, temos direito a mais uma tentativa e chamamos recursivamente `retry(fn, retries - 1, time)`. Se o número máximo de tentativas for excedido, retornamos uma rejeição com `Promise.reject(err)` que recebe a causa do último erro.
 
-O que as chamadas recursivas farão é encadear uma sucessão de chamadas artificiais à `then`, repetindo a operação. 
+O que as chamadas recursivas farão é encadear uma sucessão de chamadas artificiais à `then`, repetindo a operação. Faz sentido, pois precisamos de uma nova promise a cada tentativa.
 
 Todavia, é precisa haver um intervalo entre as tentativas. Já temos a função `delay` e só nos resta combiná-la com `retry`:
 
@@ -240,7 +240,7 @@ export const retry = (fn, retries, time) =>
     });
 ```    
 
-Foi necessário fazermos `delay(time)()`, porque `delay` retorna uma função que ao ser chamada devolve uma Promise. 
+Foi necessário realizar `delay(time)()`, porque `delay` retorna uma função que ao ser chamada devolve uma Promise. 
 
 O módulo `app` ficará assim:
 
@@ -267,7 +267,7 @@ document
     });
 ```
 
-Podemos tornar ainda menos verbosa nossa função `retry` adotando um valor padrão para seus parâmetro `retries` e `delay`. Por fim, podemos resolver o `console.log` de `retry`, o que permitirá remover o bloco da arrow function:
+Podemos tornar ainda menos verbosa nossa função `retry` adotando um valor padrão para seus parâmetros `retries` e `delay`. Por fim, podemos remover o `console.log` de `retry`, o que permitirá remover o bloco da arrow function:
 
 ```javascript
 
@@ -304,6 +304,6 @@ Mais enxuto, não?
 
 ## Conclusão 
 
-O padrão Promise foi uma grande adição ao ES2015, porém ela carece de recursos que utilizamos no dia a dia como a repetição de uma operação no caso de um erro ou até mesmo timeout. Contudo, nada impede do programador batalhar por uma solução, melhor ainda se essa solução pode ser isolada e utilizada em outros cenários. 
+O padrão Promise foi uma grande adição ao ES2015, porém ela carece de recursos que utilizamos no dia a dia como a repetição de uma operação no caso de um erro ou até mesmo timeout. Contudo, nada impede do programador batalhar por uma solução, melhor ainda se essa solução puder ser isolada e utilizada em outros cenários. 
 
 E você? Achou útil esse recurso? Já precisou dele em algum momento? Deixe sua opinião.
