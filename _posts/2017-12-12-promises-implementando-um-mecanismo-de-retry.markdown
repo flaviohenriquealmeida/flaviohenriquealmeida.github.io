@@ -193,7 +193,7 @@ Sabemos que nossa função `retry` deve receber uma função que ao ser chamada,
 ```javascript
 export const retry = (fn, retries, time) => 
 ```   
-A primeira que que faremos é chamada a função `fn` e programar uma resposta no caso de sua rejeição, isto é, caso algum erro aconteça durante sua execução. Sabemos que é na função `catch` que lidamos com erros de Promises.
+A primeira coisa que faremos é chamar a função `fn` e programar uma resposta no caso de sua rejeição, isto é, caso algum erro aconteça durante sua execução. Sabemos que é na função `catch` que lidamos com erros de Promises.
 
 A solução que utilizarei usa recursão. Quando um erro acontecer, chamarei novamente a função `retry` passando `fn`, o número de tentativas decrementado de um e o tempo do delay. Essa chamada recursiva garantirá uma nova execução de `fn`, inclusive o decremento do número de tentativas.
 
