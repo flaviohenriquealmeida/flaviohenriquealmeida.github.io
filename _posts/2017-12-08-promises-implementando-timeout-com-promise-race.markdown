@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Promises: implementando timeout com Promise.race"
-description: 
+description: A especificação ES2015 (ES6) adicionou o suporte a Promises, recurso poderoso para lidar com o resultado futuro de uma ação. Porém, o ES6 não trouxe nenhum mecanismo que permita cancelá-las automaticamente dentro de uma janela de tempo. Nesse artigo implementaremos o recurso de timeout em Promises.
 date:   2017-12-08 08:00:00 -0300
 categories:
 permalink: /promises-implementando-timeout-com-promise-race/
