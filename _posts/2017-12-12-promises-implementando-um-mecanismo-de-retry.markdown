@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Promises: implementando um mecanismo de retry"
-description: 
+description: A repercussão extremamente positiva na comunidade do meu último artigo foi tamanha que aqui estou escrevendo novamente sobre Promises, desta vez sobre como implementar um mecanismo de retry. 
 date:   2017-12-12 07:00:00 -0300
 categories:
 permalink: /promises-implementando-mecanismo-de-retry/
