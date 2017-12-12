@@ -267,7 +267,7 @@ document
     });
 ```
 
-Podemos tornar ainda menos verbosa nossa função `retry` adotando um valor padrão para seus parâmetros `retries` e `delay`. Por fim, podemos remover o `console.log` de `retry`, o que permitirá remover o bloco da arrow function:
+Podemos tornar ainda menos verbosa nossa função `retry` adotando um valor padrão para seus parâmetros `retries` e `time`. Por fim, podemos remover o `console.log` de `retry`, o que permitirá remover o bloco da arrow function:
 
 ```javascript
 
