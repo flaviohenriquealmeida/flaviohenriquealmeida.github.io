@@ -281,7 +281,7 @@ export const delay = time => data =>
         setTimeout(() => resolve(data), time)
     );
 
-export const retry = (fn, retries = 3, time = 1000) =>
+export const retry = (fn, retries = 3, time = 2000) =>
     fn().catch(err => 
         delay(time)().then(() => 
             retries > 1 
@@ -297,7 +297,7 @@ Agora, é possível chamar `retry` dessa maneira:
 document
 .querySelector('#btn')
 .onclick = () => 
-    retry(getNegotiations, 3, 2000)
+    retry(getNegotiations)
 ...    
 ```
 Mais enxuto, não?
