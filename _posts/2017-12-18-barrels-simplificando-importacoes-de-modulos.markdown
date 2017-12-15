@@ -25,7 +25,7 @@ import { NegotiationService } from './domain/negotiation-service';
 import { NegotiationsView } from './ui/negotiations-view';
 import { NegotiationsView } from './ui/negotiation-view';
 
-export class NegotiationHandler {
+class NegotiationHandler {
     /* código omitido */
 }
 ```
@@ -48,7 +48,6 @@ export * from './negotiation-service';
 
 Criaremos um barril (barrel) também para `app/ui`:
 
-
 ```javascript
 // app/ui/index.js
 
@@ -66,13 +65,12 @@ Voltando para o código inicial do artigo, podemos agora importar os artefatos d
 import { Negotiation, Negotiations, NegotiationService } from './domain';
 import { NegotiationsView, NegotiationsView } from './ui';
 
-export class NegotiationHandler {
+class NegotiationHandler {
     /* código omitido */
 }
 ```
 
 Reduzimos bastante o número de instruções `import` e ainda conseguimos enxergar com clareza artefatos que fazem parte de um mesmo grupo. Aliás, podemos lançar mão da mesma estratégia com os módulos do CommonJS, do Node.js.
-
 
 ## Barris com CommonJS (Node.js)
 
@@ -87,13 +85,12 @@ const Negotiation = require('./domain/negotiation')
     , NegotiationsView } require('./ui/negotiations-view')
     , NegotiationsView } require('./ui/negotiation-View');
 
-module.exports = class NegotiationHandler {
+class NegotiationHandler {
     /* código omitido */
 };
 ```
 
 Criando um barril para `domain`:
-
 
 ```javascript
 // app/domain/index.js
@@ -124,7 +121,7 @@ E por fim, importando os artefatos, inclusive usando `destructuring`. Aliás, es
 const { Negotiation, Negotiations, NegotiationService } = require('./domain');
 const { NegotiationsView, NegotiationsView } = require('./ui');
     
-module.exports = class NegotiationHandler {
+class NegotiationHandler {
     /* código omitido */
 };
 ```
