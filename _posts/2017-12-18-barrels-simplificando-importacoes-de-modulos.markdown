@@ -2,7 +2,7 @@
 layout: post
 title:  "Barrels: facilitando importações de módulos"
 description: O ECMAScript e a plataforma Node.js possuem seu próprio sistema de módulos. O primeiro utiliza o formato ESM, já o segundo o formato CommonJS. Todavia, independente do sistema utilizado, podemos simplificar bastante a importação de módulos através de Barrels, uma técnica, assunto deste artigo. 
-date:   2017-12-12 07:00:00 -0300
+date:   2017-12-18 07:00:00 -0300
 categories:
 permalink: /barrels-simplificando-importacoes-de-modulos/
 author: flavio_almeida
