@@ -82,8 +82,8 @@ Vamos pegar o mesmo exemplo utilizado no problema inicial com ESM, mas desta vez
 const Negotiation = require('./domain/negotiation')
     , Negotiations = require('./domain/negotiations')
     , NegotiationsService = require('./domain/negotiation-service')
-    , NegotiationsView = require('./ui/negotiations-view')
-    , NegotiationsView = require('./ui/negotiation-View');
+    , NegotiationView = require('./ui/negotiation-view')
+    , NegotiationsView = require('./ui/negotiations-View');
 
 class NegotiationHandler {
     /* código omitido */
@@ -107,10 +107,10 @@ Agora, para `ui`:
 ```javascript
 // app/ui/index.js
 
-const NegotiationsView = require('./ui/negotiations-view')
-    , NegotiationsView = require('./ui/negotiation-view');
+const NegotiationView = require('./ui/negotiation-view')
+    , NegotiationsView = require('./ui/negotiations-view');
 
-module.exports = { NegotiationsView, NegotiationsView };
+module.exports = { NegotiationView, NegotiationsView };
 ```
 
 E por fim, importando os artefatos, inclusive usando `destructuring`. Aliás, este autor já escreveu sobre <a href="http://cangaceirojavascript.com.br/importando-modulos-do-nodejs-com-destructuring/" target="_blank">como importar módulos do Node.js com destructuring</a>.
@@ -119,7 +119,7 @@ E por fim, importando os artefatos, inclusive usando `destructuring`. Aliás, es
 // app/app.js
 
 const { Negotiation, Negotiations, NegotiationService } = require('./domain');
-const { NegotiationsView, NegotiationsView } = require('./ui');
+const { NegotiationView, NegotiationsView } = require('./ui');
     
 class NegotiationHandler {
     /* código omitido */
