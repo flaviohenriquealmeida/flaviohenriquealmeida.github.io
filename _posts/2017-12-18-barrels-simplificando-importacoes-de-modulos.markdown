@@ -22,8 +22,8 @@ O módulo `app` precisa importar uma série de artefatos de outros módulos para
 import { Negotiation } from './domain/negotiation';
 import { Negotiations } from './domain/negotiations';
 import { NegotiationService } from './domain/negotiation-service';
+import { NegotiationView } from './ui/negotiation-view';
 import { NegotiationsView } from './ui/negotiations-view';
-import { NegotiationsView } from './ui/negotiation-view';
 
 class NegotiationHandler {
     /* código omitido */
@@ -63,7 +63,7 @@ Voltando para o código inicial do artigo, podemos agora importar os artefatos d
 // app/app.js
 
 import { Negotiation, Negotiations, NegotiationService } from './domain';
-import { NegotiationsView, NegotiationsView } from './ui';
+import { NegotiationView, NegotiationsView } from './ui';
 
 class NegotiationHandler {
     /* código omitido */
