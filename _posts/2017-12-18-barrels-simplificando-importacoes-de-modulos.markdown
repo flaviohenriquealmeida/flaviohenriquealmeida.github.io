@@ -82,8 +82,8 @@ Vamos pegar o mesmo exemplo utilizado no problema inicial com ESM, mas desta vez
 const Negotiation = require('./domain/negotiation')
     , Negotiations = require('./domain/negotiations')
     , NegotiationsService = require('./domain/negotiation-service')
-    , NegotiationsView } require('./ui/negotiations-view')
-    , NegotiationsView } require('./ui/negotiation-View');
+    , NegotiationsView = require('./ui/negotiations-view')
+    , NegotiationsView = require('./ui/negotiation-View');
 
 class NegotiationHandler {
     /* código omitido */
