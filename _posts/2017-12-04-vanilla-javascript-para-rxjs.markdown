@@ -99,17 +99,17 @@ No entanto, ainda não estamos lidando com as operações diferenciadas do event
 
 
 ```javascript
-export const debounceTime = milliseconds => {
+export const debounceTime = (milliseconds, fn) => {
     let timer = 0;
-    return fn => () => {
+    return () => {
         clearTimeout(timer);
         timer = setTimeout(fn, milliseconds);
     };
 };
     
-export const take = times => {
+export const take = (times, fn) => {
     let requestCounter = 0;
-    return fn => () => {
+    return () => {
         requestCounter++;
         if(requestCounter <= times) fn();
     };
@@ -119,57 +119,14 @@ export const take = times => {
 
 A primeira função, `debounceTime`, é aquela que resolve o problema de executarmos apenas uma operação dentro de um janela de tempo. Já a segunda, `take`, garantirá o número máximo de vezes que uma operação deve ser executada.
 
-## Entendendo a estrutura das operações.
-
-Vamos escolher a função `take()` para demonstrar seu uso isoladamente primeiro:
+Excelente, mas precisamos combinar as funções `debounceTime` e `take`. Vejamos um exemplo:
 
 ```javascript
-/* 
-    A função take() retorna uma função configurada para 
-    executar outra no máximo 3 vezes. Através de closure, ela 
-    lembrará do parâmetro passado para take, no caso, 3
-*/
-const configuredTake = take(3);
-/* 
-    A configuredTake recebe como parâmetro a lógica que desejamos 
-    executar, ou seja, uma função. Por fim, ela retorna outra função 
-    que ao ser chamada, executará o callback passado para configuredTake
-*/
-const fn = configuredTake(() => alert('hi'));
-
-fn(); // exibe o alerta
-fn(); // exibe o alerta
-fn(); // exibe o alerta
-fn(); // não exibe o alerta
+const operacao = debounceTime(500, take(3, () => alert('oi')));
+operacao();
 ```
 
-Excelente, mas precisamos combinar as funções `debounceTime` e `take`.
-
-## Compondo funções
-
-Uma maneira elegante de combinar as operações que acabamos de criar é através de uma função especializada em composição. Inclusive, já abordei este assunto no artigo <a href="http://cangaceirojavascript.com.br/compondo-funcoes-javascript/" target="blank">"Compondo funções em JavaScript"</a>:
-
-```javascript
-export const debounceTime = milliseconds => {
-    let timer = 0;
-    return fn => () => {
-        clearTimeout(timer);
-        timer = setTimeout(fn, milliseconds);
-    };
-};
-    
-export const take = times => {
-    let requestCounter = 0;
-    return fn => () => {
-        requestCounter++;
-        if(requestCounter <= times) fn();
-    };
-};
-// nova função!
-export const compose = (...fns) => value => 
-  fns.reduceRight((previousValue, fn) => 
-      fn(previousValue), value);
-```
+## Juntando tudo
 
 Agora podemos juntar tudo e materializar nossa solução:
 
@@ -179,30 +136,15 @@ Agora podemos juntar tudo e materializar nossa solução:
 import { getNegotiations } from './api.js';
 import { compose, debounceTime, take } from './operators.js';
 
-const operations = compose(debounceTime(500), take(3));
-
-document
-.querySelector('#btn')
-.onclick = operations(() => 
+const operacao = debounceTime(500, take(3, () => 
     getNegotiations()
     .then(negotiations => console.log(negotiations))
     .catch(err => console.log(err))
-);
-```
+));
 
-Outra opção é lançarmos mão do *async/await*. Nosso código ficaria assim:
-
-```javascript
 document
 .querySelector('#btn')
-.onclick = operations(async () => {
-    try {
-    	const negotiations = await getNegotiations();
-    	console.log(negotiations);
-    } catch(err) {
-    	err => console.log(err);
-    }
-}); 
+.onclick = () => operacao();
 ```
 
 Mas como seria nosso código utilizando Rxjs? É o que veremos a seguir.
