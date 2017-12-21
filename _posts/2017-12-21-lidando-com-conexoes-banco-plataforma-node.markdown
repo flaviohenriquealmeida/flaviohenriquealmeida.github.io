@@ -155,7 +155,7 @@ Solucionamos ambos construindo um middleware.
 
 A lógica do nosso middeware será a seguinte; independente da rota da aplicação acessada, antes que ela seja processada, nosso middleware entrará em ação obtendo uma conexão do pool para em seguida adicioná-la na requisição. Para isso, ele dependerá de um pool de conexões configurado, algo que já temos.
 
-Depois de adicionarmos a conexão na requisição, chamaremos a função `next` que passará o controle da requisição para o próximo middleware da pilha. Isso significa que a conexão estará disponíveis para os demais middlewares através de `req.connection`:
+Depois de adicionarmos a conexão na requisição, chamaremos a função `next` que passará o controle da requisição para o próximo middleware da pilha. Isso significa que a conexão estará disponível para os demais middlewares através de `req.connection`:
 
 ```javascript 
 // connection-middleware.js
