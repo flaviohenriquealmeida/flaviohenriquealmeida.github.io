@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Lidando com conexões do banco na plataforma Node.js"
-description: Neste artigo veremos algumas práticas que podem tornar o uso do módulo mysql uma experiência mais primorosa no que diz respeito ao gerenciamento de conexões e persistência. 
+description: Neste artigo veremos algumas práticas que podem tornar o uso do módulo mysql uma experiência mais primorosa no que diz respeito ao gerenciamento de conexões e persistência. As práticas apresentadas podem ser utilizadas com outros bancos do mercado.
 date:   2017-12-21 07:00:00 -0300
 categories:
 permalink: /lidando-com-conexoes-banco-plataforma-node/
@@ -12,7 +12,7 @@ image: logo.png
 
 Podemos realizar a comunicação da nossa aplicação Node.js com o banco MySQL através de frameworks de ORM como <a href="http://docs.sequelizejs.com/" target="_blank">Sequelize</a> ou <a href="https://github.com/balderdashy/waterline" target="_blank">Waterline</a>. Inclusive, podemos realizar o acesso através do módulo <a href="https://github.com/mysqljs/mysql" target="_blank">mysql</a>, um cliente puramente escrito em Node.js. Apesar deste último não ter um grau de abstração tão alto quanto os demais frameworks citados, ele nos fornece uma experiência mais nativa. 
 
-Neste artigo veremos algumas práticas que podem tornar o uso do módulo mysql uma experiência mais primorosa no que diz respeito ao gerenciamento de conexões e persistência.
+Neste artigo veremos algumas práticas que podem tornar o uso do módulo mysql uma experiência mais primorosa no que diz respeito ao gerenciamento de conexões e persistência. As práticas apresentadas podem ser utilizadas com outros bancos do mercado.
 
 ## O problema
 
