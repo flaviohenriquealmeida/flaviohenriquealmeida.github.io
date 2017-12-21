@@ -243,7 +243,7 @@ Veja como reduzimos a complexidade do nosso código. Simplesmente utilizamos `re
 
 ## O padrão de projeto DAO
 
-Por mais que tenhamos isolado a complexidade de se lidar com a conexão, em todo lugar que precisarmos de uma lista de produtos teremos que reescrever o SQL e lidar com o padrão *error first-callback** que a API da conexão utilizada, aliás, padrão bem difundido em diversas API do mundo Node.js. 
+Por mais que tenhamos isolado a complexidade de se lidar com a conexão, em todo lugar que precisarmos de uma lista de produtos teremos que reescrever o SQL e lidar com o padrão *error first-callback* que a API da conexão utilizada, aliás, padrão bem difundido em diversas API do mundo Node.js. 
 
 Uma solução é aplicarmos o padrão de projeto DAO (Data Access Object) para isolar os detalhes de persistência de um produto. Vamos criá-lo:
 
