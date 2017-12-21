@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Lidando com o módulo mysql na plataforma Node.js"
-description: XXXXXX. 
-date:   2017-12-18 07:00:00 -0300
+title:  "Lidando com conexões do banco na plataforma Node.js"
+description: Neste artigo veremos algumas práticas que podem tornar o uso do módulo mysql uma experiência mais primorosa no que diz respeito ao gerenciamento de conexões e persistência. 
+date:   2017-12-21 07:00:00 -0300
 categories:
-permalink: /lidando-com-modulo-mysql-na-plataforma-node/
+permalink: /lidando-com-conexoes-banco-plataforma-node/
 author: flavio_almeida
 tags: [javascript, mysql, connection pool, dao pattern]
 image: logo.png
@@ -86,7 +86,6 @@ const pool = mysql.createPool({
 });
 
 console.log('pool => criado');
-
 ```
 Podemos até disparar um evento toda vez que uma conexão do pool for devolvida através da chamada da função `release` que toda conexão do pool possui:
 
@@ -205,9 +204,19 @@ const express = require('express')
 , pool = require('./pool-factory')
 , connectionMiddleware = require('./connection-middleware');
 
+// ativando nosso middleware
 app.use(connectionMiddleware(pool));
 
-// outras configurações omitidas
+// registra as rotas
+require('./api/product')(app);
+
+// middleware de tratamento de erro
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+	res.status(500).json({ error: err.toString() });
+});
+
+module.exports = app;
 ```
 
 Como fica nosso `product.js`?
@@ -290,7 +299,7 @@ app.get('/products', (req, res, next) =>
     new ProductDao(req.connection)
         .list()
         .then(products => res.json(products))
-        .catch(err => next(err))
+        .catch(next)
 );
 ```
 
