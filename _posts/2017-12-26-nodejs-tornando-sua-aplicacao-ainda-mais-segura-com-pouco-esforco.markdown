@@ -14,7 +14,7 @@ A segurança de uma aplicação web é um requisito não funcional da aplicaçã
 
 ## 1 - O controverso header X-Powered-By
 
-É comum aplicações web e API's inclurem o header `X-Powered-By` na resposta, geralmente adicionado por algum framework ou por uma plataforma específica de desenvolvimento.
+É comum aplicações web e API's incluírem o header `X-Powered-By` na resposta, geralmente adicionado por algum framework ou por uma plataforma específica de desenvolvimento.
 
 Temos aqui o escrutínio da resposta de um servidor PHP:
 
