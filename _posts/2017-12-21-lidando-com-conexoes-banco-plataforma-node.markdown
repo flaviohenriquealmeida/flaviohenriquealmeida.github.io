@@ -61,7 +61,7 @@ Não precisamos meditar muito para enxergarmos que o módulo `product.js` esta c
 
 1. Cria o pool de conexões
 2. Obtém uma conexão do pool
-3. Prepara e executar a query 
+3. Prepara e executa a query 
 4. Devolve a conexão para o pool após realizar a query 
 
 Para complicar um pouco mais, além dessas responsabilidades precisamos fechar o pool (com todas as suas conexões) elegantemente toda vez que a aplicação for finalizada. E agora?
@@ -176,7 +176,7 @@ module.exports = pool => (req, res, next) => {
 };
 ```
 
-Todavia, precisamos devolver a conexão para o pool. Mas quando faremos isso? Podemos realizar essa operação quando a aplicação tiver terminado de enviar a resposta. Conseguimos isso facilmente escutando o evento `finish` da resposta par então chamarmos a função `req.connection.release`:
+Todavia, precisamos devolver a conexão para o pool. Mas quando faremos isso? Podemos realizar essa operação quando a aplicação tiver terminado de enviar a resposta. Conseguimos isso facilmente escutando o evento `finish` da resposta para então chamarmos a função `req.connection.release`:
 
 ```javascript 
 // connection-middleware.js
@@ -243,7 +243,7 @@ Veja como reduzimos a complexidade do nosso código. Simplesmente utilizamos `re
 
 ## O padrão de projeto DAO
 
-Por mais que tenhamos isolado a complexidade de se lidar com a conexão, em todo lugar que precisarmos de uma lista de produtos teremos que reescrever o SQL e lidar com o padrão *error first-callback* que a API da conexão utilizada, aliás, padrão bem difundido em diversas API do mundo Node.js. 
+Por mais que tenhamos isolado a complexidade de se lidar com a conexão, em todo lugar que precisarmos de uma lista de produtos teremos que reescrever o SQL e lidar com o padrão *error first-callback* que a API da conexão utiliza, aliás, padrão bem difundido em diversas API do mundo Node.js. 
 
 Uma solução é aplicarmos o padrão de projeto DAO (Data Access Object) para isolar os detalhes de persistência de um produto. Vamos criá-lo:
 
