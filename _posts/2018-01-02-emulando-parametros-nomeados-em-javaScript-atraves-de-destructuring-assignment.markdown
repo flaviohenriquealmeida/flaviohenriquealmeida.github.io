@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Emulando parâmetros nomeados em JavaScript através de destructuring assignment"
-description: Neste artigo aprenderemos como emular em Javascript **parâmetros nomeados** através da atribuição via desestruturação (destructuring assignment). 
+description: Neste artigo aprenderemos como emular em Javascript parâmetros nomeados através da atribuição via desestruturação (destructuring assignment). 
 date:   2017-12-28 08:00:00 -0300
 categories:
 permalink: /emulando-parametros-nomeados-javascript-atraves-destructuring-assignment/
