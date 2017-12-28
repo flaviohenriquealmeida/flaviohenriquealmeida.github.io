@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Node.js: tornando sua aplicação ainda mais segura com pouco esforço"
-description:
+description: Neste artigo apresentarei algumas dicas de segurança que podem ser aplicada em qualquer plataforma, contudo, elas serão exemplificadas através do Express.js.
 date:   2017-12-26 08:00:00 -0300
 categories:
 permalink: /nodejs-tornando-sua-aplicacao-ainda-mais-segura-com-pouco-esforco/
