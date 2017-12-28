@@ -141,6 +141,7 @@ console.log(from);
 // imprime "sprite2"
 console.log(to);
 ```
+O interpretador cria as variáveis `from` e `to` com base nas propriedades do objeto!
 
 ## Conclusão
 
