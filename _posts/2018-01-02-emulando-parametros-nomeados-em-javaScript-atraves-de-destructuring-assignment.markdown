@@ -121,7 +121,7 @@ A nossa chamada passando um objeto como parâmetro continua funcionando:
 moveFrame ({ from: 'sprite1', to: 'sprite2' });
 ```
 
-Perfeito! Utilizamos as chaves de um objeto para nomear os parâmetros recebidos pela função e através de destructuring assignment tratamos cada propriedade como variáveis individuais dentro da função. Podemos até inverter a ordem das propriedades que isso não impactará em nosso código:
+Perfeito! Utilizamos as chaves de um objeto para nomear os parâmetros recebidos pela função e através de destructuring assignment tratamos cada propriedade como variável dentro da função. Podemos até inverter a ordem das propriedades sem impactar em nosso código:
 
 ```javascript
 moveFrame ({ to: 'sprite2', from: 'sprite1' });
