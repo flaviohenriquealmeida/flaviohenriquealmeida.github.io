@@ -41,7 +41,7 @@ const moveFrame = (from, to) => {
 
 Agora sabemos que o primeiro parâmetro é o *frame de origem* e o segundo o *frame final*. 
 
-Uma maneira de tentarmos deixar mais claro a natureza desses dois parâmetros é alterar o nome da função, por exemplo, para `moveFrameFromTo`. Com essa mudança, o programador que se deparar com a chamada da função, com um pouquinho de esforço, pode inferir o papel de cada parâmetro passado para a função. 
+Uma maneira de tentarmos deixar mais claro a natureza desses dois parâmetros é alterando o nome da função, por exemplo, para `moveFrameFromTo`. Com essa mudança, o programador que se deparar com a chamada da função, com um pouquinho de esforço, poderá inferir o papel de cada parâmetro passado. 
 
 Todavia, tal artifício não seria necessário se o JavaScript suportasse parâmetros nomeados como na linguagem Python. 
 
