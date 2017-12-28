@@ -145,6 +145,6 @@ O interpretador cria as variáveis `from` e `to` com base nas propriedades do ob
 
 ## Conclusão
 
-Tomar como inspiração o que há de melhor em outras linguagens e tentar aplicá-la em sua linguagem é colocar em prática a sabedoria do programador. 
+Tomar como inspiração o que há de melhor em outras linguagens e tentar aplicá-lo em sua linguagem é praticar a **sabedoria do programador**. 
 
 E você? Já utilizava essa estratégia antes? Há recursos de outras linguagens que você gostaria que existisse em JavaScript? Deixe sua opinião.
