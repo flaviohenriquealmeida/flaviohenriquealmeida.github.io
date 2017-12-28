@@ -45,6 +45,8 @@ Uma maneira de tentarmos deixar mais claro a natureza desses dois parâmetros é
 
 Todavia, tal artifício não seria necessário se o JavaScript suportasse parâmetros nomeados como na linguagem Python. 
 
+## Python como inspiração
+
 Vejamos o mesmo exemplo na linguagem Python:
 
 ```python
