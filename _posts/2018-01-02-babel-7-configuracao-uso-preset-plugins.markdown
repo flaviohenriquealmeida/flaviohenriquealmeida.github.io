@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Babel 7: configuração e uso de presets e plugins"
+title:  "Babel 7: configuração, uso de preset e plugins"
 description: A versão 7 do Babel esta prestes a ser lançada e neste artigo aprendemos a utilizá-la e a configurá-la, inclusive plugins que nos permitem utilizar recursos ainda propostos na linguagem JavaScript. 
 date:   2017-12-28 08:00:00 -0300
 categories:
@@ -10,7 +10,7 @@ tags: [babel 7, transpiler, javascript]
 image: logo.png
 ---
 Muitas vezes o desenvolvedor deseja utilizar o que há de mais moderno 
-na linguagem JavaScript, mas se frustra pela ausência de suporte nos navegadores ou na plataforma Node.js. A boa notícia é que podemos gerar um código compatível através de <a href="https://babeljs.io/" target="_blank">Babel</a>, o compilador JavaScript mais utilizado pela comunidade. A versão 7 do Babel esta prestes a ser lançada e neste artigo aprendemos a utilizá-la e a configurá-la, inclusive plugins que nos permitem utilizar recursos ainda propostos na linguagem JavaScript.
+na linguagem JavaScript, mas se frustra pela ausência de suporte nos navegadores ou na plataforma Node.js. A boa notícia é que podemos gerar um código compatível através de <a href="https://babeljs.io/" target="_blank">Babel</a>, o compilador JavaScript mais utilizado pela comunidade. A versão 7 do Babel esta prestes a ser lançada e neste artigo aprendemos a configurá-la e a utilizá-la, inclusive instalaremos plugins para utilizarmos recursos ainda propostos na linguagem JavaScript.
 
 ## Pré-requsito
 
@@ -42,7 +42,7 @@ project
 
 ## Instalando Babel 7
 
-Uma das mudanças da versão 6 para a versão 7 é o uso de módulos com escopo. Módulos com escopo são instalados através de `@escopoDomodulo/modulo`. 
+Uma das mudanças da versão 6 para a versão 7 é o uso de **módulos com escopo**. Módulos com escopo são instalados através de `@escopoDomodulo/modulo`. 
 
 >*Na data de publicação deste artigo, a versão do Babel utilizada foi a `7.0.0-beta.36`.* 
 
@@ -71,9 +71,7 @@ Vamos alterar `project/package.json`:
 ```
 Dentro do objeto atribuído à propriedade `"scripts"` adicionamos mais duas propriedades, a `"build"` e `"watch"`. 
 
-O primeiro script apenas compilará todos os arquivos dentro de `app-src` toda vez que for executado, já o segundo monitorará em tempo real os arquivos da pasta `app-src` e, se algum arquivo for modificado, disparará o processo de compilação sem termos que nos preocupar com ele. 
-
-Independente do script chamado, os arquivos resultantes do processo de compilação ficarão dentro da pasta `project/app`. 
+O primeiro script apenas compilará todos os arquivos dentro de `app-src` toda vez que for executado, já o segundo monitorará em tempo real os arquivos da pasta `app-src` e, se algum arquivo for modificado, disparará o processo de compilação sem termos que nos preocupar com ele. Independente do script chamado, os arquivos resultantes do processo de compilação ficarão dentro da pasta `project/app`. 
 
 >*O parâmetro `--source-maps` é importante, pois ele permitirá debugar o script gerado apontando a linha do erro no arquivo original e não no arquivo compilado.*
 
@@ -98,9 +96,11 @@ project
 │   └── example.js
 ├── app-src
 │   └── example.js
-└── packag
+└── package
 ```
-O comando resultará no arquivo `project/app/example.js`, idêntico ao arquivo original em `project/app-src/example.js`. São idênticos porque ainda não utilizarmos nenhum recurso que Babel nos oferece através de *presets* ou *plugins*, chegou a hora de instalá-los.
+O comando resultará no arquivo `project/app/example.js`, idêntico ao arquivo original em `project/app-src/example.js`. São idênticos porque ainda não utilizamos nenhum recurso que Babel nos oferece através de *presets* ou *plugins*, chegou a hora de instalá-los.
+
+>*Quando usamos um compilador como Babel, são os scripts gerados que que carregamos em nosso navegador ou em nossa aplicação Node.js. É por isso que dizemos que a aplicação depende de um build step.*
 
 ## @babel/preset-env
 
@@ -126,13 +126,15 @@ Não basta instalá-lo, precisamos configurar Babel para que leve em consideraç
     ],
 }
 ```
-O código anterior adiciona `@babel/preset-env` como *preset* utilizado pelo Babel configurando-o ao mesmo tempo. Em sua configuração, indicamos que suportaremos apenas os duas últimas versões de qualquer navegador. Com essa configuração, apenas recursos que ainda não forem implementados nas duas últimas versões dos navegadores serão *transcompilados* para um código compatível.
+O código anterior adiciona `@babel/preset-env` como *preset* utilizado pelo Babel configurando-o ao mesmo tempo. Em sua configuração, indicamos que suportaremos apenas as duas últimas versões de qualquer navegador. Com essa configuração, apenas recursos que ainda não forem implementados nas duas últimas versões dos navegadores serão *transcompilados* para um código compatível.
 
-Agora que já temos o preset já configurado, vamos dar um salto no futuro e utilizar recursos que foram propostos ao TC39 que rege o futuro da específicação ESMASCRIPT.
+>*Este preset se basei em informações de compatibilidade publicadas em https://github.com/kangax/compat-table*
+
+Agora que já temos o preset já configurado, vamos dar um salto no futuro e utilizar recursos que foram propostos ao TC39 que rege o futuro da específicação ECMASCRIPT.
 
 ## Instalando plugins
 
-Há uma série de plugins criados exclusivamente para Babel. Para efeito de teste, instalaremos dois deles que implementam propostas que ainda entrarão na linguagen, são eles:
+Há uma série de plugins criados exclusivamente para Babel. Para efeito de teste, instalaremos dois deles que implementam propostas que ainda entrarão na linguagem, são eles:
 
 * **@babel/plugin-proposal-pipeline-operator**: este autor já abordou o udo do pipeline operator em <a href="http://cangaceirojavascript.com.br/pipeline-operator-proposta-interessante-tc39/" target="_blank">outro</a> artigo.
 * **@babel/plugin-proposal-optional-chaining**: forma elegante para nos proteger contra o acesso de propriedades de objetos nulas 
@@ -201,7 +203,7 @@ var product = {
 //# sourceMappingURL=teste.js.map
 ```
 
-Apesar de ser estruturalmente diferente o arquivo original, é um código que funcionará nos navegadores vigentes. 
+Apesar de ser estruturalmente diferente do arquivo original, é um código que funcionará nos navegadores vigentes. 
 
 ## @babel/plugin-proposal-optional-chaining
 
