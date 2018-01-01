@@ -270,6 +270,6 @@ A boa notícia é que a partir da <a href="https://github.com/prettier/prettier/
 
 ## Conclusão
 
-Com auxilio de Babel podemos utilizar o que há de mais top na linguagem JavaScript sem termos que esperar o suporte chegar aos navegadores ou até mesmo na plataforma Node.js. Agora, com o parser do Babylon suportando TypeScrit, programadores nesta linguagem também poderão se beneficiar do Babel.
+Com auxilio de Babel podemos utilizar o que há de mais top na linguagem JavaScript sem termos que esperar o suporte chegar aos navegadores ou até mesmo na plataforma Node.js. Agora, com o parser do Babylon suportando TypeScript, programadores nesta linguagem também poderão se beneficiar do Babel.
 
 E você? Já utiliza Babel? Compartilhe sua experiência conosco.
