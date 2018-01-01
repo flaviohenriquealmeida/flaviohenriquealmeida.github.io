@@ -22,7 +22,7 @@ Agora que já sabemos qual versão do Node.js utilizar podemos avançar para a e
 
 ## Estrutura do projeto
 
-Nosso próximo passo será criar a pasta `project` e dentro dele a subpasta `app-src`. É dentro desta pasta que ficarão todos os arquivos do projeto, aqueles que serão compilados pelo Babel. Vamos aproveitar e criar também o arquivo `project/app-src/example.js`:
+Nosso próximo passo será criar a pasta `project` e dentro dela a subpasta `app-src`. É dentro desta pasta que ficarão todos os arquivos do projeto, aqueles que serão compilados pelo Babel. Vamos aproveitar e criar também o arquivo `project/app-src/example.js`:
 
 ```bash
 project
