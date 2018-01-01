@@ -73,7 +73,7 @@ Vamos alterar `project/package.json`:
   },
 // código posterior omitido
 ```
-Dentro do objeto atribuído à propriedade `"scripts"` adicionamos mais duas propriedades, a `"build"` e `"watch"`. 
+Dentro do objeto atribuído à propriedade `"scripts"` adicionamos mais duas propriedades, a `"build"` e a `"watch"`. 
 
 O primeiro script compilará todos os arquivos dentro de `app-src` toda vez que for executado, já o segundo monitorará em tempo real os arquivos da pasta `app-src` e, se algum arquivo for modificado, disparará o processo de compilação sem termos que nos preocupar com ele. Independente do script chamado, os arquivos resultantes do processo de compilação ficarão dentro da pasta `project/app`. 
 
@@ -86,7 +86,7 @@ Vamos alterar o arquivo `project/app-src/example.js` e adicionar uma humilde cha
 
 console.log('Fui compilado pelo Babel 7, que máximo!');
 ```
-Agora, dentro da pasta `project`, através do terminal favorito utilizado, vamos executar o script `build` através do comando:
+Agora, dentro da pasta `project`, através do nosso terminal favorito, vamos executar o script `build` através do comando:
 
 ```bash
 npm run build
@@ -270,6 +270,6 @@ A boa notícia é que a partir da <a href="https://github.com/prettier/prettier/
 
 ## Conclusão
 
-Com auxilio de Babel podemos utilizar o que há de mais top na linguagem JavaScript sem termos que esperar o suporte chegar nos navegadores ou até mesmo na plataforma Node.js. Agora, com o parser do Babylon suportando TypeScrit, programadores nesta linguagem também poderão se beneficiar do Babel.
+Com auxilio de Babel podemos utilizar o que há de mais top na linguagem JavaScript sem termos que esperar o suporte chegar aos navegadores ou até mesmo na plataforma Node.js. Agora, com o parser do Babylon suportando TypeScrit, programadores nesta linguagem também poderão se beneficiar do Babel.
 
 E você? Já utiliza Babel? Compartilhe sua experiência conosco.
