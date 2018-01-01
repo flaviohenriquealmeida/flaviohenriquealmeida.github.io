@@ -1,31 +1,35 @@
 ---
 layout: post
-title:  "Babel 7: configuração, uso de preset e plugins"
-description: A versão 7 do Babel esta prestes a ser lançada e neste artigo aprendemos a utilizá-la e a configurá-la, inclusive plugins que nos permitem utilizar recursos ainda propostos na linguagem JavaScript. 
-date:   2017-12-28 08:00:00 -0300
+title:  "Babel 7: configuração, uso de preset e de plugins"
+description: A versão 7 do Babel esta prestes a ser lançada com diversas melhorias e novos recursos, inclusive o suporte à linguagem TypeScript. Neste artigo aprendemos a configurá-la e a utilizar plugins para adicionar recursos ainda propostos na linguagem JavaScript. 
+date: 2018-01-02 06:00:00 -0300
 categories:
 permalink: /babel-7-configuracao-uso-presets-plugins/
 author: flavio_almeida
-tags: [babel 7, transpiler, javascript]
+tags: [babel 7, transpiler, javascript, typescript, babylon, compiler]
 image: logo.png
 ---
 Muitas vezes o desenvolvedor deseja utilizar o que há de mais moderno 
-na linguagem JavaScript, mas se frustra pela ausência de suporte nos navegadores ou na plataforma Node.js. A boa notícia é que podemos gerar um código compatível através de <a href="https://babeljs.io/" target="_blank">Babel</a>, o compilador JavaScript mais utilizado pela comunidade. A versão 7 do Babel esta prestes a ser lançada e neste artigo aprendemos a configurá-la e a utilizá-la, inclusive instalaremos plugins para utilizarmos recursos ainda propostos na linguagem JavaScript.
+na linguagem JavaScript, mas se frustra pela ausência de suporte nos navegadores ou na plataforma Node.js. A boa notícia é que podemos gerar um código compatível através de <a href="https://babeljs.io/" target="_blank">Babel</a>, o compilador JavaScript mais utilizado pela comunidade. A versão 7 do Babel esta prestes a ser lançada com diversas melhorias e novos recursos, inclusive o suporte à linguagem TypeScript. Neste artigo aprendemos a configurá-la e a utilizar plugins para adicionar recursos ainda propostos na linguagem JavaScript.
 
 ## Pré-requsito
 
-Para utilizarmos babel, precisamos do Node.js instalado. É altamente recomendável utilizar a última versão (par) disponível. Este artigo utilizou a versão 8.9.3. Existem várias maneiras de se instalar o Node.js, você pode consultá-las em <a href="https://nodejs.org/en/" target="_blank">https://nodejs.org/en/</a>
+Para utilizarmos Babel precisamos do Node.js instalado. É altamente recomendável utilizar a última versão (par) disponível. Este artigo utilizou a versão 8.9.3. Existem várias maneiras de se instalar o Node.js, você pode consultá-las em <a href="https://nodejs.org/en/" target="_blank">https://nodejs.org/en/</a>.
+
+>*Babel 7 não suporta mais as versões do Node.js 0.10, 0.12 e 5.*
+
+Agora que já sabemos qual versão do Node.js utilizar podemos avançar para a estrutura do projeto.
 
 ## Estrutura do projeto
 
-Com o Node.js instalado, nosso próximo passo será criar a pasta `project` e dentro dele a subpasta `app-src`. É dentro desta pasta que ficarão todos os arquivos do projeto, aqueles que serão compilados pelo Babel. Vamos aproveitar e criar também o arquivo `project/app-src/example.js`:
+Nosso próximo passo será criar a pasta `project` e dentro dele a subpasta `app-src`. É dentro desta pasta que ficarão todos os arquivos do projeto, aqueles que serão compilados pelo Babel. Vamos aproveitar e criar também o arquivo `project/app-src/example.js`:
 
 ```bash
 project
 ├── app-src
 │   └── example.js
 ```
-Dentro da pasta `project`, vamos criar o arquivo `package.json` através do comando:
+Dentro da pasta `project` vamos criaremos o arquivo `package.json` através do comando:
 
 ```
 npm init -y
@@ -38,11 +42,11 @@ project
 │   └── example.js
 └── package.json
 ```
->*Entendam o package.json como uma caderneta na qual ficam listados todos os módulos utilizados pela aplicação, inclusive scripts criados pelo desenvolvedor para automatizar tarefas*.
+>*Para quem nunca utilizou o Node.js, entenda o package.json como uma caderneta na qual ficam listados todos os módulos utilizados pela aplicação, inclusive scripts criados pelo desenvolvedor para automatizar tarefas*.
 
 ## Instalando Babel 7
 
-Uma das mudanças da versão 6 para a versão 7 é o uso de **módulos com escopo**. Módulos com escopo são instalados através de `@escopoDomodulo/modulo`. 
+Uma das mudanças da versão 6 para a versão 7 é o uso de **pacotes com escopo**. Pacotes com escopo são instalados através de `@escopoDomodulo/módulo`. 
 
 >*Na data de publicação deste artigo, a versão do Babel utilizada foi a `7.0.0-beta.36`.* 
 
@@ -71,7 +75,7 @@ Vamos alterar `project/package.json`:
 ```
 Dentro do objeto atribuído à propriedade `"scripts"` adicionamos mais duas propriedades, a `"build"` e `"watch"`. 
 
-O primeiro script apenas compilará todos os arquivos dentro de `app-src` toda vez que for executado, já o segundo monitorará em tempo real os arquivos da pasta `app-src` e, se algum arquivo for modificado, disparará o processo de compilação sem termos que nos preocupar com ele. Independente do script chamado, os arquivos resultantes do processo de compilação ficarão dentro da pasta `project/app`. 
+O primeiro script compilará todos os arquivos dentro de `app-src` toda vez que for executado, já o segundo monitorará em tempo real os arquivos da pasta `app-src` e, se algum arquivo for modificado, disparará o processo de compilação sem termos que nos preocupar com ele. Independente do script chamado, os arquivos resultantes do processo de compilação ficarão dentro da pasta `project/app`. 
 
 >*O parâmetro `--source-maps` é importante, pois ele permitirá debugar o script gerado apontando a linha do erro no arquivo original e não no arquivo compilado.*
 
@@ -92,15 +96,15 @@ A pasta `project/app` será criada e dentro dela teremos o arquivo `example.js` 
 
 ```bash
 project
-├── app
-│   └── example.js
+├── app <-- pasta criada pelo Babel
+│   └── example.js <-- arquivo compilado
 ├── app-src
 │   └── example.js
 └── package
 ```
 O comando resultará no arquivo `project/app/example.js`, idêntico ao arquivo original em `project/app-src/example.js`. São idênticos porque ainda não utilizamos nenhum recurso que Babel nos oferece através de *presets* ou *plugins*, chegou a hora de instalá-los.
 
->*Quando usamos um compilador como Babel, são os scripts gerados que que carregamos em nosso navegador ou em nossa aplicação Node.js. É por isso que dizemos que a aplicação depende de um build step.*
+>*Quando usamos um compilador como Babel, são os scripts gerados que carregamos em nosso navegador ou em nossa aplicação Node.js, por isso que dizemos que a aplicação depende de um build step.*
 
 ## @babel/preset-env
 
@@ -126,11 +130,14 @@ Não basta instalá-lo, precisamos configurar Babel para que leve em consideraç
     ],
 }
 ```
-O código anterior adiciona `@babel/preset-env` como *preset* utilizado pelo Babel configurando-o ao mesmo tempo. Em sua configuração, indicamos que suportaremos apenas as duas últimas versões de qualquer navegador. Com essa configuração, apenas recursos que ainda não forem implementados nas duas últimas versões dos navegadores serão *transcompilados* para um código compatível.
 
->*Este preset se basei em informações de compatibilidade publicadas em https://github.com/kangax/compat-table*
+>*Todos os presets prefixados com ES20xx foram descontinuados, sendo obrigatório o uso de @babel/preset-env*.
 
-Agora que já temos o preset já configurado, vamos dar um salto no futuro e utilizar recursos que foram propostos ao TC39 que rege o futuro da específicação ECMASCRIPT.
+O código anterior adiciona `@babel/preset-env` como *preset* utilizado pelo Babel configurando-o ao mesmo tempo. Com essa configuração, apenas recursos que ainda não forem implementados nas duas últimas versões dos navegadores serão *transcompilados* para um código compatível.
+
+>*Este preset se baseia em informações de compatibilidade publicadas em https://github.com/kangax/compat-table*
+
+Agora que já temos o preset configurado, vamos dar um salto no futuro e utilizar recursos que foram propostos ao TC39, o comitê que rege o futuro da específicação ECMASCRIPT.
 
 ## Instalando plugins
 
@@ -139,13 +146,13 @@ Há uma série de plugins criados exclusivamente para Babel. Para efeito de test
 * **@babel/plugin-proposal-pipeline-operator**: este autor já abordou o udo do pipeline operator em <a href="http://cangaceirojavascript.com.br/pipeline-operator-proposta-interessante-tc39/" target="_blank">outro</a> artigo.
 * **@babel/plugin-proposal-optional-chaining**: forma elegante para nos proteger contra o acesso de propriedades de objetos nulas 
 
-Vamos baixar todos os plugins de uma só vez:
+Vamos baixar os dois plugins de uma só vez:
 
 ```bash
 npm install -S @babel/plugin-proposal-pipeline-operator @babel/plugin-proposal-optional-chaining 
 ```
 
-Agora que já temos todos os plugins baixados, veremos brevemente cada um dos recursos oferecidos por eles na prática.
+Agora que já temos os plugins baixados, veremos na prática os recursos oferecidos por eles.
 
 ## @babel/plugin-proposal-pipeline-operator
 
@@ -203,7 +210,7 @@ var product = {
 //# sourceMappingURL=teste.js.map
 ```
 
-Apesar de ser estruturalmente diferente do arquivo original, é um código que funcionará nos navegadores vigentes. 
+Apesar de ser estruturalmente diferente do arquivo original, é um código que funcionará nos navegadores vigentes e na plataforma Node.js. 
 
 ## @babel/plugin-proposal-optional-chaining
 
@@ -255,9 +262,14 @@ var product = {
 var name = product === null || product === void 0 ? void 0 : product.autor.name;
 //# sourceMappingURL=teste.js.map
 ```
+## Uma nota sobre Babel e TypeScript
+
+Apesar de o TypeScript historicamente poder realizar (quando configurado) a compilação de um código escrito em ES2015 (ES6) para ES5 e suportar alguns recursos do ES2017 (ES8) como *async/await*, seu foco não é compilar recursos em desenvolvimento ou recém adicionados na especificação JavaScript que carecem implementação nos navegadores do mercado ou na plataforma Node.js. Nesse sentido, Babel é muito mais livre para implementar esses recursos.
+
+A boa notícia é que a partir da <a href="https://github.com/prettier/prettier/issues/2334" target="_blank">contribuição do próprio time do TypeScript ao parser Babylon</a> utilizado pelo Babel e com o preset <a href="https://www.npmjs.com/package/babel-preset-typescript" target="_blank">babel-preset-typescript</a>, será possível utilizar todo o poder de Babel com esta linguagem. Programadores na linguagem TypeScript poderão antecipar o futuro e utilizar recursos mais modernos da linguagem JavaScript.
 
 ## Conclusão
 
-Com auxilio de Babel podemos utilizar o que há de mais top na linguagem JavaScript sem termos que esperar o suporte chegar nos navegadores ou até mesmo na plataforma Node.js.
+Com auxilio de Babel podemos utilizar o que há de mais top na linguagem JavaScript sem termos que esperar o suporte chegar nos navegadores ou até mesmo na plataforma Node.js. Agora, com o parser do Babylon suportando TypeScrit, programadores nesta linguagem também poderão se beneficiar do Babel.
 
-E você? Já utiliza Babel? Compartilhe sua expeirência conosco.
+E você? Já utiliza Babel? Compartilhe sua experiência conosco.
