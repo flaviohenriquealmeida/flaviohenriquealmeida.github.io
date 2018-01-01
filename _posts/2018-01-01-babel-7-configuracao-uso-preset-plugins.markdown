@@ -2,7 +2,7 @@
 layout: post
 title:  "Babel 7: configuração, uso de preset e de plugins"
 description: A versão 7 do Babel esta prestes a ser lançada com diversas melhorias e novos recursos, inclusive o suporte à linguagem TypeScript. Neste artigo aprendemos a configurá-la e a utilizar plugins para adicionar recursos ainda propostos na linguagem JavaScript. 
-date: 2018-01-02 06:00:00 -0300
+date: 2018-01-01 06:00:00 -0300
 categories:
 permalink: /babel-7-configuracao-uso-presets-plugins/
 author: flavio_almeida
