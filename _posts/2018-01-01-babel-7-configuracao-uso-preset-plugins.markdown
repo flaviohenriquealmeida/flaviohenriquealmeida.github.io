@@ -29,7 +29,7 @@ project
 ├── app-src
 │   └── example.js
 ```
-Dentro da pasta `project` vamos criaremos o arquivo `package.json` através do comando:
+Dentro da pasta `project` criaremos o arquivo `package.json` através do comando:
 
 ```
 npm init -y
