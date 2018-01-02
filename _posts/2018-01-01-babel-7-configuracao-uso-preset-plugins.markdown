@@ -152,7 +152,26 @@ Vamos baixar os dois plugins de uma só vez:
 npm install -S @babel/plugin-proposal-pipeline-operator @babel/plugin-proposal-optional-chaining 
 ```
 
-Agora que já temos os plugins baixados, veremos na prática os recursos oferecidos por eles.
+Baixar os plugins não é suficiente. Eles precisam ser adicionados na lista de plugins em `.babelrc`:
+
+```bash
+// project/.babelrc
+{
+    "presets": [
+      ["@babel/preset-env", {
+        "targets": {
+          "browsers": ["last 2 versions"]
+        }
+      }]
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-pipeline-operator",
+      "@babel/plugin-proposal-optional-chaining"
+    ]    
+}
+```
+
+Agora que já temos tudo no lugar, veremos na prática os recursos oferecidos por eles.
 
 ## @babel/plugin-proposal-pipeline-operator
 
