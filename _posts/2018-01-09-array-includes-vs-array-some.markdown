@@ -187,6 +187,8 @@ if(books.some(book => JSON.stringify(book) == bookAsJSON))
 
 Através de `JSON.stringify` convertemos um objeto JavaScript em um JSON que nada mais é do que a representação textual de um objeto. Sendo uma representação através de uma `string`, podemos utilizar `===` ou `==` que a comparação utilizará seu valor.
 
+Uma das grandes vantagens de `Array.some` é podermos definir uma lógica de comparação mais rebuscada.
+
 ## Conclusão 
 
 Nem sempre recursos mais modernos resolvem problemas do dia a dia. É importante conhecer o problema e também o recurso utilizado para resolvê-lo para não termos surpresas. 
