@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Limites da recursão em JavaScript, TCO e o pattern Trampoline"
-description: Neste artigo aprenderemos a utilizar recursão sem medo mesmo com a ausência de TCO através do *pattern* Trampoline.
+description: Neste artigo aprenderemos a utilizar recursão na ausência de TCO sem medo através do pattern Trampoline.
 date: 2018-01-08 06:00:00 -0300
 categories:
 permalink: /limites-recursao-javascript-tco-e-pattern-trampoline/
@@ -9,7 +9,7 @@ author: flavio_almeida
 tags: [javascript, recursion, recursão, trampoline, functional programing, TCO]
 image: logo.png
 ---
-JavaScript é uma linguagem multiparadigma suportando os paradigmas da orientação a objetos e o funcional. Não é raro desenvolvedores mais voltados para o paradigma funcional se valerem de **recursão** para solucionar problemas. Porém, pela ausência de *tail call optimization* (**TCO**) nas engines do mercado, longas chamadas recursivas podem estourar a *call stack* terminando abruptamente o programa. Neste artigo aprenderemos a utilizar recursão sem medo mesmo com a ausência de TCO através do *pattern* **Trampoline**. Primeiro, veremos um pouco sobre recursão e os problemas que podem acontecer. Depois, uma breve introdução a TCO para no final implementarmos o pattern Trampoline. 
+JavaScript é uma linguagem multiparadigma suportando os paradigmas da orientação a objetos e o funcional. Não é raro desenvolvedores mais voltados para o paradigma funcional se valerem de **recursão** para solucionar problemas. Porém, pela ausência de *tail call optimization* (**TCO**) nas engines do mercado, longas chamadas recursivas podem estourar a *call stack* terminando abruptamente o programa. Neste artigo aprenderemos a utilizar recursão na ausência de TCO sem medo através do *pattern* **Trampoline**. Primeiro, veremos um pouco sobre recursão e os problemas que podem acontecer. Depois, uma breve introdução a TCO para no final implementarmos o pattern Trampoline. 
 
 ## O problema
 
