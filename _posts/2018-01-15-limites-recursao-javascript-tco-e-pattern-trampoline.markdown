@@ -62,7 +62,7 @@ console.log(factorial(3)) // 6;
 ```
 >*É importante que o leitor resolva mentalmente a chamada recursiva anterior. O entendimento adquirido será a chave para compreender a TCO e o pattern Trampoline.*
 
-No código anterior, uma chamada à `factorial(3)` realizará mais duas chamadas à função `factorial`. Mas como isso parece na *call stack*? Aliás, o que seria essa call stack?
+No código anterior, uma chamada à `factorial(3)` realizará mais duas chamadas à função `factorial`. Mas como isso aparece na *call stack*? Aliás, o que seria essa call stack?
 
 >*A **call stack** (pilha de chamadas) é composta de uma ou mais **stack frames**. Cada stack frame corresponde a uma chamada para uma função que ainda não terminou, isto é, que ainda não retornou.*
 
