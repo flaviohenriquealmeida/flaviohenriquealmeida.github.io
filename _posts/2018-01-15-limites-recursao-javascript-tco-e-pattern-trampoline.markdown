@@ -2,7 +2,7 @@
 layout: post
 title:  "Limites da recursão em JavaScript, TCO e o pattern Trampoline"
 description: Neste artigo aprenderemos a utilizar recursão na ausência de TCO sem medo através do pattern Trampoline.
-date: 2018-01-08 06:00:00 -0300
+date: 2018-01-15 06:00:00 -0300
 categories:
 permalink: /limites-recursao-javascript-tco-e-pattern-trampoline/
 author: flavio_almeida
