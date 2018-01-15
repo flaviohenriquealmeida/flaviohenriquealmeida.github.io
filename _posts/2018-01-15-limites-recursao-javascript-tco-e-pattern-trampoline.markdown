@@ -147,7 +147,7 @@ Tudo muito bonito, só não é perfeito porque as engines JavaScript não suport
 
 ## Sem suporte a TCO nas engines JavaScript
 
-A inmplementação da TCO faz parte do ES2015 (E6), porém os *browsers vendors* a deixaram de lado por questões de segurança que só apareceram durante a sua implementação. Você pode saber mais sobre este episódio no podcast  <a href="https://hipsters.tech/evolucao-e-especificacao-do-javascript-moderno/" target="_blank">"Evolução e Especificação do JavaScript Moderno", realizado por hipsters.tech</a>. 
+A implementação da TCO faz parte do ES2015 (E6), porém os *browsers vendors* a deixaram de lado por questões de segurança que só apareceram durante a sua implementação. Você pode saber mais sobre este episódio no podcast  <a href="https://hipsters.tech/evolucao-e-especificacao-do-javascript-moderno/" target="_blank">"Evolução e Especificação do JavaScript Moderno", realizado por hipsters.tech</a>. 
 
 A boa notícia é que mesmo sem as `engines` JavaScript suportarem TCO, podemos evitar o estouro da *call stack* por meio de recursão através do **pattern Trampoline**.
 
