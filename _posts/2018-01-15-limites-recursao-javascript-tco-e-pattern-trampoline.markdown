@@ -129,7 +129,7 @@ fn();
 // -> Engine SEM TCO: Uncaught RangeError: Maximum call stack size exceeded
 ``` 
 
-E nossa função `factorial`? Ela não se coaduna com a exigência da TCO, pois seu retorno é `n * factorial(n - 1)` e não a chamada de uma função apenas. 
+E nossa função `factorial`? Ela não se coaduna com a exigência da TCO, pois seu retorno é `n * factorial(--n);` e não a chamada de uma função apenas. 
 
 A função `factorial`, adequada à TCO fica assim:
 
