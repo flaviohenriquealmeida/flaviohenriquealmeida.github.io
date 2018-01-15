@@ -120,7 +120,7 @@ Mas o que seria essa tal TCO e como ela pode nos ajudar?
 
 A *tail call optimization* (TCO) ocorre quando o interpretador vê que a chamada de função recorrente é a **última** coisa na função a ser executada e **não há** nenhuma outra operação que precisa ser aplicada ao resultado retornado da função.  <a href="http://2ality.com/2014/04/call-stack-size.html" target="_blank">A chamada para a função corrente é feita via "jump" e não por meio de uma chamada de "subrotina"</a>. Em outras palavras, o interpretador otimiza a recursão elimitando a última chamada de função da call stack.
 
-O exemplo abaixo, que estouraria a *call stack* em uma *engine* JavasScript **sem** TCO rodará indefinidamente sem provocar o estouro por uma engine com suporte a TCO:
+O exemplo abaixo, que estouraria a *call stack* em uma *engine* JavasScript **sem** TCO rodará indefinidamente sem provocar o estouro por uma engine **com** suporte a TCO:
 
 ```javascript
 const fn = () => fn();
