@@ -166,7 +166,7 @@ const trampoline = fn => {
 };
 ```
 
-Seu retorno é uma função que chamará repetidamente a função original recebida como parâmetro até que o retorno não seja um `thunk`:
+A função trampoline chamará repetidamente a função `fn` recebida como parâmetro até que o retorno da função não seja um `thunk`:
 
 ```javascript
 const trampoline = fn => {
