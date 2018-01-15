@@ -182,7 +182,7 @@ const trampoline = fn => {
 
 Durante as chamadas sucessivas da função original, se algum valor que não for uma função for retornado, o `trampoline` parará imediatamente sua execução retornando o resultado da última chamada da função *fn* recebida como parâmetro.
 
-Implementar a função `trampoline` não é suficiente.A função `factorial` que adequamos à TCO precisa retornar uma função (thunk) que ao ser invocada executará a operação recursiva:
+Implementar a função `trampoline` não é suficiente. A função `factorial` que adequamos à TCO precisa retornar uma função (thunk) que ao ser invocada executará a operação recursiva:
 
 ```javascript
 const factorial = (acc, num) => {
@@ -227,6 +227,8 @@ Vejamos a função `showCountDown` modificada para ser utilizada por `trampoline
 const showCountDown = counter => {
   if (counter < 0) return;
   console.log(counter);
+  // antes era "return showCountDown(--counter)",
+  // agora retorna uma função
   return () => showCountDown(--counter);
 };
 // exibe o contador sem estourar a pilha
