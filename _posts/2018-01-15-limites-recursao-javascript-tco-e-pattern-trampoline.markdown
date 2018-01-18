@@ -237,6 +237,6 @@ trampoline(showCountDown(20000));
 
 ## Conclusão
 
-Por mais que a TCO tenha sido proposta no ES2015 (ES6) sua implementação ainda não chegou nas engines dos navegadores do mercado por ter criado brechas de seguança, inclusive na plataforma Node.js. Porém, sua ausência pode ser contornada através do pattern Trampoline que exige uma ligeira modificação no código original. Todavia, o uso do pattern não é tão performático quanto o suporte nativo a TCO.
+Por mais que a TCO tenha sido proposta no ES2015 (ES6) sua implementação ainda não chegou nas engines dos navegadores do mercado por ter criado brechas de seguança, inclusive na plataforma Node.js. Porém, sua ausência pode ser contornada através do pattern Trampoline que exige uma ligeira modificação no código original. Todavia, o uso do pattern não é tão performático quanto o suporte nativo à TCO.
 
-E você? Já passou pelos problemas aqui descritos? Implementou ou utilizou alguma biblioteca para aplicar ao pattern Trampoline? Deixe sua opinião.
+E você? Já passou pelos problemas aqui descritos? Implementou ou utilizou alguma biblioteca para aplicar o pattern Trampoline? Deixe sua opinião.
