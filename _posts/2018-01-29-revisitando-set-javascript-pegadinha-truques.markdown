@@ -1,14 +1,18 @@
 ---
 layout: post
 title:  "Revisitando Set em JavaScript, pegadinha e truques"
-description: XXXX.
-date: 2018-01-08 06:00:00 -0300
+description: O ES2015 (ES6) introduziu a estrutura de dados Set facilitando a vida dos desenvolvedores que antes precisavam empregar subterfúfios para emular características de conjuntos. Neste post revisitaremos essa estrutura tão útil para o desenvolvedore e também veremos pegadinhas e truques a respeito do seu uso..
+date: 2018-01-29 06:00:00 -0300
 categories:
 permalink: /revisitando-set-javascript-pegadinha-truques/
 author: flavio_almeida
 tags: [javascript, set, data structure, tips, tricks, truques, conjunto]
 image: logo.png
 ---
+
+O ES2015 (ES6) introduziu a estrutura de dados `Set` facilitando a vida dos desenvolvedores que antes precisavam empregar subterfúfios para emular características de conjuntos. Neste post revisitaremos essa estrutura tão útil para o desenvolvedore e também veremos pegadinhas e truques a respeito do seu uso.
+
+## O problema
 
 Precisamos criar um **conjunto** com 20 números aleatórios de um a 100. Primeiro, vamos declarar a função `generateRandomInt` que será a responsável pela geração de números aleatórios na faixa que indicarmos:
 
@@ -59,7 +63,7 @@ while(counter > 0) {
 }   
 ```
 
-Noss solução funciona, todavia nada disso precisaria ser feito se tivéssemos utilizado a estrutura de dados `Set` (conjunto) introduzida no ES2015 (ES6).
+Nossa solução funciona, todavia nada disso precisaria ser feito se tivéssemos utilizado a estrutura de dados `Set` (conjunto) introduzida no ES2015 (ES6).
 
 ## Utilizando Set 
 
@@ -125,7 +129,7 @@ numbers.clear(); // esvaziou o conjunto
 console.log(numbers); // Set(0) {}
 ```
 
-Realizamos um *overview* sobre `Set` em JavaScript, no entanto, há uma pegadinha que pode pregar uma peça no programador desaviado.
+Realizamos um *overview* sobre `Set` em JavaScript, no entanto, há uma pegadinha que pode pregar uma peça no programador desavisado.
 
 ## Pegadinha no uso de Set
 
@@ -152,7 +156,7 @@ livros.add(livro);
 console.log(livros.size); // 3!!!
 ```
 
-Para a supressa de alguns, o método `add()` adicionou um livro duplicado! Mesmo se tivéssemos utilizado o método `has()` para verificar se o livro já existe ou não ele retornararia `false`. Por que isso acontece?
+Para a supressa de alguns, o método `add()` adicionou um livro duplicado! Mesmo se tivéssemos utilizado o método `has()` para verificar se o livro já existe ou não ele retornaria `false`. Por que isso acontece?
 
 A explicação é a mesma que este autor utilizou para explicar o comportamento do método `Array.includes` no artigo <a href="http://cangaceirojavascript.com.br/array-includes-vs-array-some/" target="_blank">"Array.includes vs Array.some"</a>. Vamos recordar. 
 
@@ -202,7 +206,7 @@ ids.forEach(id =>
 console.log(uniqueIds).length;
 ```
 
-Todavia, podemos criar um `Set` apartir de um array passando para seu `constructor` um `Array`. 
+Todavia, podemos criar um `Set` a partir de um array passando para seu `constructor` um `Array`. 
 
 ```javascript
 const ids = [100, 105, 100, 200, 300, 110];
@@ -227,6 +231,10 @@ console.log(filteredIds);
 // [105, 200, 300, 110]
 ```
 
-Essa e a dica anterior simplificam demais a transformação de um conjunto para uma lista e de uma lista para conjunto.
+Essa dica e a anterior simplificam demais a transformação de um conjunto para uma lista e de uma lista para conjunto.
 
 ## Conclusão
+
+A introdução tipo `Set` no ES2015 (ES6) ajudou a reduzir drásticamente a quantidade de código necessária para realizarmos determinadas tarefas do dia a dia. 
+
+E você? Já utilizava `Set` antes? Conhecia os truques apresentados? Deixe a sua opnião!
