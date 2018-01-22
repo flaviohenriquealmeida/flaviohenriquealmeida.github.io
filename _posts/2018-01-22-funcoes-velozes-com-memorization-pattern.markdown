@@ -2,7 +2,7 @@
 layout: post
 title:  "Funções velozes com o Memoization Pattern"
 description: Memoization é uma técnica de otimização que consiste no cache do resultado de uma função baseada nos parâmetros de entrada. Neste artigo veremos como implementá-la na linguagem JavaScript e verificar na prática seus benefícios.
-date: 2018-01-22 06:00:00 -0300
+date: 2018-01-22 07:00:00 -0300
 categories:
 permalink: /funcoes-velozes-com-memoization-pattern/
 author: flavio_almeida

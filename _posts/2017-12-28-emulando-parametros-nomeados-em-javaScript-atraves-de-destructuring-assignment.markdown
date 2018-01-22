@@ -31,7 +31,7 @@ Para quem lê o código não fica claro o papel de cada parâmetro passado para 
 ```javascript 
 const moveFrame = (from, to) => {
     /*
-        Acessa o elementod DOM
+        Acessa o elemento do DOM
         removendo e adicionando classes
     */
     console.log(from);
