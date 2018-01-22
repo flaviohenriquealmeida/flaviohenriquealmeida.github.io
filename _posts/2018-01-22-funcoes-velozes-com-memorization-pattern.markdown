@@ -73,7 +73,7 @@ Agora que já sabemos o que esperar da nossa função `memoizer`, vamos implemen
 
 ## Implementando a função memoizer
 
-Nossa função `memoizer` receberá uma função (fn) como parâmetro e retornará outra função, aquela que potencialmente poderá ser chamada múltiplas vezes. Todavia, a função retornada precisará receber um número indefinido de parâmetros que será passado para a função (fn) que desejamos aplicar o `memoizer`. 
+Nossa função `memoizer` receberá uma função (fn) como parâmetro e retornará outra função, aquela que potencialmente poderá ser chamada múltiplas vezes. Todavia, a função retornada precisará receber um número indefinido de parâmetros que será passado para a função (fn) que desejamos aplicar o `memoizer`. Conseguimos isso facilmente através de <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank">parâmetros REST</a>:
 
 Vejamos a estrutura inicial:
 
@@ -250,7 +250,7 @@ Com base no que aprendemos, será que podemos realizar o cache do resultado de P
 Temos a função `getNotaFromId()` com a finalidade de consumir uma API e retornar uma nota fiscal dado seu ID.
 
 ```javascript
-// handle do response
+// handler da resposta
 const fetchHandler = res => 
     res.ok ? res.json() : Promise.reject(res.statusText)
 
