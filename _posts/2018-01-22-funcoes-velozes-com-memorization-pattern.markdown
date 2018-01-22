@@ -93,7 +93,6 @@ const memoizer = fn => {
 
 Precisamos de um local para guardar os resultados computados e para isso utilizaremos um `Map`:
 
-
 ```javascript 
 const memoizer = fn => {
 
