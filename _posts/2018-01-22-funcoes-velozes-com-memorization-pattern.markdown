@@ -37,7 +37,7 @@ Excelente, porém uma observação minuciosa verificará que ao calcularmos o fa
 
 *Memoization* é uma técnica de otimização que consiste no cache do resultado de uma função, baseado nos parâmetros de entrada.
 
->*Memoization é uma derivação da palavra `memorandum` que em latin significa "ser lembrado". Algum chamam de Memoisation Patten utilizando a letra s no lugar de z.*
+>*Memoization é uma derivação da palavra `memorandum` que em latin significa "ser lembrado". Alguns chamam de Memoisation Patten utilizando a letra s no lugar de z.*
 
 Para compreendermos esse pattern, vamos trabalhar com um exemplo de escopo menor, uma função que soma dois números:
 
