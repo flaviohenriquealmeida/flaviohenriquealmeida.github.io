@@ -2,7 +2,7 @@
 layout: post
 title:  "Revisitando Set, pegadinha e truques para colocar em prática hoje"
 description: O ES2015 (ES6) introduziu a estrutura de dados Set facilitando a vida dos desenvolvedores que antes precisavam empregar subterfúfios para emular características de conjuntos. Neste post revisitaremos essa estrutura tão útil para o desenvolvedor e também veremos pegadinhas e truques a respeito do seu uso..
-date: 2018-01-29 07:00:00 -0300
+date: 2018-01-29 12:00:00 -0300
 categories:
 permalink: /revisitando-set-javascript-pegadinha-truques/
 author: flavio_almeida
