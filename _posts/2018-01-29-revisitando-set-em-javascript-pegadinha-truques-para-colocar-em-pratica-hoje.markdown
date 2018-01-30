@@ -160,7 +160,7 @@ Para a supressa de alguns, o método `add()` adicionou um livro duplicado! Mesmo
 
 A explicação é a mesma que este autor utilizou para explicar o comportamento do método `Array.includes` no artigo <a href="http://cangaceirojavascript.com.br/array-includes-vs-array-some/" target="_blank">"Array.includes vs Array.some"</a>. Vamos recordar. 
 
-Internamente o método `has` e `add` utilizam o operador `===` para comparar o novo elemento com os já existentes. Essa comparação será feita com base no valor primitivo dos seguintes tipos:
+Internamente os métodos `has` e `add` utilizam o operador `===` para comparar o novo elemento com os já existentes. Essa comparação será feita com base no valor primitivo dos seguintes tipos:
 
 * Boolean
 * Null
