@@ -31,7 +31,7 @@ const numbers = Array.from(new Array(20), () =>
 
 console.log(numbers);
 ```
-O código anterior só foi possível porque o segundo parâmetro da função `Array.from` é uma função de *mapeamento*, isto é, será aplicada em todos os elementos `undefined` do Array criado por `new Array(20)` resultando em um array com apenas números aleatórios. Todavia, se escrutinarmos o valor de `numbers`, veremos que podem haver números duplicados:
+O código anterior só foi possível porque o segundo parâmetro da função `Array.from` é uma função de *mapeamento*, isto é, será aplicada em todos os elementos `undefined` do Array criado por `new Array(20)` resultando em um array com apenas números aleatórios. Todavia, se escrutinarmos o valor de `numbers`, veremos que pode haver números duplicados:
 
 ```javascript
 54,70,27,86,29,80,68,21,25,81
@@ -39,7 +39,7 @@ O código anterior só foi possível porque o segundo parâmetro da função `Ar
 ```
 Essa duplicação não faz sentido pois um conjunto possui **elementos distintos**.
 
->*<a href="https://en.wikipedia.org/wiki/Set_(mathematics)" target="blank">In mathematics, a set is a collection of distinct objects"</a>*
+>*"<a href="https://en.wikipedia.org/wiki/Set_(mathematics)" target="blank">In mathematics, a set is a collection of distinct objects"</a>*
 
 Precisamos alterar nosso código para que se coadune com a teoria dos conjuntos!
 
@@ -58,7 +58,7 @@ while(counter > 0) {
     const randomNumber = generateRandomInt(1, 100);
     if(!numbers.some(number => number === randomNumber)) {
         numbers.push(randomNumber);
-        counter++;
+        counter--;
     } 
 }   
 ```
