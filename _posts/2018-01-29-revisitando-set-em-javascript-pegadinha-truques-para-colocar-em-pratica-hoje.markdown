@@ -58,7 +58,7 @@ while(counter > 0) {
     const randomNumber = generateRandomInt(1, 100);
     if(!numbers.some(number => number === randomNumber)) {
         numbers.push(randomNumber);
-        counter--;
+        counter--;
     } 
 }   
 ```
