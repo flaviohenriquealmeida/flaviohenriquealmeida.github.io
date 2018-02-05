@@ -4,7 +4,7 @@ title:  "IndexedDB, implementando a persistência com o pattern Data Mapper - Pa
 description: Os navegadores do mercado suportam o banco de dados IndexedDB especificado pela W3C. Todavia, realizar operações de persistência através de sua API é uma tarefa um tanto árdua. Neste artigo implementaremos o padrão de projeto Data Mapper para reduzir bastante a complexidade da API do IndexedDB. É necessário que o leitor tenha algum conhecimento desta API para que aproveite melhor este artigo.
 date: 2018-02-05 09:00:00 -0300
 categories:
-permalink: /indexeddb-implementando-solucao-de-persistencia-com-pattern-data-mapper/
+permalink: /indexeddb-implementando-persistencia-com-pattern-data-mapper/
 author: flavio_almeida
 tags: [javascript, indexedDB, data mapper, persistence, persistência]
 image: logo.png
