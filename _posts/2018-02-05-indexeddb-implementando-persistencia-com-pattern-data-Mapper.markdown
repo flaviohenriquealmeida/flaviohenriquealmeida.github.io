@@ -16,7 +16,7 @@ Os navegadores do mercado suportam o banco de dados <a href="https://developer.m
 
 A motivação para a escrita deste artigo veio de um *coding dojo* no qual o autor foi questionado por um dos participantes o motivo de não ter abordado o pattern *Data Mapper* em seu livro <a href="https://www.casadocodigo.com.br/products/livro-cangaceiro-javascript" target="_blank">*Cangaceiro JavaScript, uma aventura no sertão da programação*</a>. Como resposta foi lhe dito que nas mais de 500 páginas do livro inevitavelmente algum assunto teria que ficar de fora. Foi então que o participante perguntou se era possível implementá-lo durante o dojo, tarefa que foi aceita por este autor e implementada em 7 minutos. 
 
->*É importante frisar que a implementação foi realizada em 7 minutos, porém as discussões sobre a API a ser criada levaram aproximadamente 20 minutos. Outro ponto é que apenas as operações de persistência `save()` e `list()` foram implementadas. 
+>*É importante frisar que a implementação foi realizada em 7 minutos, porém as discussões sobre a API a ser criada levaram aproximadamente 20 minutos. Outro ponto é que apenas as operações de persistência `save()` e `list()` foram implementadas.* 
 
 Agora que já sabemos os eventos que antecederam a escrita deste artigo, vamos ao problema a ser resolvido.
 
@@ -544,6 +544,8 @@ Melhor organizado do que se tivéssemos utilizado diretamente a API do IndexedDB
 ## E o método update? Delete?
 
 Durante o dojo eu não implementei atualização e deleção de dados. Aliás, assunto interessante para o próximo post!
+
+<a href="https://github.com/flaviohenriquealmeida/indexeddb-data-mapper-implementation-part1" target="_blank">Você pode conferir o código completo deste artigo no meu github</a>.
 
 ## Conclusão
 
