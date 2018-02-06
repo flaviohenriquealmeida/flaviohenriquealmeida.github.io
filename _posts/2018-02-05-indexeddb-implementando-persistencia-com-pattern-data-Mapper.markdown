@@ -229,7 +229,7 @@ export const manager = new Manager();
 
 A função `register`, através do *Rest Operator*, recebe uma quantidade indefinida de objetos que chamaremos de `mappers` (mapeadores). Cada objeto identifica a classe e a lógica de conversão a ser aplicada toda vez que objetos dessa classe forem obtidos de uma `store`.
 
->*Objetos recuperados da store só possuem propriedades e nenhum método, por isso é importante definir a lógica de conversão os dados trazidos do banco para sua respectiva classe.*
+>*Objetos recuperados da store só possuem propriedades e nenhum método, por isso é importante definir a lógica de conversão dos dados trazidos do banco para sua respectiva classe.*
 
 Para cada item da lista de `mappers` recebido utilizaremos o valor da propriedade `clazz` como *key* e o valor da propriedade `converter` como seu valor no `Map` batizado de `stores`. Esse dado é importante, pois é através dele que saberemos quais stores serão criadas e qual lógica de conversão será utilizada ao obter seus dados.
 
