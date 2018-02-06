@@ -231,7 +231,7 @@ A função `register`, através do *Rest Operator*, recebe uma quantidade indefi
 
 >*Objetos recuperados da store só possuem propriedades e nenhum método, por isso é importante definir a lógica de conversão dos dados trazidos do banco para sua respectiva classe.*
 
-Para cada item da lista de `mappers` recebido utilizaremos o valor da propriedade `clazz` como *key* e o valor da propriedade `converter` como seu valor no `Map` batizado de `stores`. Esse dado é importante, pois é através dele que saberemos quais stores serão criadas e qual lógica de conversão será utilizada ao obter seus dados.
+Para cada item da lista de `mappers` recebida utilizaremos o valor da propriedade `clazz` como *key* e o valor da propriedade `converter` como seu valor no `Map` batizado de `stores`. Esse dado é importante, pois é através dele que saberemos quais stores serão criadas e qual lógica de conversão será utilizada ao obter seus dados.
 
 Nosso `app/app.js` por enquanto estará assim:
 
