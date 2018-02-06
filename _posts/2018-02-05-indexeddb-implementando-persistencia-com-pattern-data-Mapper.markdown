@@ -151,7 +151,7 @@ class Manager {
 // exporta a instância da classe
 export const manager = new Manager();
 ```
->*Declarar uma variável no escopo do módulo sem exportá-la com a instrução `export` torna sua visibilidade privada, desta forma, apenas a instância de `manager` exportada pelo módulo terá acesso à variável, como é o caso das variáveis `setDbBane` e `setDbVersion`.*
+>*Declarar uma variável no escopo do módulo sem exportá-la com a instrução `export` torna sua visibilidade privada, desta forma, apenas a instância de `manager` exportada pelo módulo terá acesso à variável, como é o caso das variáveis `dbName` e `dbVersion`.*
 
 Um ponto a destacar é o `return this` dos métodos da classe que criamos até agora. É esse retorno que permitirá o encadeamento das chamadas desses métodos.
 
