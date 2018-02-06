@@ -338,7 +338,7 @@ const createConnection = () =>
         // lida com erros, retornando uma mensagem de alto nível
         request.onerror = e => {
             console.log(e.target.error);
-            return Promise.reject('Não foi possível obter a conexão com o banco');
+            reject('Não foi possível obter a conexão com o banco');
         }; 
     });
 // código posterior omitido
@@ -442,7 +442,7 @@ class Manager {
 
             request.onerror = e => {
                 console.log(e.target.error);
-                return reject('Não foi possível persistir o objeto');
+                reject('Não foi possível persistir o objeto');
             };
         });
     }
