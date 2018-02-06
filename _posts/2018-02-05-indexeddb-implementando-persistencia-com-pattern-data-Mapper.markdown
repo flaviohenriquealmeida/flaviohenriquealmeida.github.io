@@ -256,7 +256,7 @@ manager
 );
 ```
 
-Excelente, mas no ato de realizarmos o registro precisamos criar a conexão como banco. 
+Excelente, mas no ato de realizarmos o registro precisamos criar a conexão com o banco. 
 
 ## Obtendo uma conexão 
 
