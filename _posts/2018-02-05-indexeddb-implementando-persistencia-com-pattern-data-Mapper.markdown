@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "IndexedDB, implementando a persistência com o pattern Data Mapper - Parte 1"
+title:  "IndexedDB, implementando a persistência com o pattern Data Mapper"
 description: Os navegadores do mercado suportam o banco de dados IndexedDB especificado pela W3C. Todavia, realizar operações de persistência através de sua API é uma tarefa um tanto árdua. Neste artigo implementaremos o padrão de projeto Data Mapper para reduzir bastante a complexidade da API do IndexedDB. É necessário que o leitor tenha algum conhecimento desta API para que aproveite melhor este artigo.
 date: 2018-02-05 09:00:00 -0300
 categories:
@@ -541,9 +541,7 @@ import { Animal } from './Animal.js';
 
 Melhor organizado do que se tivéssemos utilizado diretamente a API do IndexedDB.
 
-## E o método update? Delete?
-
-Durante o dojo eu não implementei atualização e deleção de dados. Aliás, assunto interessante para o próximo post!
+## Código
 
 <a href="https://github.com/flaviohenriquealmeida/indexeddb-data-mapper-implementation-part1" target="_blank">Você pode conferir o código completo deste artigo no meu github</a>.
 
