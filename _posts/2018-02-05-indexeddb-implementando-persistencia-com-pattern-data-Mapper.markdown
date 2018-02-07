@@ -539,11 +539,7 @@ import { Animal } from './Animal.js';
 })().catch(console.log);
 ```
 
-Melhor organizado do que se tivéssemos utilizado diretamente a API do IndexedDB.
-
-## Código
-
-<a href="https://github.com/flaviohenriquealmeida/indexeddb-data-mapper-implementation-part1" target="_blank">Você pode conferir o código completo deste artigo no meu github</a>.
+Melhor organizado do que se tivéssemos utilizado diretamente a API do IndexedDB. Você pode conferir o código completo deste artigo no <a href="https://github.com/flaviohenriquealmeida/indexeddb-data-mapper-implementation-part1" target="_blank">meu github</a>.
 
 ## Conclusão
 
