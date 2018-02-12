@@ -126,6 +126,6 @@ O ganho na legibilidade pode ser ainda maior dependendo da quantidade de método
 
 ## Conclusão
 
-Não é pelo fato de uma API não ser encadeável que ela nos privará deste recurso. Com um pouco de código podemos criar uma pequena camada sob a API já existente possibilitando chamadas encadeáveis. 
+Não é pelo fato de uma API não ser encadeável que ela nos privará desse recurso. Com um pouco de código podemos criar uma pequena camada sob a API já existente possibilitando chamadas encadeáveis. 
 
 E você? Já aplicou essa estratégia antes? Tem algum exemplo de outra API no qual essa estratégia se torna ainda mais interessante. Deixe seu comentário.
