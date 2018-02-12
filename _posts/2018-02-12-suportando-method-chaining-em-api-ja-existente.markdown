@@ -43,8 +43,8 @@ ChainableRequest.of(connection
     .transaction([store],"readwrite")
     .objectStore(store)
     .add(object)
-).onsucess(() => console.log('persistiu com sucesso'))
-).onerror(e => console.log(e.target.error))
+).success(() => console.log('persistiu com sucesso'))
+).error(e => console.log(e.target.error))
 ```
 
 No código anterior temos a chamada de `ChainableRequest.of()`, mas a classe `ChainableRequest` não existe. Precisamos implementá-la.
@@ -96,19 +96,19 @@ class ChainableRequest {
         return new ChainableRequest(request);
     },
 
-    onsuccess(fn) {
+    success(fn) {
         this._request.onsuccess = fn;
         return this;
     }
 
-    onerror(fn) {
+    error(fn) {
         this._request.onerror = fn;
         return this;
     }
 }
 ```
 
-Vejam que os métodos `onsuccess` e `onerror` recebem a lógica que será aplicada nas respectivas propriedades `_request.onsuccess` e `_request.onerror`. Todavia, o retorno de ambos é a própria instância de `ChainableRequest`. É esse retorno que permitirá as chamadas chamadas encadeadas. Com a classe completa, o código proposto no início deste artigo funcionará:
+Vejam que os métodos `success` e `error` recebem a lógica que será aplicada nas respectivas propriedades `_request.onsuccess` e `_request.onerror`. Todavia, o retorno de ambos é a própria instância de `ChainableRequest`. É esse retorno que permitirá as chamadas chamadas encadeadas. Com a classe completa, o código proposto no início deste artigo funcionará:
 
 ```javascript
 // conexão criada com o banco antes
@@ -118,8 +118,8 @@ ChainableRequest.of(connection
     .transaction([store],"readwrite")
     .objectStore(store)
     .add(object)
-).onsucess(() => console.log('persistiu com sucesso'))
-).onerror(e => console.log(e.target.error))
+).success(() => console.log('persistiu com sucesso'))
+).error(e => console.log(e.target.error))
 ```
 
 O ganho na legibilidade pode ser ainda maior dependendo da quantidade de métodos encadeáveis utilizados para resolver o problema em questão.
