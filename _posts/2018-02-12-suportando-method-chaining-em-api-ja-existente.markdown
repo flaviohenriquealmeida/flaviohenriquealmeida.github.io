@@ -2,7 +2,7 @@
 layout: post
 title:  "Suportando Method Chaining em uma API já existente"
 description: Neste artigo aprendemos a suportar *Method Chaining* em uma API sem suporte a esse recurso.
-date: 2018-02-09 12:00:00 -0300
+date: 2018-02-12 08:00:00 -0300
 categories:
 permalink: /suportando-method-chaining-em-api-ja-existente/
 author: flavio_almeida
