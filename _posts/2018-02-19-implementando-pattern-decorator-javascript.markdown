@@ -84,10 +84,10 @@ console.log(person1.getFullName());
 // Flávio Almeida
 
 // guarda o método original
-const originalMethod = person2.getFullName.bind(person2);
+const method = person2.getFullName.bind(person2);
 
 // adicionando um novo método que chama o original
-person2.getFullName = () => originalMethod().replace(/ /, '-');
+person2.getFullName = () => method().replace(/ /, '-');
 
 console.log(person2.getFullName());
 // Almeida-Flávio
@@ -129,10 +129,10 @@ Vamos dar uma olhada na implementação do decorator `getFullNameWithHyphen`:
 
 ```javascript
 // app/models/decorators.js 
-export const getFullNameWithHyphen = (original, propertyName, args) => {
-    console.log(`Propriedade decorada ${propertyName}`);
+export const getFullNameWithHyphen = (method, property, args) => {
+    console.log(`Método decorado: ${property}`);
     console.log(`Argumentos do método ${args}`);
-    const result = original(...args).replace(/ /, '-');
+    const result = method(...args).replace(/ /, '-');
     console.log(`resultado modificado: ${result}`)
     return result;
 }
@@ -164,7 +164,7 @@ A primeira coisa que faremos é listar todas as chaves do objeto `handler`, pois
 // app/utils/decorate.js
 export const decorate = (target, handler) => 
     // retorna todas as propriedades enumeráveis do objeto
-    Object.keys(handler).forEach(propertyName => {
+    Object.keys(handler).forEach(property => {
          
     });
 ```        
@@ -174,38 +174,38 @@ Em cada iteração precisaremos guardar o método original, um dos parâmetros q
 ```javascript
 // app/utils/decorate.js
 export const decorate = (target, handler) => 
-    Object.keys(handler).forEach(propertyName => {
+    Object.keys(handler).forEach(property => {
         // guarda a função original
-        const original = target[propertyName].bind(target);
+        const method = target[property].bind(target);
     });
 ```
 
-Através de `target[propertyName]` temos acesso ao método que será decorado. Não podemos nos esquecer de realizar o `bind` da nova referência do método com seu contexto inicial, `target`. Se tivéssemos omitido esse passo, o `this` de `original` não apontaria mais para a instância de `target`.
+Através de `target[property]` temos acesso ao método que será decorado. Não podemos nos esquecer de realizar o `bind` da nova referência do método com seu contexto inicial, `target`. Se tivéssemos omitido esse passo, o `this` de `method` não apontaria mais para a instância de `target`.
 
 Agora precisamos decorar o método da instância de `target`:
 
 ```javascript
 // app/utils/decorate.js
 export const decorate = (target, handler) => 
-    Object.keys(handler).forEach(propertyName => {
+    Object.keys(handler).forEach(property => {
         // guarda a função original
-        const original = target[propertyName].bind(target);
-
-        target[propertyName] = (...args) => 
-            handler[propertyName](original, propertyName, args);
+        const method = target[property].bind(target);
+        const decorator = handler[property];
+        target[property] = (...args) => 
+            decorator(method, property, args);
     });
 ```
 
-Como não sabemos quantos parâmetros o método original recebe, usamos o *REST operator* na função que substituirá o método original em `target`. No bloco da função, invocamos o decorator passado para o `handler` através de `handler[propertyName]()`, por isso é importante que o nome das propriedades do `handler` tenham o mesmo nome do método que será decorado. Por fim, passamos para `handler[propertyName]()` os valores de `original`, `propertyName`, e `args`. 
+Como não sabemos quantos parâmetros o método original recebe, usamos o *REST operator* na função que substituirá o método original em `target`. No bloco da função, invocamos o decorator passado para o `handler` através de `handler[property]()`, por isso é importante que o nome das propriedades do `handler` tenham o mesmo nome do método que será decorado. Por fim, passamos para `handler[property]()` os valores de `method`, `property`, e `args`. 
 
 Se olharmos mais uma vez nosso decorator `getFullNameWithHyphen` constatamos que os parâmetros são recebidos corretamente:
 
 ```javascript
 // app/models/decorators.js
-export const getFullNameWithHyphen = (original, propertyName, args) => {
-    console.log(`Propriedade decorada ${propertyName}`);
+export const getFullNameWithHyphen = (method, property, args) => {
+    console.log(`Método decorado: ${property}`);
     console.log(`Argumentos do método ${args}`);
-    const result = original(...args).replace(/ /, '-');
+    const result = method(...args).replace(/ /, '-');
     console.log(`resultado modificado: ${result}`)
     return result;
 }
@@ -256,14 +256,15 @@ const isClass = source =>
     typeof source === 'function' 
         && /^\s*class\s+/.test(source.toString());
 
-const decorateInstance = (target, handler, propertyName) => {
+const decorateInstance = (target, handler, property) => {
 
-    const original = target[propertyName].bind(target);
-    target[propertyName] = (...args) => 
-        handler[propertyName](original, propertyName, args);    
+    const method = target[property].bind(target);
+    const decorator = handler[property];
+    target[property] = (...args) => 
+        decorator(method, property, args);    
 };
 
-const decorateClass = (target, handler, propertyName) => {
+const decorateClass = (target, handler, property) => {
     /* falta implementar */
 };
 
@@ -271,9 +272,9 @@ export const decorate = (target, handler) => {
 
     const isClazz = isClass(target);
 
-    Object.keys(handler).forEach(propertyName => isClazz 
-        ? decorateClass(target, handler, propertyName)
-        : decorateInstance(target, handler, propertyName)
+    Object.keys(handler).forEach(property => isClazz 
+        ? decorateClass(target, handler, property)
+        : decorateInstance(target, handler, property)
     );
 };
 ```
@@ -285,25 +286,26 @@ A função `decorate` ficou apenas com a responsabilidade de iterar nas propried
 A primeira mudança esta na maneira pela qual obtemos o método original, aquele que será decorado. Acessaremos a função através do prototype da classe:
 
 ```javascript
-const decorateClass = (target, handler, propertyName) => {
+const decorateClass = (target, handler, property) => {
     // primeira mudança
-    const original = target.prototype[propertyName];
+    const method = target.prototype[property];
 };
 ```
 
 Por fim, quando substituirmos o método original pelo decorado, seremos obrigados a utilizar uma *function* no lugar de uma *arrrow function*. Isso é necessário pois dependemos do escopo dinâmico que toda função possui. É desse escopo que teremos acesso ao `this`, isto é, a instância da classe que estará invocando o método no futuro:
 
 ```javascript
-const decorateClass = (target, handler, propertyName) => {
+const decorateClass = (target, handler, property) => {
 
-    const original = target.prototype[propertyName];
-    target.prototype[propertyName] = function (...args) {
-        return handler[propertyName](original.bind(this), propertyName, args);
+    const method = target.prototype[property];
+    const decorator = handler[property];
+    target.prototype[property] = function (...args) {
+        return decorator(method.bind(this), property, args);
     };  
 };
 ```
 
-Reparem que o primeiro parâmetro recebido pelo decorator associado ao método não é mais `original`, mas `original.bind(this)`. Isso é importante, para que o método original esteja associado à instância da classe que esta invocando nosso método. O `this` vem do contexto de `function(...args)` que atribuímos à `target.prototype[propertyName]`.
+Reparem que o primeiro parâmetro recebido pelo decorator associado ao método não é mais `method`, mas `method.bind(this)`. Isso é importante, para que o método original esteja associado à instância da classe que esta invocando nosso método. O `this` vem do contexto de `function(...args)` que atribuímos à `target.prototype[property]`.
 
 Agora, podemos verificar o resultado:
 
@@ -324,8 +326,117 @@ console.log(person1.getFullName());
 console.log(person2.getFullName());
 ```
 
-Você encontra o código completo deste arquivo no meu <a href="https://github.com/flaviohenriquealmeida/decorator-pattern-javascript-implementation" target="_blank">github</a>. 
+Muito bom, mas se quisermos aplicar mais de um decorator por método? Por exemplo, vamos criar o decorator `inspect` e `perfLog`. O primeiro isolará todo aquele código que indentifica os parâmetros recebidos pelo método, o nome do método e seu resultado. Já o segundo registrará o tempo de execução do método:
 
+```javascript
+// app/util/decorators.js
+export const getFullNameWithHyphen = (method, property, args) => 
+    method(...args).replace(/ /, '-');
+
+export const inspect = (method, property, args) => {
+    console.log(`Método decorado: ${property}`);
+    console.log(`Argumentos do método: ${args}`);
+    const result = method(...args);
+    console.log(`resultado modificado: ${result}`);
+    return result;
+};
+
+export const perfLogger = (method, property, args) => {
+    console.time(property);
+    const result = method(...args);
+    console.timeEnd(property);
+    return result;
+};
+```
+
+Agora vamos alterar `app/app.js`:
+
+```javascript
+import { Person } from './models/person.js';
+import { getFullNameWithHyphen, perfLogger, inspect } from './models/decorators.js';
+import { decorate } from './utils/decorate.js';
+
+// dois métodos decorados com mais de um decorator
+decorate(Person, {
+    getFullName: [getFullNameWithHyphen, perfLogger],
+    speak: [perfLogger, inspect]
+});
+
+const person1 = new Person('Flávio', 'Almeida');
+const person2 = new Person('Almeida', 'Flávio');
+
+console.log(person1.getFullName());
+console.log(person1.speak('Cangaceiro!'));
+console.log(person2.getFullName());
+console.log(person2.speak('JavaScript!'));
+```
+
+Por mais que tenhamos passado um array de decorators para a propriedade `getFullName` do nosso handler a função `decorate` não esta preparada para lidar com esse novo tipo de dado. Precisamos alterá-la:
+
+```javascript
+// app/utils/decorate.js
+// código anterior omitido
+
+export const decorate = (target, handler) => {
+
+    const isClazz = isClass(target);
+
+    Object.keys(handler).forEach(property => {
+        // obtém a lista de decorators para a propriedade
+        const decorators = handler[property];
+        // itera na lista
+        decorators.forEach(decorator => isClazz 
+            ? decorateClass(target, decorator, property)
+            : decorateInstance(target, decorator, property)
+        ); 
+    });    
+};
+```
+
+Excelente, agora podemos combinar decorators em um mesmo método.
+
+## Ordem dos decorators
+
+Se analisarmos atentamente o a aplicação dos decorators, eles serão aplicados da direita para a esquerda. Para facilitar o entendimento, vamos alterar nosso código para que o primeiro decorator da lista seja o primeiro a ser aplicado e assim por diante.
+
+```javascript
+// app/util/decorate.js
+// código anterior omitido
+export const decorate = (target, handler) => {
+
+    const isClazz = isClass(target);
+
+    Object.keys(handler).forEach(property => {
+
+        // inverteu a ordem
+        const decorators = handler[property].reverse();
+        
+        decorators.forEach(decorator => isClazz 
+            ? decorateClass(target, decorator, property)
+            : decorateInstance(target, decorator, property)
+        ); 
+    });    
+};
+```
+
+Agora, vamos alterar a ordem dos decorators em `app/app.js`:
+
+```javascript
+// app/app.js
+// código anterior omitido 
+// agora aplicará da esquerda para a direita
+decorate(Person, {
+    getFullName: [perfLogger, getFullNameWithHyphen],
+    speak: [inspect, perfLogger]
+});
+// código posterior omitido
+```
+
+Agora fica mais fácil para quem lê o código entender a ordem de aplicação dos decorators.
+
+## Código no Github
+
+Você encontra o código completo deste artigo no meu <a href="https://github.com/flaviohenriquealmeida/decorator-pattern-javascript-implementation" target="_blank">github</a>. 
 
 ## Conclusão
 
