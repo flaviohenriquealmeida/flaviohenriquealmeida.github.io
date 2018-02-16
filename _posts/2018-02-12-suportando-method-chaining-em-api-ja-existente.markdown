@@ -108,7 +108,7 @@ class ChainableRequest {
 }
 ```
 
-Vejam que os métodos `success` e `error` recebem a lógica que será aplicada nas respectivas propriedades `_request.onsuccess` e `_request.onerror`. Todavia, o retorno de ambos é a própria instância de `ChainableRequest`. É esse retorno que permitirá as chamadas chamadas encadeadas. Com a classe completa, o código proposto no início deste artigo funcionará:
+Vejam que os métodos `success` e `error` recebem a lógica que será aplicada nas respectivas propriedades `_request.onsuccess` e `_request.onerror`. Todavia, o retorno de ambos é a própria instância de `ChainableRequest`. É esse retorno que permitirá as chamadas encadeadas. Com a classe completa, o código proposto no início deste artigo funcionará:
 
 ```javascript
 // conexão criada com o banco antes

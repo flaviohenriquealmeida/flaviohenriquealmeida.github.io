@@ -9,7 +9,7 @@ author: flavio_almeida
 tags: [javascript, decorator, design pattern]
 image: logo.png
 ---
-Neste artigo aplicaremos o padrão de projeto Decorator dentro do contexto dinâmico da linguagem JavaScript. Estruturaremos nossa solução de uma maneira padronizada, favorecendo assim a melhor organização do código e adoção por outros desenvolvedores.
+Neste artigo aplicaremos o padrão de projeto Decorator dentro do contexto dinâmico da linguagem JavaScript. Estruturaremos nossa solução de uma maneira padronizada, favorecendo assim a melhor organização do código e adoção por outros desenvolvedores. O código foi escrito na terça-feira de carnaval!
 
 ## O problema
 
@@ -70,7 +70,7 @@ Em essência, a beleza do deste pattern está na preservação da classe origina
 
 ## Primeira solução
 
-Pela característica dinâmica da linguagem JavaScript, podemos simplesmente substituir o método original por um novo que chamará o método original permitindo assim modificar seu comportamento original.
+Pela característica dinâmica da linguagem JavaScript, podemos simplesmente substituir o método original por um novo que chamará o método original permitindo assim modificar seu comportamento:
 
 ```javascript
 // app/app.js
@@ -85,20 +85,19 @@ console.log(person1.getFullName());
 
 // guarda o método original
 const originalMethod = person2.getFullName.bind(person2);
+
 // adicionando um novo método que chama o original
-person2.getFullName = () => {
-    return originalMethod().replace(/ /, '-');
-};
+person2.getFullName = () => originalMethod().replace(/ /, '-');
 
 console.log(person2.getFullName());
 // Almeida-Flávio
 ```
 
- Excelente, mas se tivéssemos 10 instâncias de `Person` que necessitassem esse novo comportamento? Em pouco tempo nosso código se tornaria um código difícil de manter.
+Excelente, mas se tivéssemos 10 instâncias de `Person` que necessitassem do novo comportamento? Em pouco tempo nosso código se tornaria difícil de manter.
 
 ## Segunda solução
 
-Queremos uma solução padronizada e mais fácil de manter. Porém, antes de implementá-la, vejamos como fica o módulo `app/app.js` utilizando essa solução:
+Queremos uma solução padronizada e mais fácil de manter. Porém, antes de implementá-la, vejamos como ficará o módulo `app/app.js` utilizando essa solução:
 
 ```javascript
 // app/app.js
@@ -124,7 +123,7 @@ console.log(person2.getFullName());
 // Almeida-Flávio
 ```
 
-Temos a função utilitária `decorate` que receberá dois parâmetros. O primeiro é a *instância* do objeto que desejamos decorar. Já o segundo é o objeto *handler*. As propriedades do objeto *handler* equivalem aos nomes dos métodos que desejamos decorar. Seu valor será o decorator que desejamos aplicar.
+Na solução que acabamos de ver temos a função utilitária `decorate` que receberá dois parâmetros. O primeiro é a *instância* do objeto que desejamos decorar. Já o segundo é o objeto *handler*. As propriedades do objeto *handler* equivalem aos nomes dos métodos que desejamos decorar. Seu valor será o decorator que desejamos aplicar.
 
 Vamos dar uma olhada na implementação do decorator `getFullNameWithHyphen`:
 
@@ -142,11 +141,13 @@ export const getFullNameWithHyphen = (original, propertyName, args) => {
 
 * O método original a ser decorado
 * O nome do método
-* Os parâmetros que o método recebe ou não
+* Os parâmetros que o método recebe (ou não)
+
+O mais interessante é que **definimos uma API para criação de decorators**. Essa padronização é importante, pois permitirá que a solução seja utilizada por outros desenvolvedores mais facilmente.
 
 Sabendo o que cada parâmetro representa, fica fácil entender a lógica do nosso decorator. Executamos o método original modificando seu resultado e é este valor que retornamos. O restante do código são as mensagens no console para que possamos ver o que esta acontecendo. 
 
-A grande questão agora é implementarmos a função `decorate`, centro nervoso da nossa solução.
+A grande questão agora é a implementação da função utilitária `decorate`, centro nervoso da nossa solução.
 
 ## Implementando a função decorate
 
@@ -162,12 +163,13 @@ A primeira coisa que faremos é listar todas as chaves do objeto `handler`, pois
 ```javascript
 // app/utils/decorate.js
 export const decorate = (target, handler) => 
+    // retorna todas as propriedades enumeráveis do objeto
     Object.keys(handler).forEach(propertyName => {
-        
-            
+         
     });
 ```        
-Agora, em cada iteração, precisamos guardar o método original, um dos parâmetros que os nossos decorators dependem:
+
+Em cada iteração precisaremos guardar o método original, um dos parâmetros que os nossos decorators dependem:
 
 ```javascript
 // app/utils/decorate.js
@@ -194,7 +196,7 @@ export const decorate = (target, handler) =>
     });
 ```
 
-Como não sabemos quantos parâmetros o método original recebe, usamos o *REST operator* na função que substituirá o método original em `target`. No bloco da função, invocamos o decorator passado para o `handler` através de `handler[propertyName]()`, por isso é importante que o nome das propriedades do handler tenham o mesmo nome do método que será decorado. Por fim, passamos para `handler[propertyName]()` os valores de `original`, `propertyName`, e `args`. 
+Como não sabemos quantos parâmetros o método original recebe, usamos o *REST operator* na função que substituirá o método original em `target`. No bloco da função, invocamos o decorator passado para o `handler` através de `handler[propertyName]()`, por isso é importante que o nome das propriedades do `handler` tenham o mesmo nome do método que será decorado. Por fim, passamos para `handler[propertyName]()` os valores de `original`, `propertyName`, e `args`. 
 
 Se olharmos mais uma vez nosso decorator `getFullNameWithHyphen` constatamos que os parâmetros são recebidos corretamente:
 
@@ -231,9 +233,101 @@ console.log(person2.getFullName());
 // Almeida-Flávio
 ```
 
+Excelente. Mas que tal se a nossa função `decorate` fosse capaz de decorar métodos diretamente na classe? A grosso modo, todas as instâncias criadas a partir desta classe teriam seus métodos decorados. Queremos fornecer essa possibilidade para o desenvolvedor. 
+
+Para atingirmos este novo objetivo, nossa função `decorate` tem que ser capaz de identificar se o seu `target` é uma classe ou uma instância.
+
+## Detectando se o target é classe ou instância
+
+Em `app/utils/decorate.js` vamos criar a função `isClass`. Além de aplicar `typeof` ela também verificará, via expressão regular, se a representação o parâmetro recebido como string contém a palavra `class`:
+
+```javascript
+// app/utils/decorate.js
+const isClass = source => 
+    typeof source === 'function' 
+        && /^\s*class\s+/.test(source.toString());
+// código posterior omitido
+```
+Ótimo! Agora, vamos isolar código que decora instâncias na função `decorateInstance`. Vamos criar também, mas ainda sem implementá-la, a função `decorateClass`:
+
+```javascript
+// app/utils/decorate.js
+const isClass = source => 
+    typeof source === 'function' 
+        && /^\s*class\s+/.test(source.toString());
+
+const decorateInstance = (target, handler, propertyName) => {
+
+    const original = target[propertyName].bind(target);
+    target[propertyName] = (...args) => 
+        handler[propertyName](original, propertyName, args);    
+};
+
+const decorateClass = (target, handler, propertyName) => {
+    /* falta implementar */
+};
+
+export const decorate = (target, handler) => {
+
+    const isClazz = isClass(target);
+
+    Object.keys(handler).forEach(propertyName => isClazz 
+        ? decorateClass(target, handler, propertyName)
+        : decorateInstance(target, handler, propertyName)
+    );
+};
+```
+
+A função `decorate` ficou apenas com a responsabilidade de iterar nas propriedades de `handler` e aplicar a função de decoração correta ao `target` recebido.
+
+## Implementando a função decorateClass
+
+A primeira mudança esta na maneira pela qual obtemos o método original, aquele que será decorado. Acessaremos a função através do prototype da classe:
+
+```javascript
+const decorateClass = (target, handler, propertyName) => {
+    // primeira mudança
+    const original = target.prototype[propertyName];
+};
+```
+
+Por fim, quando substituirmos o método original pelo decorado, seremos obrigados a utilizar uma *function* no lugar de uma *arrrow function*. Isso é necessário pois dependemos do escopo dinâmico que toda função possui. É desse escopo que teremos acesso ao `this`, isto é, a instância da classe que estará invocando o método no futuro:
+
+```javascript
+const decorateClass = (target, handler, propertyName) => {
+
+    const original = target.prototype[propertyName];
+    target.prototype[propertyName] = function (...args) {
+        return handler[propertyName](original.bind(this), propertyName, args);
+    };  
+};
+```
+
+Reparem que o primeiro parâmetro recebido pelo decorator associado ao método não é mais `original`, mas `original.bind(this)`. Isso é importante, para que o método original esteja associado à instância da classe que esta invocando nosso método. O `this` vem do contexto de `function(...args)` que atribuímos à `target.prototype[propertyName]`.
+
+Agora, podemos verificar o resultado:
+
+```javascript
+import { Person } from './models/person.js';
+import { getFullNameWithHyphen } from './models/decorators.js';
+import { decorate } from './utils/decorate.js';
+
+decorate(Person, {
+    getFullName: getFullNameWithHyphen
+});
+
+const person1 = new Person('Flávio', 'Almeida');
+const person2 = new Person('Almeida', 'Flávio');
+
+// ambos possuem o método modificado
+console.log(person1.getFullName());
+console.log(person2.getFullName());
+```
+
 Você encontra o código completo deste arquivo no meu <a href="https://github.com/flaviohenriquealmeida/decorator-pattern-javascript-implementation" target="_blank">github</a>. 
+
 
 ## Conclusão
 
-Apesar do suporte a decorator ter sido especificado na linguagem JavaScript, ainda não há um consenso de sua implementação. Alguns frameworks do mercado, inclusive a linguagem TypeScript suportam este recurso com sintaxe `@`, a mesma utilizada na linguagem Python que há anos suporta nativamente este recurso. Todavia, nada nos impede de implementá-lo em vanilla JavaScript. E você? Já precisou estender um objeto um objeto sem modificar sua classe? Deixe sua opinião.
+Apesar do suporte a decorator ter sido especificado na linguagem JavaScript, ainda não há um consenso de sua implementação. Alguns frameworks do mercado, inclusive a linguagem TypeScript suportam este recurso com sintaxe `@`, a mesma utilizada na linguagem Python que há anos suporta nativamente este recurso. Todavia, nada nos impede de implementá-lo em vanilla JavaScript. E você? Já precisou estender um objeto sem modificar sua classe? Deixe sua opinião.
 
