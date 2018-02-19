@@ -2,7 +2,7 @@
 layout: post
 title:  "IndexedDB, implementando a persistência com o pattern Active Record"
 description: No artigo "IndexedDB, implementando a persistência com o pattern Data Mapper" implementamos o padrão de projeto *Data Mapper* para persistir objetos com o IndexedDB. Desta vez, implementaremos a solução de persistência com o pattern Active Record.
-date: 2018-02-26 08:00:00 -0300
+date: 2018-02-19 08:00:00 -0300
 categories:
 permalink: /indexeddb-implementando-persistencia-com-pattern-active-record/
 author: flavio_almeida
