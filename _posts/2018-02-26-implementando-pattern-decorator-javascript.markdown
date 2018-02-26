@@ -210,7 +210,7 @@ export const decorate = (clazz, handler) => // falta o resto
 A primeira coisa que faremos é listar todas as chaves do objeto `handler`, pois são elas que indicam qual método decorar da classe. 
 
 
-Todavia, só podemos iterar nas propriedades do próprio objeto `handler` (aqueles que adicionamos ao criá-lo) e não do seu prototype, no caso `Object`. Se iteramos nas propriedades do `prototype` acabaremos encontrando outras chaves que não dizem respeito aos métodos que desejamos decorar. A função `Object.keys()` nos atende muito bem:
+Todavia, só podemos iterar nas propriedades do próprio objeto `handler` (aquelas que adicionamos ao criá-lo) e não do seu prototype, no caso `Object`. Se iteramos nas propriedades do `prototype` acabaremos encontrando outras chaves que não dizem respeito aos métodos que desejamos decorar. A função `Object.keys()` nos atende muito bem:
 
 ```javascript
 // app/utils/decorate.js
