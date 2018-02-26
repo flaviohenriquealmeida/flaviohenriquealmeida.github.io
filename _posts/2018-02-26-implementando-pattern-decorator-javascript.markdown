@@ -284,6 +284,8 @@ export const inspectMethod = (method, property, args) => {
     return result;
 };
 ```
+>*Reparem que nossos decorators seguem a mesma API, fantástico!*
+
 Agora, alterando `app/app.js` para fazer uso do nosso novo decorator:
 
 ```javascript
