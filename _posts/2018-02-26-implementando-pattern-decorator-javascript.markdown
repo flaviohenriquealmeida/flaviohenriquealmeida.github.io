@@ -131,7 +131,7 @@ Vamos analisar o código. Guardarmos uma referência para o método definido no 
 
 >*Não esqueça que ao declararmos uma classe com a sintaxe `class` as definições de seus métodos são adicionadas em seu prototype. É por isso que acessarmos `Person.prototype.speak` e não `Person.speak`.*
 
-Com o método original guardado, substituímos `Person.prototype.speak` por uma por função que redefiná o método. Ela recebe um número indeterminado de parâmetros através do *Rest operator*, pois não sabemos quantos parâmetros o método original recebe. 
+Com o método original guardado, substituímos `Person.prototype.speak` por uma função que redefiná o método. Ela recebe um número indeterminado de parâmetros através do *Rest operator*, pois não sabemos quantos parâmetros o método original recebe. 
 
 Vale ressaltar que  utilizamos uma função no lugar de uma *arrow function* pois necessitamos de um escopo dinâmico, isto é, precisamos que o `this` seja a instância que invoca o método naquele momento. 
 
