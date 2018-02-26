@@ -98,7 +98,7 @@ export class Person {
 
 >*A implementação da função `logExecutionTime` em TypeScript foi omitida, pois focaremos na implementação da nossa solução.*
 
-Será que podemos chegar a um resultado semelhante diretamente na JavaScript, inclusive sem o uso de um transcompilador como Babel? Vamos tentar.
+Será que podemos chegar a um resultado semelhante diretamente na linguagem JavaScript, inclusive sem o uso de um transcompilador como Babel? Vamos tentar.
 
 ## Primeira solução
 
