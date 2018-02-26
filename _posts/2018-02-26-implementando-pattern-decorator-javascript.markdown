@@ -400,7 +400,7 @@ const person = new Person('Flávio', 'Almeida');
 person.speak('Canganceiro JavaScript');
 person.getFullName();
 ```
-Se não passarmos parâmetro nenhum para `inspectMethod` o padrão continuará sendo inspecionar o retorno do método. Agora podemos escolher logar ou não o retorno dos métodos.
+Se não passarmos parâmetro nenhum para `inspectMethod` o padrão continuará sendo inspecionar o retorno do método.
 
 Podemos tornar ainda melhor a maneira pela qual aplicamos nossos decorators.
 
@@ -453,4 +453,4 @@ Você encontra o código completo deste artigo no meu <a href="https://github.co
 
 ## Conclusão
 
-Apesar do suporte a decorator ter sido especificado na linguagem JavaScript, ainda não há um consenso sobre sua implementação. Alguns frameworks do mercado, inclusive a linguagem TypeScript suportam este recurso com sintaxe `@`, a mesma utilizada na linguagem Python que há anos suporta nativamente este recurso. Todavia, nada nos impede de implementá-lo em vanilla JavaScript. E você? Deixe sua opnião!
+Apesar de o suporte a decorator ter sido especificado na linguagem JavaScript, ainda não há um consenso sobre sua implementação. Alguns frameworks do mercado, inclusive a linguagem TypeScript suportam este recurso com sintaxe `@`, a mesma utilizada na linguagem Python que há anos suporta nativamente este recurso. Todavia, nada nos impede de implementá-lo em vanilla JavaScript. E você? Deixe sua opnião!
