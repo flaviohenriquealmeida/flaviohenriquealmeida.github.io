@@ -94,7 +94,7 @@ const total = sumThreeNumbers(10, 20, 30);
 alert(total);
 ```
 
-Excelente, conseguimos resolver o problema do escopo global fazendo cada módulo importar explicitamente o que precisa de outro. Todavia, como faremos o carregamento desses módulos no navegador? Não podemos implesmente importar cada módulo em separado como no exemplo anterior, vejamos:
+Excelente, conseguimos resolver o problema do escopo global fazendo cada módulo importar explicitamente o que precisa de outro. Todavia, como faremos o carregamento desses módulos no navegador? Não podemos simplesmente importar cada módulo em separado como no exemplo anterior, vejamos:
 
 ```html
 <!-- não rola fazer isso! -->
