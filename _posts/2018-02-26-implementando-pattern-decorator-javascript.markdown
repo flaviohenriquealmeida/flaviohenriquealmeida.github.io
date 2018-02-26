@@ -2,7 +2,7 @@
 layout: post
 title:  "Suportando Decorators com vanilla JavaScript"
 description: Não há suporte nativo a decorators na linguagem JavaScript (ano base 2018), apesar de existir formalmente uma proposta. Neste artigo Implementaremos uma solução padronizada para que possamos utilizar decorators com vanilla JavaScript hoje.
-date: 2018-02-19 08:00:00 -0300
+date: 2018-02-26 08:00:00 -0300
 categories:
 permalink: /suportando-decorators-com-vanilla-javascript/
 author: flavio_almeida
