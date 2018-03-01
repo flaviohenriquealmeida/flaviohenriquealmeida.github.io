@@ -9,28 +9,16 @@ author: flavio_almeida
 tags: [javascript, redux, SSOT]
 image: logo.png
 ---
-Existe um número considerável de soluções no mercado para construção de Single Page Applications e cada uma delas resolve questões arquiteturais e de infraestrutura de sua maneira. Todavia, <a href="https://redux.js.org/" target="_blank">**Redux**</a> é um padrão para gerenciamento de estado (state) da aplicação que ganhou muita força. Tamanha foi sua força que a própria comunidade se encarregou de incorporá-lo aos diversos frameworks SPA do mercado. Vejamos:
+Existe um número considerável de soluções no mercado para construção de *Single Page Applications* e cada uma delas resolve questões arquiteturais de sua maneira. Todavia, <a href="https://redux.js.org/" target="_blank">**Redux**</a> é um padrão para gerenciamento centralizado de estado da aplicação que vem ganhando muita atenção da comunidade. Esse padrão se tornou tão popular que foram criadas diversas bibliotecas para integrá-lo com frameworks SPA. Vejamos algumas delas:
 
 * <a href="https://github.com/ngrx/store" target="_blank">nxStore</a>, Angular
 * <a href="https://github.com/reactjs/react-redux" target="_blank">react-redux</a>, React
 * <a href="https://vuex.vuejs.org/en/intro.html" target="_blank">vuex</a>, Vuejs
 * <a href="http://www.ember-redux.com/" target="_blank">ember-redux</a>, Emberjs
 
-Neste artigo aplicaremos na prática Redux com vanilla JavaScript. Essa abordagem minimalista nos ajudará a focar nos seus principais conceitos sem termos o peso cognitivo de bibliotecas que fazem a ponte entre Redux e determinado framework.
+**Neste artigo aplicaremos na prática Redux com vanilla JavaScript**. Essa abordagem minimalista nos ajudará a focar nos seus principais conceitos sem termos o peso cognitivo de bibliotecas que fazem a ponte entre Redux e determinado framework. 
 
-Antes de construirmos nosso pequeno projeto, veremos brevemente os principais princípios preconizados pelo Redux.
-
-## Sobre Redux
-
-O próprio site do <a href="https://redux.js.org/" target="_blank">**Redux**</a> o define como um container de estado previsível. Ele se baseia em três princípios:
-
-* SSOT (Single Source of Truth): o estado (state) de toda a aplicação é armazenado em uma árvore de objetos dentro de uma única **store**. Ela é a única fonte de verdade sobre o estado da aplicação.
-* O estado é somente leitura: a única maneira de mudar o estado é emitindo uma **action**, um objeto que descreve o que aconteceu.
-* Mudanças são realizadas através de funções puras: essas funções puras são chamadas **reducers**. A partir de **actions** os reducers especificam como a árvore de estado deve ser transformada.
-
->*Uma função pura (*pure function*) é aquela que ao receber os mesmos argumentos retornará sempre o mesmo valor. Esse termo faz parte do jargão da programação funcional, inclusive funções desse tipo são fáceis de testar.*
-
-Não nos aprofundaremos nas definições, pois elas emergirão ao longo do nosso pequeno projeto que construiremos. O autor entende que para compreender Redux é necessário conciliar teoria e prática. 
+Vejamos a seguir a infraestrutura mínina que o leitor precisará para colocar em prática o que aprenderá.
 
 ## Infraestrutura
 
@@ -38,7 +26,7 @@ A única infraestrutura necessária para que o leitor possa colocar em prática 
 
 ## Preparando um pequeno projeto
 
-Para que possamos ver a arquitetura Redux em ação criaremos unm pequeno projeto que utilizará o básico do <a href="https://webpack.js.org/" target="_blank">Webpack</a> para que possamos carregar módulos baixados através do `npm`, o gerenciador de módulos do Node.js.
+Para que possamos ver a arquitetura Redux em ação, criaremos um pequeno projeto que utilizará o básico do <a href="https://webpack.js.org/" target="_blank">Webpack</a> para que possamos carregar módulos baixados através do `npm`, o gerenciador de módulos do Node.js.
 
 Primeiro, criaremos a pasta `project` e dentro dela o arquivo `index.html`:
 
@@ -140,11 +128,25 @@ npm start
 
 Acessamos nossa aplicação através do endereço `http://localhost:8080`. Depois de carregada, experimente digitar no único `<input>` da página. Instantaneamente o valor digitado será exibido no `<p>` logo abaixo do `<input>`. 
 
-Agora que já temos um pequeno projeto chegou a hora de modificá-lo para que faça uso do `Redux`.
+>Alterações nos módulos da aplicação dispararão a geração de um novo `bundle.js` sem que o desenvolvedor tenha que se preocupar.
+
+Antes de modificarmos nosso projeto para utilizar Redux, veremos brevemente seus principais princípios.
+
+## Sobre Redux
+
+O próprio site do <a href="https://redux.js.org/" target="_blank">**Redux**</a> o define como um container de estado previsível. Ele se baseia em três princípios:
+
+* SSOT (*Single Source of Truth*): o estado de toda a aplicação é armazenado em uma árvore de objetos dentro de uma única **store**. Ela é a única fonte de verdade sobre o estado da aplicação.
+* O estado é somente leitura: a única maneira de mudar o estado é emitindo uma **action**, um objeto que descreve o que aconteceu.
+* Mudanças são realizadas através de funções puras: essas funções puras são chamadas **reducers**. A partir de **actions** os reducers especificam como a árvore de estado deve ser transformada.
+
+>*Uma função pura (*pure function*) é aquela que ao receber os mesmos argumentos retornará sempre o mesmo valor. Esse termo faz parte do jargão da programação funcional, inclusive funções desse tipo são fáceis de testar.*
+
+Não nos aprofundaremos nas definições, pois elas emergirão ao longo do nosso projeto. O autor entende que **para compreender Redux é necessário conciliar teoria e prática**. Aliás, chegou a hora de realizar a integração com Redux.
 
 ## Instalando o módulo redux
 
-Com o servidor parado, ainda na pasta `project` vamos instalar o módulo `redux`:
+Com o servidor parado, ainda na pasta `project`, vamos instalar o módulo `redux`:
 
 ```bash
 npm install redux@3.7.2 -S
@@ -157,11 +159,11 @@ app/store.js
 // vazio, por enquanto
 ```
 
-Por enquanto nosso módulo não terá qualquer código, porque seu estado inicial será definido através do único **reducer** que nossa simples aplicação terá. **Uma aplicação pode ter um ou mais `reducers` que no final são combinados para criar a única `store` da aplicação**. 
+Por enquanto nosso módulo não terá qualquer código, porque seu estado inicial será definido através do único **reducer** que nossa simples aplicação terá. Aliás, uma aplicação pode ter um ou mais `reducers` que no final são combinados para criar a única `store` da aplicação. Vamos criar nosso primeiro *reducer*. 
 
 ## O papel dos reducers
 
-Lembre-se que o **reducer é o responsável em especificar como o estado (state) da aplicação armazenado na *store* deve ser transformado**. Essa decisão se baseia nas `actions` recebidas:
+**O reducer é o responsável em especificar como o estado da aplicação deve ser alterado em resposta às actions recebidas pela store**:
 
 ```javascript
 // app/reducers/statusReducer.js
@@ -171,10 +173,12 @@ export const statusReducer = (state = initialState, action) => {
     // ainda falta implementar
 };
 ```
-A variável `initialState` é um objeto que representa o estado incial da aplicação. Esse objeto pode ter uma ou mais propriedades, em nosso caso, ele possui apenas uma propriedade que define o estado de `status`. Seu valor inicial é uma string em branco. 
 
+>Devido à forte relação com reducers, a única store da aplicação é criada a partir da combinação de todos os reducers, pois cada um é o responsável por atualizar parte do estado da aplicação. Isso ficará mais claro quando criarmos nossa store.
 
-Em seguida, definimos nossa função pura, isto é, nosso `reducer` que recebe **sempre** como parâmetro o **estado** da aplicação e a **action** disparada. Através de *default parameter* indicamos que o valor padrão do parâmetro `state` será `initialState`, aquele objeto que define o estado inicial da aplicação.
+A variável `initialState` é um objeto que representa o estado incial da aplicação sob a jurisdição do *reducer*. Esse objeto pode ter uma ou mais propriedades, em nosso caso, ele possui apenas a propriedade `status`, aquela que guardará a mensagem de status da aplicação. Seu valor inicial é uma string em branco. 
+
+Em seguida, definimos nossa função pura, isto é, nosso `reducer` que recebe **sempre** como parâmetro o **estado** da aplicação e a **action** recebida. Através de *default parameter* indicamos que o valor padrão do parâmetro `state` será `initialState`, aquele objeto que define o estado inicial da aplicação.
 
 
 ```javascript
@@ -188,11 +192,9 @@ export const statusReducer = (state = initialState, action) => {
 };
 ```
 
-Ainda não vimos como criar *actions* em nossa aplicação, mas o mais importante é entender que uma action é um objeto que possui as propriedades **type** e **payload**. O primeiro é o tipo de ação, aliás, um *reducer*  pode estar preparado para lidar com diversos tipos de ação. Já o segundo é o valor associado a esse tipo, geralmente o valor que desejamos atualizar na *store*. Não esqueça que nosso *reducer* mais tarde será utilizado para construir nossa *store*, pois isso ele recebe sempre como parâmetro o `state`, isto é, o estado da *store*. 
+Ainda não criamos *actions* em nossa aplicação, mas o mais importante nesse momento é entender que uma *action* nada mais é do que um objeto JavaScript com as propriedades **type** e **payload**. O primeiro guarda uma string que identifica o seu tipo, já o segundo o valor associado, isto é, aquele que desejamos que seja atualizado no estado da aplicação. É por isso que o valor de `action.payload` será a nova mensagem de status que desejamos atualizar na *store*. 
 
-Em breve criaremos uma *action* cujo o **type** será a string `'CHANGE_STATUS'`. Ela será despachada toda vez que quisermos atualizar o estado `status` da nossa *store*.  É por isso que o valor de `action.payload` será a nova mensagem de status que desejamos que desejamos atualizar na *store*.
-
->Por enquanto é bom ter em mente que despachamos actions com auxílio da store, na maioria das vezes, a partir das ações do usuário.
+>Em breve, quando digitarmos no `<input>` da página, despacharemos para nossa store a action com o `type` 'CHANGE_STATUS' e que terá como `payload` o valor digitado. Todavia, lembre-se que é papel do *reducer* realizar a atualização do estado na store e não da action.
 
 Como um *reducer* potencialmente pode lidar com uma ou mais *actions*, faremos um `switch` que decidirá qual lógica executar com base no tipo da *action* recebida:
 
@@ -213,6 +215,8 @@ export const statusReducer = (state = initialState, action) => {
 };
 ```
 É importante que nosso *reducer* retorne o estado atual da aplicação caso a *action* disparada não tenha sido definida, por isso adicionamos a cláusula `default` em nosso `switch`. 
+
+## Imutabilidade do estado da aplicação
 
 Excelente, todavia chegamos a uma das partes mais importantes do `Redux`. O estado da aplicação deve ser imutável, isto é, não deve mudar. Para quem esta começando com Redux essa questão da imutabilidade pode dar um nó na cabeça. Quando dizemos imutável, significa que para modificarmos o estado da aplicação precisaremos criar um novo object `state` com base no `state` anterior.
 
@@ -258,13 +262,13 @@ export const statusReducer = (state = initialState, action) => {
 A função `Object.assign()` é usada para copiar os valores de todas as propriedades próprias enumeráveis de um ou mais objetos de origem para um objeto destino. Este método irá retornar o objeto destino. 
 
 
-Em nosso caso, o primeiro parâmetro `{}` é o objeto destino, isto é, um novo objeto sem qualquer propriedade. Já os demais parâmetros são os objetos que terão suas propriedades copiadas para o objeto destino.
+Em nosso caso, o primeiro parâmetro `{}` é o objeto destino, isto é, um novo objeto sem qualquer propriedade. Já os demais parâmetros são os objetos cujas propriedades serão copiadas para o objeto destino.
 
 Quando passamos mais de um objeto cuja as propriedades serão copiadas para `Object.assign()`, se determinada propriedade existir em mais de um objeto, será o valor da propriedade do último objeto passado como parâmetro que fará parte do objeto destino. É por isso que passamos `{ status }` como último parâmetro.
 
 >A partir do ES2018 podemos usar o Spread Operator com propriedades de objeto. Isso nos permitirá substituir o verboso `Object.assign({}, state, { status })` por `{ ...state, status }`. 
 
-Agora que já temos nosso *reducer* implementado, construiremos nosso *store* que o utilizará durante sua criação.
+Agora que já temos nosso *reducer* implementado, construiremos nossa *store* que o utilizará durante sua criação.
 
 Vamos alterar o módulo `app/store.js` importando a função `createStore` do módulo `redux` e nosso `statusReducer`. 
 
@@ -280,13 +284,13 @@ A função `createStore` recebeu como parâmetro o `statusReducer` para criar a 
 
 >Se tivéssemos mais de um reducer precisaríamos combiná-los para então passar o resultado da combinação para a função `createStore`. Esse processo de combinar *reducers* é feito através da função `combineStores`, também definida no módulo `redux`.
 
-Agora que já temos nossa `store` pronta, vamos partir para a implementação da única *action* da aplicação. 
+Agora que já temos a *store* pronta, partiremos para a implementação da única *action* da aplicação. 
 
-## O papel das actions
+## Implementando uma action
 
-Uma *action* na arquitetura Redux nada mais é do que um objeto com as propriedades `type` e `payload`. Já falamos sobre essas propriedades durante a implementação de `statusReducer`. 
+Já falamos um pouco sobre *action*, ela descreve o fato de que algo aconteceu, mas não define como o estado da aplicação deve ser alterado. A mudança do estado é feita sincronamente através de *reducers*. Chegou a hora de implementá-la em nossa aplicação.
 
-*Actions* são despachadas através da função `dispatch` da nossa `store`. Vejamos um exemplo isolado, que não entra em nossa aplicação:
+Estruturalmente, uma *action* é definida através de um objeto com as propriedades `type` e `payload`. Por fim, elas são despachadas através da função `dispatch` da nossa `store`. Vejamos um exemplo isolado, que não entra em nossa aplicação:
 
 ```javascript
 // EXEMPLO apenas, não entra em nossa aplicação
@@ -302,7 +306,7 @@ store.dispatch({
 ```
 No código anterior, nosso *reducer* responderá à ação `CHANGE_STATUS` recebendo o valor do `payload`. É com base nesse valor que a *store* será atualizada. Um ponto a destacar é que efeitos colaterais (side effects) são realizados em *actions* e não em nossos *reducers*. Exemplos de *side effects* são chamadas a console.log() e requisições ajax. Ainda veremos como lidar com efeitos colaterais em nossas *actions*. 
 
-Todavia, essa abordagem que adotamos deixa um pouco a desejar. Se uma ação deste tipo é usada em diversos lugares da aplicação e de uma hora para outra precisarmos mudar seu tipo, teremos que alterar em diversos lugares. Uma solução para o problema é criarmos  **action creators**.
+Todavia, essa abordagem que adotamos deixa um pouco a desejar. Se uma `action` deste tipo é usada em diversos lugares da aplicação e de uma hora para outra precisarmos mudar seu tipo, teremos que alterar em diversos lugares. Uma solução para o problema é criarmos  **action creators**.
 
 ## Flexibilidade com Action Creators
 
@@ -317,7 +321,7 @@ export const changeStatus = userName => {
     }
 };
 ```
-O módulo `app/actions/status.js` exporta apenas um *action creator* que declaramos na função `changeStatus`. Essa função recebe como parâmetro um `userName` que ao ser chamada retorna uma *action*. Podemos simplificar ainda mais o código desta maneira:
+O módulo `app/actions/status.js` exporta apenas um *action creator* que declaramos na função `changeStatus`. Essa função recebe como parâmetro um `userName` e ao ser chamada retorná uma *action*. Podemos simplificar ainda mais o código desta maneira:
 
 ```javascript
 // app/actions/status.js
@@ -339,7 +343,7 @@ store.dispatch(changeStatus('Calopsita is typing'));
 ```
 Excelente, escondemos os detalhes da *action* `'CHANGE_STATUS'`. Todavia, nosso código pode ficar ainda melhor.
 
-## Criando constantes
+## Action Types como constantes
 
 Se analisarmos os módulos `app/reducers/statusReducer.js` e `app/actions/status.js` veremos que cada um deles define a string `CHANGE_STATUS`. Além de termos o nome duplicado, nada impede o programador de acidentalmente escrever o tipo da action errado. 
 
@@ -347,7 +351,9 @@ Para solucionar o problema que acabamos de ver, vamos declarar os tipos das acti
 
 ```javascript
 // app/constants/actionTypes.js
-export const CHANGE_STATUS = 'CHANGE_STATUS';
+export const actionTypes = {
+    CHANGE_STATUS: 'CHANGE_STATUS'
+};
 ```
 
 Utilizando a constante em `app/actions/status.js`:
@@ -355,11 +361,11 @@ Utilizando a constante em `app/actions/status.js`:
 ```javascript
 // app/actions/status.js
 // importa as constantes
-import * as types from '../constants/actionTypes.js';
+import { actionTypes } from '../constants/actionTypes.js';
 
 export const changeStatus = userName => ({
     // utiliza a constante
-    type: types.CHANGE_STATUS,
+    type: actionTypes.CHANGE_STATUS,
     payload: `${userName} is typing`
 });
 ```
@@ -369,7 +375,7 @@ E também no módulo `app/reducers/statusReducer.js`:
 ```javascript
 // app/reducers/statusReducer.js
 // importa as constantes
-import * as types from '../constants/actionTypes';
+import { actionTypes } from '../constants/actionTypes';
 
 const initialState = { status: '' };
 
@@ -379,7 +385,7 @@ export const statusReducer = (state = initialState, action) => {
 
     switch (action.type) {
         // utiliza a constante
-        case types.CHANGE_STATUS:
+        case actionTypes.CHANGE_STATUS:
             return Object.assign({}, state, { status });
         default:
             return state;
@@ -554,10 +560,14 @@ Visualizamos as *actions* disparadas em ordem cronológica, inclusive podemos ve
 <br>
 É um recurso incrível que permite depurar a aplicação sem termos que reiniciá-la ou repetirmos determinada *action* manualmente através da interface da aplicação.
 
+## Dan Abramovich e uma proposta para substituir o Redux, o Future-Fetcher
+
+Durante a JSConf 2018, Dan Abramovich, o criador do Redux, anunciou um <a href="https://react-etc.net/entry/rip-redux-dan-abramov-announces-future-fetcher" target="_blank">substituto para Redux chamado **Future-Fetcher**.</a> Pouco se sabe sobre sua implementação, a não ser que foi motivada pela debanda de desenvolvedores do Redux para soluções menos complexas como <a href="https://github.com/mobxjs/mobx" target="_blank">MobX</a>. O objetivo de Dan com o *Future-Fetcher* é trazer de volta a simplicidade no gerenciamento de estado na plataforma JavaScript. Com certeza é algo que o leitor deve ficar de olho e que não esta muito longe de se concretizar. 
+
 ## Código no Github
 
 Você encontra o código completo deste artigo no meu <a href="https://github.com/flaviohenriquealmeida/redux-with-vanilla-javascript" target="_blank">github</a>. 
 
 ## Conclusão
 
-O conceito do Redux é simples, o que pode complicar seu entendimento é a quantidade de artefatos envolvidos durante sua implementação e a relação entre eles. Frameworks do mercado oferecem módulos especializados para realizar a ponte entre eles e o módulo `redux`. E você? Já utiliza Redux sem suas aplicações? Ele trouxe benefícios? Tornou mais complexo o projeto? Deixe sua opinião.
+O conceito do Redux é simples, o que pode complicar seu entendimento é a quantidade de artefatos envolvidos durante sua implementação e a relação entre eles. Frameworks do mercado oferecem módulos especializados para realizar a ponte entre eles e o módulo `redux`. E você? Já utiliza Redux em suas aplicações? Ele trouxe benefícios? Tornou mais complexo o projeto? Deixe sua opinião.
