@@ -2,7 +2,7 @@
 layout: post
 title:  "Entendendo Redux com vanilla JavaScript"
 description: Neste artigo aplicaremos na prática Redux com vanilla JavaScript. Essa abordagem minimalista nos ajudará a focar nos seus principais conceitos sem termos o peso cognitivo de bibliotecas que fazem a ponte entre Redux e determinado framework.
-date: 2018-02-26 08:00:00 -0300
+date: 2018-03-02 08:00:00 -0300
 categories:
 permalink: /entendendo-redux-com-vanilla-javascript/
 author: flavio_almeida
@@ -36,8 +36,7 @@ Primeiro, criaremos a pasta `project` e dentro dela o arquivo `index.html`:
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
     <title>Redux with vanilla JavaScript</title>
 </head>
 <body>
@@ -48,7 +47,7 @@ Primeiro, criaremos a pasta `project` e dentro dela o arquivo `index.html`:
 </html>
 ```
 
-É uma página simples que possui apenas um `<input>` para que o usuário informe seu nome e um `<p>` que exibirá em tempo real uma mensagem de status contendo o nome informado pelo usuário. Por fim, a tag `<script>` carregará  o `bundle.js` gerado através do Webpack. Esse *bundle*, além do nosso código, conterá a biblioteca padrão do Redux que utilizaremos.
+É uma página simples que possui apenas um `<input>` no qual o usuário informará seu nome e um `<p>` que exibirá em tempo real uma mensagem de status contendo o nome informado. Por fim, a tag `<script>` carregará  o `bundle.js` gerado através do Webpack. Esse *bundle*, além do nosso código, conterá a biblioteca padrão do Redux que utilizaremos.
 
 Agora, dentro da pasta `project/app` vamos criar o módulo `app.js` com o script necessário para que o `<p>` seja atualizado a cada dígito do usuário em `<input>`:
 
@@ -126,7 +125,7 @@ Ainda dentro da pasta `project`, iniciamos nosso servidor através do comando:
 npm start
 ```
 
-Acessamos nossa aplicação através do endereço `http://localhost:8080`. Depois de carregada, experimente digitar no único `<input>` da página. Instantaneamente o valor digitado será exibido no `<p>` logo abaixo do `<input>`. 
+Acessamos nossa aplicação através do endereço `http://localhost:8080`. Depois de carregada, experimente digitar no único `<input>` da página. Instantaneamente o valor digitado será exibido no `<p>` logo abaixo.
 
 >Alterações nos módulos da aplicação dispararão a geração de um novo `bundle.js` sem que o desenvolvedor tenha que se preocupar.
 
@@ -142,7 +141,7 @@ O próprio site do <a href="https://redux.js.org/" target="_blank">**Redux**</a>
 
 >*Uma função pura (*pure function*) é aquela que ao receber os mesmos argumentos retornará sempre o mesmo valor. Esse termo faz parte do jargão da programação funcional, inclusive funções desse tipo são fáceis de testar.*
 
-Não nos aprofundaremos nas definições, pois elas emergirão ao longo do nosso projeto. O autor entende que **para compreender Redux é necessário conciliar teoria e prática**. Aliás, chegou a hora de realizar a integração com Redux.
+Não nos aprofundaremos nas definições, pois elas emergirão ao longo do nosso projeto. O autor entende que **para compreender Redux é necessário conciliar teoria e prática**. Aliás, chegou a hora de realizarmos a integração com Redux.
 
 ## Instalando o módulo redux
 
@@ -161,9 +160,9 @@ app/store.js
 
 Por enquanto nosso módulo não terá qualquer código, porque seu estado inicial será definido através do único **reducer** que nossa simples aplicação terá. Aliás, uma aplicação pode ter um ou mais `reducers` que no final são combinados para criar a única `store` da aplicação. Vamos criar nosso primeiro *reducer*. 
 
-## O papel dos reducers
+## O papel do reducer
 
-**O reducer é o responsável em especificar como o estado da aplicação deve ser alterado em resposta às actions recebidas pela store**:
+**O reducer é o responsável em especificar como o estado da aplicação deve ser alterado em resposta às actions recebidas pela store**. Vamos criar nosso primeiro *reducer*:
 
 ```javascript
 // app/reducers/statusReducer.js
@@ -261,12 +260,11 @@ export const statusReducer = (state = initialState, action) => {
 
 A função `Object.assign()` é usada para copiar os valores de todas as propriedades próprias enumeráveis de um ou mais objetos de origem para um objeto destino. Este método irá retornar o objeto destino. 
 
-
-Em nosso caso, o primeiro parâmetro `{}` é o objeto destino, isto é, um novo objeto sem qualquer propriedade. Já os demais parâmetros são os objetos cujas propriedades serão copiadas para o objeto destino.
-
-Quando passamos mais de um objeto cuja as propriedades serão copiadas para `Object.assign()`, se determinada propriedade existir em mais de um objeto, será o valor da propriedade do último objeto passado como parâmetro que fará parte do objeto destino. É por isso que passamos `{ status }` como último parâmetro.
+Em nosso caso, o primeiro parâmetro `{}` é o objeto destino, isto é, um novo objeto sem qualquer propriedade. Já os demais parâmetros são os objetos cujas propriedades serão copiadas para o objeto destino. Se um ou mais desses objetos tiverem a mesma propriedade, será o valor do último objeto passado como parâmetro que fará parte do objeto destino. É por isso que passamos `{ status }` como último parâmetro.
 
 >A partir do ES2018 podemos usar o Spread Operator com propriedades de objeto. Isso nos permitirá substituir o verboso `Object.assign({}, state, { status })` por `{ ...state, status }`. 
+
+## Construindo nossa store
 
 Agora que já temos nosso *reducer* implementado, construiremos nossa *store* que o utilizará durante sua criação.
 
@@ -306,7 +304,7 @@ store.dispatch({
 ```
 No código anterior, nosso *reducer* responderá à ação `CHANGE_STATUS` recebendo o valor do `payload`. É com base nesse valor que a *store* será atualizada. Um ponto a destacar é que efeitos colaterais (side effects) são realizados em *actions* e não em nossos *reducers*. Exemplos de *side effects* são chamadas a console.log() e requisições ajax. Ainda veremos como lidar com efeitos colaterais em nossas *actions*. 
 
-Todavia, essa abordagem que adotamos deixa um pouco a desejar. Se uma `action` deste tipo é usada em diversos lugares da aplicação e de uma hora para outra precisarmos mudar seu tipo, teremos que alterar em diversos lugares. Uma solução para o problema é criarmos  **action creators**.
+Todavia, a abordagem que adotamos deixa um pouco a desejar. Se uma `action` deste tipo é usada em diversos lugares da aplicação e de uma hora para outra precisarmos mudar seu tipo, teremos que alterar em diversos lugares. Uma solução para o problema é criarmos  **action creators**.
 
 ## Flexibilidade com Action Creators
 
@@ -347,7 +345,7 @@ Excelente, escondemos os detalhes da *action* `'CHANGE_STATUS'`. Todavia, nosso 
 
 Se analisarmos os módulos `app/reducers/statusReducer.js` e `app/actions/status.js` veremos que cada um deles define a string `CHANGE_STATUS`. Além de termos o nome duplicado, nada impede o programador de acidentalmente escrever o tipo da action errado. 
 
-Para solucionar o problema que acabamos de ver, vamos declarar os tipos das actions como constantes em um módulo sem separado chamado `app/constants/actionTypes.js` e usar esse módulo em todos os lugares que os tipos forem necessários:
+Para solucionar o problema que acabamos de ver, vamos declarar os tipos das actions como constantes em um módulo em separado chamado `app/constants/actionTypes.js` e usar esse módulo em todos os lugares que os tipos forem necessários:
 
 ```javascript
 // app/constants/actionTypes.js
@@ -396,7 +394,7 @@ Nosso código ficou mais organizado e menos sujeito a erro.
 
 >A criação das pastas `reducers`, `actions` e `constants` segue o padrão *Rails-Style*. Você pode consultar outras formas de estruturar um projeto na própria <a href="https://redux.js.org/faq/code-structure" target="_blank">documentação do Redux</a>.
 
-Temos nossa *store* (criada a partir de `statusReducer`) e nosso *action creator* `changeStatus` utilizando constantes em comuns definidas em `actionTypes`. Chegou a hora de realizamos mudanças no estado da aplicação despachando ações através das ações do usuário.
+Temos nossa *store* (criada a partir de `statusReducer`) e nosso *action creator* `changeStatus` utilizando uma constante em comun definida em `actionTypes`. Chegou a hora de realizamos mudanças no estado da aplicação despachando ações através das ações do usuário.
 
 ## Despachando actions
 
@@ -412,6 +410,8 @@ document
 .querySelector('.userName')
 .oninput = e => {
     const userName = e.target.value;
+    // changeStatus retorna uma action 
+    // que é passada para store.dispatch
     store.dispatch(changeStatus(userName));
 };
 ```
@@ -439,7 +439,7 @@ store.subscribe(() => {
 });
 ```
 
->Em uma aplicação com `React`, os componentes são conectados à `store` através da função `connect` do módulo `react-redux`, aquele que realiza uma ponte entre o Redux e o React, dispensando o uso de `store.subscribe`.
+>Em uma aplicação com `React`, os componentes são conectados à `store` através da função `connect` do módulo <a href="https://github.com/reactjs/react-redux" target="_blank">react-redux</a>, aquele que realiza uma ponte entre o Redux e o React, dispensando o uso de `store.subscribe`.
 
 Quando o estado da aplicação for alterado, o *callback* passado para `store.subscribe()` será chamado. Nele, acessamos o estado atual da aplicação através de `store.getState()` para que possamos atualizar o elemento do DOM com valor atualizado de `state.status`.
 
@@ -447,7 +447,7 @@ Quando o estado da aplicação for alterado, o *callback* passado para `store.su
 
 Nosso código é funcional, inclusive podemos testar no navegador,  mas para transcendermos nosso entendimento sobre o que esta acontecendo podemos ativar o middleware <a href="https://github.com/evgenyrodionov/redux-logger" target="_blank">redux-logger</a>. O `redux-logger` nos permitirá visualizar as *actions* que chegam aos reducers, inclusive o estado da aplicação antes e depois de modificado. 
 
-Ainda sobre middleware, seu conceito é o mesmo de uma aplicação criada com <a href="http://expressjs.com/" target="_blank">Express.js</a>. Nele, adicionamos um ou mais middlewares em sua pilha de middlewares e cada um deles lidará com a requisição passando o controle para o próximo middleware da pilha.
+Ainda sobre middleware, seu conceito é o mesmo empregado no framework web <a href="http://expressjs.com/" target="_blank">Express.js</a>. Nele, adicionamos um ou mais middlewares em sua pilha de middlewares e cada um deles lidará com a requisição passando o controle para o próximo middleware da pilha.
 
 No caso do Redux, seus middlewares permitem adicionar um código específico entre o despacho da *action* e o momento que ela chega ao *reducer*. 
 
@@ -470,7 +470,7 @@ export const store = createStore(statusReducer, middlewares);
 
 O segundo parâmetro de `createStore` é a pilha de middlewares que desejamos aplicar. Em nosso caso, teremos um niddleware apenas, o `createLogger`.
 
-Agora, no navegador, com o aba do console aberta, poderemos verificar que a cada dígito no `<input>` será exibida informações valiosas sobre o que esta ocorrendo com o estado da aplicação.
+Agora, no navegador, com o aba do console aberta, podemos verificar que a cada dígito no `<input>` é exibida informações valiosas sobre o que esta ocorrendo com o estado da aplicação.
 
 ## Lidando com o operações assíncronas
 
@@ -479,6 +479,25 @@ Vimos que *side effects* devem ser realizados em nossas *actions* e nunca dentro
 Vamos simular uma operação assíncrona através de um `setTimeout` facilitando assim nosso teste sem dependermos de uma API para tal tarefa. 
 
 Nosso módulo `app/actions/status.js` ficará assim:
+
+```javascript
+import * as types from '../constants/actionTypes.js';
+
+export const changeStatus = text => {
+
+    return dispatch => {
+
+        setTimeout(() => dispatch(
+            {
+                type: types.CHANGE_STATUS,
+                payload: text
+            }
+        ), 1000);
+    };
+};
+```
+
+O mesmo código pode ser reescrito dessa forma:
 
 ```javascript
 import * as types from '../constants/actionTypes.js';
@@ -539,6 +558,9 @@ const middlewares = compose(
 
 export const store = createStore(statusReducer, middlewares);
 ```
+A função `compose` é  um utilitário para programação funcional e foi adicionada no módulo `redux` para facilitar a vida do desenvolvedor. O autor já falou sobre composição no artigo <a href="http://cangaceirojavascript.com.br/compondo-funcoes-javascript/" target="_blank">"Compondo funções em JavaScript"</a>.
+
+No código anterior, realizamos a composição do resultado da função `applyMiddleware` com um trecho de código que se conectará ao React DevTools caso ele tenha sido instalado como extensão do Chrome.
 
 Vamos reduzir a tela do Chrome e reservar um espaço à direita. É nesse espaço que trabalharemos com o console do Redux DevTools. Para ativá-lo, vamos clicar com o botão direito na página e escolher a opção *Redux DevTools->to Left*.
 
