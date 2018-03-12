@@ -23,7 +23,6 @@ const photo = {
 // propriedade de controle que define um identificador único
 photo._key = 1;
 ```
-
 Todavia, ao serializarmos o dado para ser enviado para uma API, a propriedade `_key` estará presente:
 
 ```javascript
