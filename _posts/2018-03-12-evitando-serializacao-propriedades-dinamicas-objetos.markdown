@@ -52,7 +52,7 @@ console.log(serializedPhoto);
 
 >A motivação para o post veio do problema enfrentado por um colega em sua aplicação feita com Ionic 3. Uma das bibliotecas utilizadas por ele modificava diretamente o modelo associado ao componente o que acabava lhe causando problemas na arquitetura definida por ele.
 
-O exemplo acima não causaria grandes problemas de performance, mas o cenário seria diferente caso tivéssemos que iterar em um grande lista de objetos para então deletarmos a propriedade `_key` de cada uma deles. A boa notícia é que há outra solução.
+O exemplo acima não causaria grandes problemas de performance, mas o cenário seria diferente caso tivéssemos que iterar em um grande lista de objetos para então deletarmos a propriedade `_key` de cada um deles. A boa notícia é que há outra solução.
 
 ## Definindo propriedades não iteráveis
 
