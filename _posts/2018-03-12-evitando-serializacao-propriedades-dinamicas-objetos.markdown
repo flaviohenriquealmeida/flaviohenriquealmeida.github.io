@@ -52,7 +52,7 @@ console.log(serializedPhoto);
 
 >A motivação para o post veio do problema enfrentado por um colega em sua aplicação feita com Ionic 3. Uma das bibliotecas utilizadas por ele modificava diretamente o modelo associado ao componente o que acabava lhe causando problemas na arquitetura definida por ele.
 
-O exemplo acima não causaria grandes problemas de performance, mas o cenário seria diferente caso tivéssemos que iterar em um grande lista de objetos para então deletarmos a propriedade `_key` de cada uma deles. A boa notícia é que há outra solução.
+O exemplo acima não causaria grandes problemas de performance, mas o cenário seria diferente caso tivéssemos que iterar em um grande lista de objetos para então deletarmos a propriedade `_key` de cada um deles. A boa notícia é que há outra solução.
 
 ## Definindo propriedades não iteráveis
 
@@ -89,6 +89,6 @@ O JSON resultante não contém mais a propriedade `_key`, excelente.
 
 ## Conclusão 
 
-Podemos adicionar dinamicamente propriedades não enumeráveis de em objetos através de `Object.defineProperty`. Uma consequência dessas propriedades é que elas não farão parte do JSON criado através da função `JSON.stringify`. 
+Podemos adicionar dinamicamente em objetoa propriedades não enumeráveis através de `Object.defineProperty`. Uma consequência dessas propriedades é que elas não farão parte do JSON criado através da função `JSON.stringify`. 
 
 A função `Object.defineProperty` permite definir ainda outras características da propriedade adicionada dinamicamente. E você? Já precisou utilizar essa função antes? Qual problema você tentou resolver? Deixe sua opinião.
