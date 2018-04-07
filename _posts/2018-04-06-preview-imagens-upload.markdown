@@ -12,6 +12,8 @@ image: logo.png
 
 Realizar o upload de arquivos é uma tarefa corriqueira do desenvolvedor web. Em se tratando do upload de imagens, realizar o preview antes do envio pode evitar que o usuário selecione a imagem errada. Neste artigo aprenderemos como realizar o preview da imagem escolhida.
 
+>Sobre upload de arquivos o leitor pode consultar o artigo <a href="http://cangaceirojavascript.com.br/express-realizando-upload-multer" target="_blank">Express, realizando upload com multer</a> deste mesmo autor.
+
 ## O problema
 
 Temos o arquivo `index.html` que define um simples `<form>` com as tags `<input type="file">` e `<input type="submit">`:
