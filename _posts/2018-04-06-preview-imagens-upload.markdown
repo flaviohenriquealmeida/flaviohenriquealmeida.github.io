@@ -12,6 +12,8 @@ image: logo.png
 
 Realizar o upload de arquivos é uma tarefa corriqueira do desenvolvedor web. Em se tratando do upload de imagens, realizar o preview antes do envio pode evitar que o usuário selecione a imagem errada. Neste artigo aprenderemos como realizar o preview da imagem escolhida.
 
+>Sobre upload de arquivos o leitor pode consultar o artigo <a href="http://cangaceirojavascript.com.br/express-realizando-upload-multer" target="_blank">Express, realizando upload com multer</a> deste mesmo autor.
+
 ## O problema
 
 Temos o arquivo `index.html` que define um simples `<form>` com as tags `<input type="file">` e `<input type="submit">`:
@@ -38,7 +40,7 @@ Quando selecionamos uma imagem apenas seu nome será exibido ao lado do `<input 
 
 ## Solução 
 
-Vamos adicionar uma tag `<img>` com a classe `preview` entre a escolha do arquivo e o botão de submissão. É este elemento que fará o preview da imagem selecionada:
+Vamos adicionar uma tag `<img>` com a classe `preview-img` entre a escolha do arquivo e o botão de submissão. É este elemento que fará o preview da imagem selecionada:
 
 ```html
 <!DOCTYPE html>
@@ -165,4 +167,4 @@ Perfeito. Agora temos maior liberdade para estilizar nosso botão.
 
 ## Conclusão
 
-Muitas vezes a tecnologia vigente não traz uma resposta direta para determinado problema de usabilidade e com isso força o desenvolvedor a elaborar soluções utilizando os recursos que tem. E você? Já tinha precisado de um preview de imagens antes? Deixe sua opinião.
+Muitas vezes a tecnologia vigente não traz uma resposta direta para determinado problema de usabilidade e com isso força o desenvolvedor a elaborar soluções utilizando os recursos que tem. E você? Já precisou realizar o preview de imagens antes? Deixe sua opinião.
