@@ -62,7 +62,7 @@ const startWatching = () => {
         .pipe(debounceTime(200))    
         .subscribe(resetTimer);
 }
-const resetTimer = () => /* reseta o timer da sessao */
+const resetTimer = () => /* reseta o timer da sessão */
 startWatching();
 ```
 Perfeito, mas se não quisermos mais responder aos eventos que acabamos de nos inscrever? Precisaremos guardar o retorno de cada chamada à função `fromEvent` em uma variável. O retorno nada mais é do que um objeto do tipo `Subscription`, aquele que nos permitirá cancelar nosso registro ao `Observable`:
@@ -93,7 +93,7 @@ const stopWatching = () => {
     mouseMoveSubscription.unsubscribe();
     keyPressSubscription.unsubscribe();
 }
-const resetTimer = () => /* reseta o timer da sessao */
+const resetTimer = () => /* reseta o timer da sessão */
 startWatching();
 ```
 Nossa solução funciona, mais não é nada elegante. Primeiro, estamos repetindo a mesma chamada de `resetTimer` em cada uma das inscrições dos observables. Além disso, foi necessário declararmos variáveis mutáveis para guardarem as inscrições de cada `Observable`. São essas variáveis que serão utilizadas pela função `stopWatching`. Com certeza podemos melhorar o código escrito até agora.
@@ -115,7 +115,7 @@ const startWatching = () => {
 const stopWatching = () => {
     /* como implementar ? */;
 }
-const resetTimer = () => /* reseta o timer da sessao */
+const resetTimer = () => /* reseta o timer da sessão */
 startWatching();
 ```
 Criamos um array com três elementos no qual cada um de seus elementos é o tipo do evento que desejamos escutar. Através de `forEach`, criamos um `Observable` para cada evento, aplicando o operador `debounceTime` e a chamada de `subscribe` uma única vez. Porém, temos um problema. Precisamos ter a capacidade de remover a inscrição de cada um dos três observables criados e da maneira que organizamos nosso código, isso não será possível. Como proceder?
@@ -163,7 +163,7 @@ const startWatching = () =>
     .pipe(debounceTime(200))
     .subscribe(resetTimer);
 
-const resetTimer = () => { /* reseta o timer da sessao */ };
+const resetTimer = () => { /* reseta o timer da sessão */ };
 const eventSubscriptions = startWatching();
 const stopWatching = () => eventSubscriptions.unsubscribe();
 ```
@@ -191,7 +191,7 @@ const startWatching = () => {
         }
     }
 }
-const resetTimer = () => { /* reseta o timer da sessao */ }
+const resetTimer = () => { /* reseta o timer da sessão */ }
 const stopWatching = startWatching();
 /* ... */
 stopWatching(); // cancela as inscrições
