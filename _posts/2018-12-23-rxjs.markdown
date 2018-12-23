@@ -1,0 +1,203 @@
+---
+layout: post
+title:  "Rxjs: lidando com eventos elegantemente"
+description: Neste artigo especial de natal será demonstrado como o Rxjs pode ajudar o desenvolvedor a lidar elegantemente com eventos do DOM. 
+date: 2018-12-23 20:00:00 -0300
+categories:
+permalink: /rxjs-lidando-com-eventos-elegantemente/
+author: flavio_almeida
+tags: [javascript, rxjs, observable]
+image: logo.png
+---
+Neste artigo especial de natal será demonstrado como o Rxjs pode ajudar o desenvolvedor a lidar elegantemente com eventos do DOM.
+
+## Contexto
+Temos uma aplicação hipotética construída com HTML, CSS e JavaScript. Ela alerta o usuário que estiver inativo por mais de cinco minutos que sua sessão vai expirar. Neste contexto, a aplicação precisa monitorar o clique, mover do mouse e o pressionar de qualquer tecla, detectando assim atividade por parte do usuário e consequentemente reiniciando o timer de inatividade.
+
+Vamos começar pelo trecho de código responsável por reiniciar o timer de inatividade:
+
+```javascript
+const startWatching = () => {
+    document.addEventListener('click', resetTimer);
+    document.addEventListener('mousemove', resetTimer);
+    document.addEventListener('keypress', resetTimer);
+}
+const resetTimer = () => { /* reseta o timer da sessão, código omitido */ };
+startWatching();
+```
+Um olhar atento no código que acabamos de ver verificará que ele possui um problema de performance. Cada coordenada alterada do mouse na tela dispara a chamada de `resetTimer`, isto é, desligará o timer atual criando um novo logo em seguida. A mesma coisa para cada tecla pressionada pelo usuário, assim como cliques. Uma solução é aplicar o *debounce pattern*. Porém, em vez de implementarmos nossa própria função *debounce*, utilizaremos o operador `debounceTime` do Rxjs. 
+
+## Lidando com elementos do DOM através do Rxjs
+Primeiro, precisamos tratar os eventos que vimos até agora através da função `fromEvent` do Rxjs. Esta função criará um `Observable` que emitirá valores toda vez que um evento for disparado:
+
+```javascript
+// importando fromEvent do pacote rxjs
+import { fromEvent } from 'rxjs';
+
+const startWatching = () => {
+    fromEvent(document, 'click')
+        .subscribe(resetTimer);
+    fromEvent(document, 'mousemove')
+        .subscribe(resetTimer);
+    fromEvent(document, 'keypress')
+        .subscribe(resetTimer);
+}
+const resetTimer = () => /* reseta o timer da sessão */
+startWatching();
+```
+A função `fromEvent` recebe como primeiro parâmetro o elemento que desejamos associar um *handler* para um evento e o segundo é o tipo de evento em si. Como o método retorna um `Observable`, nos inscrevemos nele através do método `subscribe`, que recebe o *handler* do evento. Quando cada uma dos eventos for disparado, a função `resetTimer` passada para `subscribe` será executada. Excelente, mas até agora trocamos seis por meia dúzia. A mudança mais beneficial será aplicar o operador `debounceTime`:
+
+```javascript
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
+const startWatching = () => {
+    fromEvent(document, 'click')
+        .pipe(debounceTime(200))
+        .subscribe(resetTimer);
+    fromEvent(document, 'mousemove')
+        .pipe(debounceTime(200))    
+        .subscribe(resetTimer);
+    fromEvent(document, 'keypress')
+        .pipe(debounceTime(200))    
+        .subscribe(resetTimer);
+}
+const resetTimer = () => /* reseta o timer da sessao */
+startWatching();
+```
+Perfeito, mas se não quisermos mais responder aos eventos que acabamos de nos inscrever? Precisaremos guardar o retorno de cada chamada à função `fromEvent` em uma variável. O retorno nada mais é do que um objeto do tipo `Subscription`, aquele que nos permitirá cancelar nosso registro ao `Observable`:
+
+```javascript
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+// variáveis que guardaram cada Subscription
+let clickSubscription = null;
+let mouseMoveSubscription = null;
+let keyPressSubscription = null
+
+const startWatching = () => {
+    clickSubscription = fromEvent(document, 'click')
+        .pipe(debounceTime(200))
+        .subscribe(resetTimer);
+    mouseMoveSubscription = fromEvent(document, 'mousemove')
+        .pipe(debounceTime(200))    
+        .subscribe(resetTimer);
+    keyPressSubscription = fromEvent(document, 'keypress')
+        .pipe(debounceTime(200))    
+        .subscribe(resetTimer);
+}
+
+// alterou o método stopWatching também!
+const stopWatching = () => {
+    clickSubscription.unsubscribe();
+    mouseMoveSubscription.unsubscribe();
+    keyPressSubscription.unsubscribe();
+}
+const resetTimer = () => /* reseta o timer da sessao */
+startWatching();
+```
+Nossa solução funciona, mais não é nada elegante. Primeiro, estamos repetindo a mesma chamada de `resetTimer` em cada uma das inscrições dos observables. Além disso, foi necessário declararmos variáveis mutáveis para guardarem as inscrições de cada `Observable`. São essas variáveis que serão utilizadas pela função `stopWatching`. Com certeza podemos melhorar o código escrito até agora.
+
+Primeiro, vamos tentar evitar a repetição da chamada de `subscribe`:
+
+```javascript
+import { fromEvent } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
+const startWatching = () => {
+    ['click', 'mousemove', 'keypress']
+        .forEach(event => 
+            fromEvent(document, event)
+                .pipe(debounceTime(200))
+                .subscribe(resetTimer)
+        );
+}
+const stopWatching = () => {
+    /* como implementar ? */;
+}
+const resetTimer = () => /* reseta o timer da sessao */
+startWatching();
+```
+Criamos um array com três elementos no qual cada um de seus elementos é o tipo do evento que desejamos escutar. Através de `forEach`, criamos um `Observable` para cada evento, aplicando o operador `debounceTime` e a chamada de `subscribe` uma única vez. Porém, temos um problema. Precisamos ter a capacidade de remover a inscrição de cada um dos três observables criados e da maneira que organizamos nosso código, isso não será possível. Como proceder?
+
+## A função merge
+Uma solução para o problema é continuar criando um `Observable` para cada um dos eventos, mas tratando-os como um único `Observable`. Em outras palavras, o que queremos realizar é o merge de três observables. Conseguimos isso através da função `merge` do Rxjs:
+
+```javascript
+import { fromEvent, merge } from 'rxjs';
+// importou merge 
+import { debounceTime } from 'rxjs/operators';
+
+const startWatching = () => {
+    const subscription = merge(
+            // através do spread operador, passamos três 
+            // observales para o métdo merge, em vez do array
+            ...['click', 'mousemove', 'keypress']
+                .map(event => fromEvent(document, event))
+         )
+         // neste ponto, temos três Observables mergeados
+        .pipe(debounceTime(200))
+        // o debounceTime será aplicado na emissão de cada Observable
+        .subscribe(resetTimer);
+    return subscription;
+}
+const resetTimer = () => { /* reseta o timer da sessão */ };
+// guarda o retorno, a inscricão
+const eventsSubscription = startWatching();
+// utiliza a inscrição para cancelar a própria inscrição
+const stopWatching = () => eventsSubscription.unsubscribe();
+```
+A função `merge` recebe um ou mais observables que no final serão tratados como um apenas. Isto é, independente de qual `Observable` emita um valor, seu resultado será disponibilizado para quem se inscrever no `Observable` gerado por `merge`. Através do *spread operador* garantimos que a função `merge` receberá três parâmetros em vez de um array de observables. Reparem teremos apenas uma `Subscription` que nos permitirá cancelar a inscrição dos três observables de uma só vez:
+
+Podemos simplicar nosso código um pouco mais omitindo a declaração da variável `subscription` retornando diretamente o resultado de `merge`:
+
+```javascript
+import { fromEvent, merge } from 'rxjs';
+import { debounceTime,} from 'rxjs/operators';
+
+const startWatching = () => 
+    merge(
+        ...['click', 'mousemove', 'keypress']
+        .map(event => fromEvent(document, event))
+    )
+    .pipe(debounceTime(200))
+    .subscribe(resetTimer);
+
+const resetTimer = () => { /* reseta o timer da sessao */ };
+const eventSubscriptions = startWatching();
+const stopWatching = () => eventSubscriptions.unsubscribe();
+```
+Mas o que acontecerá se alguém chamar a função `stopWatching` mais de uma vez? Um erro, com certeza, pois não podemos chamar o método `unsubscribe` de uma `Subscription` mais de uma vez. 
+
+Podemos solucionar o problema citado no parágrafo anterior retornando uma função no lugar da `Subscription`. Esta função ao ser chamada garantirá que a inscrição será cancelada apenas uma vez:
+
+```javascript
+import { fromEvent, merge } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+
+const startWatching = () => {
+    let subscription = merge(
+        ...['click', 'mousemove', 'keypress']
+            .map(event => fromEvent(document, event))
+    )
+    .pipe(debounceTime(200))
+    .subscribe(resetTimer);
+
+    return () => {
+        // evita erro caso seja chamado duas vezes
+        if(subscription) {
+            subscription.unsubscribe();
+            subscription = null;
+        }
+    }
+}
+const resetTimer = () => { /* reseta o timer da sessao */ }
+const stopWatching = startWatching();
+/* ... */
+stopWatching(); // cancela as inscrições
+```
+Agora não temos mais variáveis mutáveis fora do escopo da função `startWatching` e garantimos que o cancelamento da inscrição não será realizado mais de uma vez. 
+
+## Conclusão
+A biblioteca Rxjs é muito poderosa, não é à toa que as extensões reativas estão presentes em diversas linguagens, não apenas em JavaScript.
+
