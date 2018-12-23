@@ -45,7 +45,7 @@ const startWatching = () => {
 const resetTimer = () => /* reseta o timer da sessão */
 startWatching();
 ```
-A função `fromEvent` recebe como primeiro parâmetro o elemento que desejamos associar um *handler* para um evento e o segundo é o tipo de evento em si. Como o método retorna um `Observable`, nos inscrevemos nele através do método `subscribe`, que recebe o *handler* do evento. Quando cada uma dos eventos for disparado, a função `resetTimer` passada para `subscribe` será executada. Excelente, mas até agora trocamos seis por meia dúzia. A mudança mais beneficial será aplicar o operador `debounceTime`:
+A função `fromEvent` recebe como primeiro parâmetro o elemento que desejamos associar um *handler* para um evento e o segundo é o tipo de evento em si. Como o método retorna um `Observable`, nos inscrevemos nele através do método `subscribe`, que recebe o *handler* do evento. Quando cada um dos eventos for disparado, a função `resetTimer` passada para `subscribe` será executada. Excelente, mas até agora trocamos seis por meia dúzia. O maior benefício vem com a aplicação do operador `debounceTime`:
 
 ```javascript
 import { fromEvent } from 'rxjs';
